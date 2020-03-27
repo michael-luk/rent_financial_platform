@@ -1,0 +1,169 @@
+@(item: Host) @front_frame_no_footer("授信银行卡", "VerifyBankApp", "VerifyBankController") {
+
+    <style>
+    .m_top{
+    overflow:auto;
+    width:320px;
+    margin:20px auto;
+    text-align:center;
+    color:#666;
+    }
+    .m_top_t{
+    float:left;
+    width:75px;
+
+    }
+    .m_top_t div{
+    background-color:#b2b2b2;
+    -moz-border-radius:50px;
+    border-radius: 50px;
+    }
+    .m_top_img{
+    width:60px;
+    height:60px;
+    line-height:60px;
+    margin:0 auto;
+    }
+    .m_top_t img{
+    width:40px;
+    padding:10px;
+    }
+    .m_action{
+    background-color:#00b5aa !important;
+    }
+
+    .m_top_tt{
+    float:left;
+    width:2%;
+    }
+    .m_top_tt img{
+    width:100%;
+    margin-top:25px;
+    }
+
+    .m_form{
+    text-align:left;
+    font-size:1.4rem;
+    color:#666;
+    }
+    .m_form div{
+    height:52px;
+    line-height:52px;
+    background-color:#fff;
+    border:1px #b2b2b2 solid;
+    margin:3% 5%;
+    -moz-border-radius:5px;
+    border-radius: 5px;
+    }
+
+    .m_form_info_1 span:nth-child(1){
+    float:left;
+    width:28%;
+    padding-left:2%;
+    }
+    .m_form_info_1 span:nth-child(2){
+    float:left;
+    width:68%;
+    text-align:right;
+    padding-right:2%;
+    }
+    .m_input{
+    height:48px;
+    width:100%;
+    border:0;
+    }
+    .m_read{
+    color:#333;
+
+    text-align:left;
+    margin-left:5%;
+    }
+    .m_read span{
+    color:#00b5aa;
+    }
+
+    .footer_btn{
+    position:fixed;
+    bottom:20px;
+    max-width:640px;
+    }
+    select {
+    direction: rtl;
+    color:#bfbfbf !important;
+    }
+    select option {
+    direction: ltr;
+    }
+
+    .fs{
+    height:52px;
+    border:0;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background:url(/showimg/images/m1.png) no-repeat right center;
+    background-size:10px 15px;
+    width:100%;
+    　　 text-indent:0.01px;
+    　 　text-overflow:"";
+    padding-right:20px;
+    }
+    </style>
+
+    <div class="content">
+        <div class="mid">
+                <!--内容开始-->
+            <div class="m_top">
+                <div class="m_top_t" >
+                    <div class="m_top_img m_action"><img src="/showimg/images/t1.png" /></div>
+                    <p>基础信息</p>
+                </div>
+
+                <div class="m_top_tt"><img src="/showimg/images/tt.png" /></div>
+
+                <div class="m_top_t">
+                    <div class="m_top_img m_action"><img src="/showimg/images/t2.png" /></div>
+                    <p>银行卡</p>
+                </div>
+                <div  class="m_top_tt"><img src="/showimg/images/tt.png" /></div>
+
+                <div class="m_top_t">
+                    <div class="m_top_img"><img src="/showimg/images/t3.png" /></div>
+                    <p>房产信息</p>
+                </div>
+                <div  class="m_top_tt"><img src="/showimg/images/tt.png" /></div>
+
+                <div class="m_top_t">
+                    <div class="m_top_img"><img src="/showimg/images/t4.png" /></div>
+                    <p>租赁信息</p>
+                </div>
+            </div>
+
+            <div class="m_form">
+                <div class="m_form_info_1">
+                    <span>银行名称</span>
+                    <span>
+                        <select class="fs" ng-model="bankName">
+                            <option>请选择</option>
+                            <option>工商银行</option>
+                            <option>建设银行</option>
+                            <option>交通银行</option>
+                        </select>
+                    </span>
+                </div>
+                <div class="m_form_info_1">
+                    <span>银行卡号</span>
+                    <span><input class="m_input" type="text" ng-model="bankCard" /></span>
+                </div>
+            </div>
+
+            @*<div class="m_read">智能加密，保障你的用卡安全，<span><a href="#">了解安全保障</a></span></div>*@
+
+            <div style="clear:both"></div>
+            <div class="footer_btn"><div class="m_reg" ng-click='doBind(@item.id, "")'>下一步</div></div>
+                <!--内容结束-->
+        </div>
+    </div>
+    <script src="@routes.Assets.at("js/angular.min.js")"></script>
+    <script src='@routes.Assets.at("js/front_controllers/verify_bank_controller.js")'></script>
+}

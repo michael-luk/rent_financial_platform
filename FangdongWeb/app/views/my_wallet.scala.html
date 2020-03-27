@@ -1,0 +1,256 @@
+@(item :Host, totalRent: Long, rent4financial: Double, rent4profit: Double, borrowed: Double, borrowable: Double, totalMoney :Double, totalFundBack :Double)@front_frame_no_footer("租约钱包详情", "BorrowInfoApp", "BorrowInfoController") {
+    <style>
+    .footer_add1{
+    width:100%;
+    max-width:640px;
+    text-align:center;
+
+    }
+    .m_add{
+    background-color:#00b5aa;
+    margin:0 5%;
+    height:40px;
+    line-height:40px;
+    color:#fff;
+    font-size:1.8rem;
+    font-weight:bold;
+    -moz-border-radius:5px;
+    border-radius: 5px;
+    }
+    .content{
+
+    }
+    .m_m{
+    background-size:100%;
+    width:100%;
+    margin-top:20px;
+    }
+    .m_m_top{
+    width:25%;
+    margin:0 auto 10px;
+    }
+    .m_m_top img{
+    width:100%;
+    }
+    .m_m_top_2 span{
+    display:block;
+    }
+    .m_m_top_2 span:nth-child(1){
+    color:#999;
+    position:relative;
+    top:-2px;
+    font-size:1.6rem;
+    }
+    .m_m_top_2 span:nth-child(2){
+    color:#6a6a6a;
+    font-size:2.0rem;
+    }
+    </style>
+    <div class="content">
+        <div class="mid">
+                <!--内容开始-->
+            <div class="m_m">
+                <div class="m_m_top"><img src="@routes.Assets.at("images/b7.png")" /></div>
+                <div class="m_m_top_2"><span>钱包余额</span><span>￥@(borrowable - borrowed + totalFundBack + rent4financial + rent4profit)</span></div>
+
+                <style type="text/css">
+                .m_m_mid{
+                width:33%;
+                margin:30px auto 0px;
+                border-top:3px #8a8a8a dashed;
+                }
+
+                .pri1{
+                background-color:#fff;
+                border-left:3px #8a8a8a solid;
+                border-right:3px #8a8a8a solid;
+                }
+
+                .pri2{
+                background-color:#ebbb01;
+                border-left:3px #bbbbbb solid;
+                border-right:3px #bbbbbb solid;
+                }
+
+                .pri3{
+                background-color:#3ebbfd;
+                border-left:3px #bbbbbb solid;
+                border-right:3px #bbbbbb solid;
+                }
+
+                .pri4{
+                background-color:#ff3e3e;
+                border-left:3px #bbbbbb solid;
+                border-right:3px #bbbbbb solid;
+                }
+
+                .pri5{
+                background-color:#00b8ae;
+
+                border-left:3px #bbbbbb solid;
+                border-right:3px #bbbbbb solid;
+                border-bottom:3px #bbbbbb solid;
+
+                -moz-border-radius:0 0 5px 5px;
+                border-radius:0 0 5px 5px;
+                }
+                .e5566{
+                clear:left;
+                width:90%;
+                margin:0 auto;
+                }
+                .e5566 p{
+                float:left;
+
+                color:#303030;
+                font-size:1.2rem;
+                }
+                .e5566 p:nth-child(1){
+                width:30%;
+                text-align:left;
+                }
+                .e5566 p:nth-child(2){
+                width:25%;
+                text-align:left;
+                }
+                .e5566 p:nth-child(3){
+                width:20%;
+                text-align:left;
+                }
+                .e5566 p:nth-child(4){
+                width:25%;
+                text-align:left;
+                }
+                .price{
+                font-size:1.4rem !important;
+                }
+
+                .i1{
+                width:10px;
+                height:10px;
+                background-color:#fff;
+                display:block;
+                float:left;
+                margin-right:5px;
+
+                border-top:1px #8a8a8a dashed;
+                border-left:1px #8a8a8a solid;
+                border-right:1px #8a8a8a solid;
+                border-bottom:1px #8a8a8a solid;
+                }
+
+                .i2{
+                width:12px;
+                height:12px;
+                background-color:#3ebbfd;
+                display:block;
+                float:left;
+                margin-right:5px;
+                }
+
+                .i3{
+                width:12px;
+                height:12px;
+                background-color:#ff3e3e;
+                display:block;
+                float:left;
+                margin-right:5px;
+                }
+
+                .i4{
+                width:12px;
+                height:12px;
+                background-color:#ebbb01;
+                display:block;
+                float:left;
+                margin-right:5px;
+                }
+
+                .i5{
+                width:12px;
+                height:12px;
+                background-color:#00b8ae;
+                display:block;
+                float:left;
+                margin-right:5px;
+                }
+
+                .e556611{
+                    clear:left;
+                    width:90%;
+                    margin:0 auto;
+                    float:left;
+                    color:#303030;
+                    font-size:1.2rem;
+                }
+                </style>
+                <div class="m_m_mid">
+                    @*共210px*@
+                    <div class="pri1" style="height:@(totalRent/(totalMoney) * 210)px"></div>
+
+                    <div class="pri2"  style="height:@(rent4financial/(totalMoney) * 210)px"></div>
+
+                    <div class="pri3"  style="height:@(rent4profit/(totalMoney) * 210)px"></div>
+
+                    <div class="pri4"  style="height:@(borrowed/(totalMoney) * 210)px"></div>
+
+                    <div class="pri5"  style="height:@(borrowable/(totalMoney) * 210)px"></div>
+                </div>
+
+                <div style="margin-top:40px;">
+                    <div class="e5566"><p><i class="i1"></i>租约合同金额</p><p class="price">￥@totalRent</p></div>
+                    <div class="e5566">
+                        <p><i class="i2"></i>租金理财</p>
+                        <p class="price">￥@rent4financial</p>
+                        <p><i class="i3"></i>已提</p>
+                        <p class="price">￥@borrowed</p>
+                    </div>
+                    <div class="e5566">
+                        <p><i class="i4"></i>理财收益</p>
+                        <p class="price">￥@rent4profit</p>
+                        <p><i class="i5"></i>可提</p>
+                        <p class="price">￥@(borrowable - borrowed + totalFundBack)</p>
+                    </div>
+                    <div class="e556611" >
+                        <p style="padding-left: 15px; ">你的还款人已替你本月还款:<span class="price">￥@totalFundBack</span> </p>
+                    </div>
+                    <div class="e556611">
+                        <p  style="padding-left: 15px; ">累计还款<span class="price">￥@totalFundBack</span></p>
+                    </div>
+                </div>
+            </div>
+                <!--
+比例10% 90%
+
+        <div class="m_m_mid">
+            <div class="s1">
+                <div class="s1_1" style="position:relative;left:-5%">已提<p>￥2000</p></div>
+                <div class="s1_2" style="height:30px; background-color:#ff3e3e">
+                    <div class="m_in"></div>
+                </div>
+            </div>
+
+
+
+            <div class="s2">
+                <div class="s1_1" style="position:relative;left:-5%">可提<p>￥2000</p></div>
+                <div class="s1_2" style="position:relative;top:-20px;height:270px; background-color:#00b5aa">
+                    <div class="m_in_2"></div>
+                </div>
+            </div>
+        </div>
+-->
+            <div style="height:50px; clear:left;"></div>
+            <div class="footer_add"><a href="#" onClick="javascript:history.go(-1);"><div class="m_add">返&nbsp;&nbsp;回</div></a></div>
+                <!--内容结束-->
+        </div>
+    </div>
+
+    <script src="@routes.Assets.at("js/jquery.min.js")"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+    var w_h=$(window).height();
+    //$(".m_m").height(w_h);
+    });
+    </script>
+}

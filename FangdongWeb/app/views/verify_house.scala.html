@@ -1,0 +1,358 @@
+@(item: Host) @front_frame_no_footer("授信房源", "VerifyHouseApp", "VerifyHouseController") {
+    <style>
+    .m_top{
+    overflow:auto;
+    width:320px;
+    margin:20px auto;
+    text-align:center;
+    color:#666;
+    }
+    .m_top_t{
+    float:left;
+    width:75px;
+    }
+    .m_top_t p{
+    line-height:150%;
+    }
+    .m_top_t div{
+    background-color:#b2b2b2;
+    -moz-border-radius:50px;
+    border-radius: 50px;
+    }
+    .m_top_img{
+    width:60px;
+    height:60px;
+    line-height:60px;
+    margin:0 auto;
+    }
+    .m_top_t img{
+    width:40px;
+    padding:10px;
+    }
+    .m_action{
+    background-color:#00b5aa !important;
+    }
+
+    .m_top_tt{
+    float:left;
+    width:2%;
+    }
+    .m_top_tt img{
+    width:100%;
+    margin-top:25px;
+    }
+
+    .m_form{
+    line-height:100%;
+    text-align:left;
+    font-size:1.4rem;
+    color:#666464;
+    background-color:#fff;
+
+    border:1px #b2b2b2 solid;
+    margin:3% 5%;
+    -moz-border-radius:5px;
+    border-radius: 5px;
+    padding:0 3%;
+    }
+    .m_form div{
+    height:52px;
+    line-height:52px;
+    }
+    .m_form div+div{
+    border-top:1px #dddddd solid;
+    }
+
+    .m_form_info span:nth-child(1){
+    float:left;
+    width:30%;
+    }
+    .m_form_info span:nth-child(2){
+    float:left;
+    width:58.5%;
+    }
+    .m_form_info span:nth-child(3){
+    float:left;
+    width:8%;
+    line-height:52px;
+    text-align:right;
+    color:#bfbfbf !important;
+    }
+    .m_form_info span:nth-child(4){
+    float:left;
+    width:3.5%;
+    padding-top:10px;
+    text-align:right;
+    }
+    .input_bg{
+    background-color:#fff;
+    }
+    .m_input{
+    float:right;
+    height:48px;
+    width:100%;
+    border:0;
+    text-align:right;
+    margin:3px;
+    padding-right:2px;
+    color:#bfbfbf !important;
+    }
+    .m_form img{
+    height:15px;
+    width:10px;
+    text-align:right;
+    position:relative;
+    top:8px;
+    }
+    .m_form_info_1 span:nth-child(1){
+    float:left;
+    width:30%;
+    }
+    .m_form_info_1 span:nth-child(2){
+    float:left;
+    width:70%;
+    text-align:right;
+    padding-right:0px;
+    }
+    select {
+    direction: rtl;
+    color:#bfbfbf !important;
+    }
+    select option {
+    direction: ltr;
+    }
+
+    .fs{
+    height:52px;
+    border:0;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background:url(/showimg/images/m1.png) no-repeat right center;
+    background-size:10px 15px;
+    width:100%;
+    　　 text-indent:0.01px;
+    　 　text-overflow:"";
+    padding-right:20px;
+    }
+    .old{
+    height:52px;
+    border:0;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background:url(/showimg/images/m1.png) no-repeat right center;
+    background-size:10px 15px;
+    width:100%;
+    　　 text-indent:0.01px;
+    　 　text-overflow:"";
+    padding-right:20px;
+    }
+    .form-control{
+    height:52px;
+    border:0;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background:url(/showimg/images/m1.png) no-repeat right center;
+    background-size:10px 15px;
+    width:100%;
+    　　 text-indent:0.01px;
+    　 　text-overflow:"";
+    padding-right:20px;
+    }
+    .footer_btn{
+
+    }
+    .mm{
+    text-align:right !important;
+    position:relative;
+    left:-8px;
+    }
+    .m_idcard{
+    text-align:left;
+    margin-left:5%;
+    font-size:1.4rem;
+    }
+    .m_idcard p{
+    margin:10px 0;
+    }
+    .m_idcard div{
+    width:100px;
+    height:100px;
+    float:left;
+    margin-right:20px;
+    border:2px #dbdbdb solid;
+    }
+    .m_idcard img{
+    width:100% !important;
+    height:100% !important;
+    }
+    </style>
+    <div class="content">
+        <div class="mid">
+                <!--内容开始-->
+            <div class="m_top">
+                <div class="m_top_t" >
+                    <div class="m_top_img m_action"><img src="/showimg/images/t1.png" /></div>
+                    <p>基础信息</p>
+                </div>
+
+                <div class="m_top_tt"><img src="/showimg/images/tt.png" /></div>
+
+                <div class="m_top_t">
+                    <div class="m_top_img m_action"><img src="/showimg/images/t2.png" /></div>
+                    <p>银行卡</p>
+                </div>
+                <div  class="m_top_tt"><img src="/showimg/images/tt.png" /></div>
+
+                <div class="m_top_t">
+                    <div class="m_top_img m_action"><img src="/showimg/images/t3.png" /></div>
+                    <p>房产信息</p>
+                </div>
+                <div  class="m_top_tt"><img src="/showimg/images/tt.png" /></div>
+
+                <div class="m_top_t">
+                    <div class="m_top_img"><img src="/showimg/images/t4.png" /></div>
+                    <p>租赁信息</p>
+                </div>
+            </div>
+
+            <div class="m_form" id="distpicker5">
+                <div class="m_form_info_1">
+                    <span>省</span>
+                    <span>
+                        <select class="form-control" id="province10" ng-model="province"></select>
+                    </span>
+                </div>
+                <div class="m_form_info_1">
+                    <span>市</span>
+                    <span>
+                        <select class="form-control" id="city10" ng-model="city"></select>
+                    </span>
+                </div>
+
+                <div class="m_form_info_1">
+                    <span>区</span>
+                    <span>
+                        <select class="form-control" id="district10" ng-model="area"></select>
+                    </span>
+                </div>
+            </div>
+
+            <div class="m_form">
+                <div class="m_form_info">
+                    <span>地址</span>
+                    <span><input class="m_input input_bg" type="text" id="address" ng-model="address" /></span>
+                    <span>&nbsp;</span>
+                    <span><label for="address" ><img src="/showimg/images/m1.png" for="address" /></label></span>
+                </div>
+                <div class="m_form_info">
+                    <span>小区/门牌</span>
+                    <span><input class="m_input input_bg" type="text" id="doorplate" ng-model="zone" /></span>
+                    <span>&nbsp;</span>
+                    <span><label for="doorplate"><img src="/showimg/images/m1.png" /></label></span>
+                </div>
+            </div>
+
+            <div class="m_form">
+                <div class="m_form_info">
+                    <span>面积</span>
+                    <span style="position:relative;left:-8px"><input class="m_input input_bg" type="number" id="acreage" ng-model="size" /></span>
+                    <span class="mm">m<sup>2</sup></span>
+                    <span><label for="acreage"><img src="/showimg/images/m1.png" /></label></span>
+                </div>
+                <div class="m_form_info_1">
+                    <span>楼龄(年)</span>
+                    <span>
+                        <select class="old" ng-model="age">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                            <option>11</option>
+                            <option>12</option>
+                            <option>13</option>
+                            <option>14</option>
+                            <option>15</option>
+                            <option>16</option>
+                            <option>17</option>
+                            <option>18</option>
+                            <option>19</option>
+                            <option>20</option>
+                        </select>
+                    </span>
+                </div>
+
+                <div class="m_form_info_1">
+                    <span>房型</span>
+                    <span>
+                        <select class="fs" ng-model="structure">
+                            <option>单间公寓</option>
+                            <option>一居室</option>
+                            <option>两居室</option>
+                            <option>三居室</option>
+                            <option>四居室</option>
+                            <option>五居室</option>
+                            <option>六居室</option>
+                            <option>别墅</option>
+                        </select>
+                    </span>
+                </div>
+
+                <div class="m_form_info_1">
+                    <span>运营管理方</span>
+                    <span>
+                        <select class="fs" ng-model="comment">
+                            <option>未来域</option>
+                            <option>寓米</option>
+                            <option>珠海联安资产管理有限公司</option>
+                        </select>
+                    </span>
+                </div>
+            </div>
+
+            <div class="m_idcard">
+                <p>产权证明</p>
+                <div>
+                    <input type="file" name="files[]" id="file0" accept="image/gif,image/jpeg,image/jpg,image/png" ng-file-select="uploadImage($files, 0)" style="display: none" />
+                    <img id="img0" src="/showimg/images/m4.png" onclick="F_Open_dialog('file0')" />
+                </div>
+                <div>
+                    <input type="file" name="files[]" id="file1" accept="image/gif,image/jpeg,image/jpg,image/png" ng-file-select="uploadImage($files, 1)" style="display: none" />
+                    <img id="img1" src="/showimg/images/m4.png" onclick="F_Open_dialog('file1')" />
+                </div>
+            </div>
+
+            <div style="clear:both; height:60px"></div>
+            <div class="footer_btn"><div class="m_reg" ng-click='doBind(@item.id)'>下一步</div></div>
+                <!--内容结束-->
+        </div>
+    </div>
+    <script src="@routes.Assets.at("js/jquery.min.js")"></script>
+    <script src="@routes.Assets.at("js/distpicker.data.js")"></script>
+    <script src="@routes.Assets.at("js/distpicker.js")"></script>
+    <script src="@routes.Assets.at("js/main.js")"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+    $("#distpicker5").distpicker({
+    autoSelect: false
+    });
+    });
+    </script>
+    <script src="@routes.Assets.at("js/angular.min.js")"></script>
+    <script src="@routes.Assets.at("js/angular-file-upload-shim.min.js")"></script>
+    <script src="@routes.Assets.at("js/angular-file-upload.min.js")"></script>
+    <script type="application/javascript">
+    function F_Open_dialog($pic) {
+    document.getElementById($pic).click();
+    }
+    </script>
+    <script src='@routes.Assets.at("js/front_controllers/verify_house_controller.js")'></script>
+}

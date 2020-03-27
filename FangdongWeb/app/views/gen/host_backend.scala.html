@@ -1,0 +1,301 @@
+@backend_frame("Host管理", "HostBackendApp", "HostBackendController") {
+	<style>
+	.page-list .pagination {float:left;}
+	.page-list .pagination span {cursor: pointer;}
+	.page-list .pagination .separate span{cursor: default; border-top:none;border-bottom:none;}
+	.page-list .pagination .separate span:hover {background: none;}
+	.page-list .page-total {float:left; margin: 25px 20px;}
+	.page-list .page-total input, .page-list .page-total select{height: 26px; border: 1px solid #ddd;}
+	.page-list .page-total input {width: 40px; padding-left:3px;}
+	.page-list .page-total select {width: 50px;}
+	</style>
+
+
+<div class="page-content" ng-init='websocketInit(@biz.ConfigBiz.getBoolConfig("websocket"), "@biz.ConfigBiz.getStrConfig("domain.name")")'>
+	<div class="page-header">
+		<p>
+			@TableInfoReader.getFieldComment("Host", "partner"): <a href="#" data-toggle="tooltip" title="按上级筛选数据"><select ng-model="selectedParentPartnerId" ng-options="parent.id as parent.name for parent in parentPartners" style="padding: 6px;border-radius: 3px;">
+				<option value="0">全部</option>
+			</select></a> | 
+			状态: <a href="#" data-toggle="tooltip" title="按状态筛选数据"><select ng-model="selectedStatus" ng-options="sta.id as sta.name for sta in status" style="padding: 6px;border-radius: 3px;">
+				<option value="-100">全部</option>
+			</select></a> | 
+			<button ng-click="addContent()" class="btn btn-primary">
+				<i class="icon-plus-sign"></i> 新增
+			</button>
+    			<button ng-click="updateContent()" class="btn btn-success">
+    				<i class="icon-edit"></i> 修改
+    			</button>
+			<button ng-click="deleteContent()" class="btn btn-danger">
+				<i class="icon-trash"></i> 刪除
+			</button> | 
+            <input type="text" ng-model="queryKeyword" class="form-control" placeholder="按@TableInfoReader.getFieldComment("Host", TableInfoReader.getSearchField("Host"))搜" style="display: inline-block; width: 140px;text-align: center;" />
+			<button ng-click="searchContent()" class="btn btn-primary">
+				<i class="icon-search"></i> 搜索
+			</button> | <input id="startTime" type="text" ng-model="startTime" placeholder="开始时间" style="text-align: center;height: 33px; border: 1px solid #ece4e4;" > -
+			<input id="endTime" type="text" ng-model="endTime" placeholder="结束时间" style="text-align: center;height: 33px;border: 1px solid #ece4e4;" >
+			<button ng-click="refresh()" class="btn btn-warning">
+				<i class="icon-calendar"></i> 日期筛选
+			</button> | 
+			<button ng-click="report()" class="btn btn-success">
+				<i class="icon-print"></i> 报表
+			</button> | <span ng-bind="chatMsg"></span>
+		</p>
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="gridStyle" style="min-height: 600px;" ui-grid="gridOptions" ui-grid-resize-columns ui-grid-selection ui-grid-edit ui-grid-auto-fit-columns></div>
+			<tm-pagination conf="paginationConf"></tm-pagination>
+		</div>
+	</div>
+</div>
+            
+<script type="text/javascript">
+    var hasImageField = @TableInfoReader.hasImageField("Host");
+    var searchFieldName = '@TableInfoReader.getSearchField("Host")'
+    var objFieldInfo = {};
+	var objEnumInfo = {}
+    
+    // 处理自己的字段注释, status枚举, enum枚举
+    objFieldInfo.Host = {};
+    objFieldInfo.Host.name = '@TableInfoReader.getFieldComment("Host", "name")';
+    objFieldInfo.Host.loginName = '@TableInfoReader.getFieldComment("Host", "loginName")';
+    objFieldInfo.Host.wxId = '@TableInfoReader.getFieldComment("Host", "wxId")';
+    objFieldInfo.Host.sexEnum = '@TableInfoReader.getFieldComment("Host", "sexEnum")';
+    objFieldInfo.Host.phone = '@TableInfoReader.getFieldComment("Host", "phone")';
+    objFieldInfo.Host.cardNumber = '@TableInfoReader.getFieldComment("Host", "cardNumber")';
+    objFieldInfo.Host.email = '@TableInfoReader.getFieldComment("Host", "email")';
+    objFieldInfo.Host.address = '@TableInfoReader.getFieldComment("Host", "address")';
+    objFieldInfo.Host.birth = '@TableInfoReader.getFieldComment("Host", "birth")';
+    objFieldInfo.Host.password = '@TableInfoReader.getFieldComment("Host", "password")';
+    objFieldInfo.Host.createdAt = '@TableInfoReader.getFieldComment("Host", "createdAt")';
+    objFieldInfo.Host.lastUpdateTime = '@TableInfoReader.getFieldComment("Host", "lastUpdateTime")';
+    objFieldInfo.Host.headImages = '@TableInfoReader.getFieldComment("Host", "headImages")';
+    objFieldInfo.Host.images = '@TableInfoReader.getFieldComment("Host", "images")';
+    objFieldInfo.Host.lastLoginIp = '@TableInfoReader.getFieldComment("Host", "lastLoginIp")';
+    objFieldInfo.Host.lastLoginTime = '@TableInfoReader.getFieldComment("Host", "lastLoginTime")';
+    objFieldInfo.Host.lastLoginIpArea = '@TableInfoReader.getFieldComment("Host", "lastLoginIpArea")';
+    objFieldInfo.Host.status = '@TableInfoReader.getFieldComment("Host", "status")';
+    objFieldInfo.Host.credit = '@TableInfoReader.getFieldComment("Host", "credit")';
+    objFieldInfo.Host.userRoleEnum = '@TableInfoReader.getFieldComment("Host", "userRoleEnum")';
+    objFieldInfo.Host.comment = '@TableInfoReader.getFieldComment("Host", "comment")';
+    objFieldInfo.Host.refPartnerId = '@TableInfoReader.getFieldComment("Host", "refPartnerId")';
+    objFieldInfo.Host.partner = '@TableInfoReader.getFieldComment("Host", "partner")';
+    objFieldInfo.Host.partnerId = '@TableInfoReader.getFieldComment("Host", "partnerId")';
+    objFieldInfo.Host.bankCards = '@TableInfoReader.getFieldComment("Host", "bankCards")';
+    objFieldInfo.Host.contractRecords = '@TableInfoReader.getFieldComment("Host", "contractRecords")';
+    objFieldInfo.Host.creditRecords = '@TableInfoReader.getFieldComment("Host", "creditRecords")';
+    objFieldInfo.Host.fundBackRecords = '@TableInfoReader.getFieldComment("Host", "fundBackRecords")';
+    objFieldInfo.Host.houses = '@TableInfoReader.getFieldComment("Host", "houses")';
+    objFieldInfo.Host.productRecords = '@TableInfoReader.getFieldComment("Host", "productRecords")';
+    objFieldInfo.Host.rentRecords = '@TableInfoReader.getFieldComment("Host", "rentRecords")';
+    objFieldInfo.Host.guests = '@TableInfoReader.getFieldComment("Host", "guests")';
+
+	objEnumInfo.Host = {}
+
+	objEnumInfo.Host.status = {}
+	for (var i = 0; i < @EnumInfoReader.getEnumCount("Host", "status"); i++) {
+		objEnumInfo.Host.status[i] = '@EnumInfoReader.getEnumNameLinkString("Host", "status")'.split(',')[i];
+	}
+
+    objEnumInfo.Host.sexEnum = {}
+	for (var i = 0; i < @EnumInfoReader.getEnumCount("Host", "sexEnum"); i++) {
+		objEnumInfo.Host.sexEnum[i] = '@EnumInfoReader.getEnumNameLinkString("Host", "sexEnum")'.split(',')[i];
+	}
+
+    objEnumInfo.Host.userRoleEnum = {}
+	for (var i = 0; i < @EnumInfoReader.getEnumCount("Host", "userRoleEnum"); i++) {
+		objEnumInfo.Host.userRoleEnum[i] = '@EnumInfoReader.getEnumNameLinkString("Host", "userRoleEnum")'.split(',')[i];
+	}
+	var searchFieldNamePartner = '@TableInfoReader.getSearchField("Partner")'
+	var searchFieldNamePartnerComment = '@TableInfoReader.getFieldComment("Partner", TableInfoReader.getSearchField("Partner"))'
+
+    // 处理子项的字段注释, enum枚举    
+	var searchFieldNameBankCard = '@TableInfoReader.getSearchField("BankCard")'
+	var searchFieldNameBankCardComment = '@TableInfoReader.getFieldComment("BankCard", TableInfoReader.getSearchField("BankCard"))'
+    
+    objFieldInfo.BankCard = {};
+    objFieldInfo.BankCard.name = '@TableInfoReader.getFieldComment("BankCard", "name")';
+    objFieldInfo.BankCard.bank = '@TableInfoReader.getFieldComment("BankCard", "bank")';
+    objFieldInfo.BankCard.images = '@TableInfoReader.getFieldComment("BankCard", "images")';
+    objFieldInfo.BankCard.status = '@TableInfoReader.getFieldComment("BankCard", "status")';
+    objFieldInfo.BankCard.createdAt = '@TableInfoReader.getFieldComment("BankCard", "createdAt")';
+    objFieldInfo.BankCard.lastUpdateTime = '@TableInfoReader.getFieldComment("BankCard", "lastUpdateTime")';
+    objFieldInfo.BankCard.comment = '@TableInfoReader.getFieldComment("BankCard", "comment")';
+    objFieldInfo.BankCard.refHostId = '@TableInfoReader.getFieldComment("BankCard", "refHostId")';
+        
+    objEnumInfo.BankCard = {}
+    objEnumInfo.BankCard.status = {}
+	for (var i = 0; i < @EnumInfoReader.getEnumCount("BankCard", "status"); i++) {
+		objEnumInfo.BankCard.status[i] = '@EnumInfoReader.getEnumNameLinkString("BankCard", "status")'.split(',')[i];
+	}
+	var searchFieldNameContractRecord = '@TableInfoReader.getSearchField("ContractRecord")'
+	var searchFieldNameContractRecordComment = '@TableInfoReader.getFieldComment("ContractRecord", TableInfoReader.getSearchField("ContractRecord"))'
+    
+    objFieldInfo.ContractRecord = {};
+    objFieldInfo.ContractRecord.name = '@TableInfoReader.getFieldComment("ContractRecord", "name")';
+    objFieldInfo.ContractRecord.status = '@TableInfoReader.getFieldComment("ContractRecord", "status")';
+    objFieldInfo.ContractRecord.contractTime = '@TableInfoReader.getFieldComment("ContractRecord", "contractTime")';
+    objFieldInfo.ContractRecord.createdAt = '@TableInfoReader.getFieldComment("ContractRecord", "createdAt")';
+    objFieldInfo.ContractRecord.lastUpdateTime = '@TableInfoReader.getFieldComment("ContractRecord", "lastUpdateTime")';
+    objFieldInfo.ContractRecord.comment = '@TableInfoReader.getFieldComment("ContractRecord", "comment")';
+    objFieldInfo.ContractRecord.refHostId = '@TableInfoReader.getFieldComment("ContractRecord", "refHostId")';
+    objFieldInfo.ContractRecord.refProductId = '@TableInfoReader.getFieldComment("ContractRecord", "refProductId")';
+        
+    objEnumInfo.ContractRecord = {}
+    objEnumInfo.ContractRecord.status = {}
+	for (var i = 0; i < @EnumInfoReader.getEnumCount("ContractRecord", "status"); i++) {
+		objEnumInfo.ContractRecord.status[i] = '@EnumInfoReader.getEnumNameLinkString("ContractRecord", "status")'.split(',')[i];
+	}
+	var searchFieldNameCreditRecord = '@TableInfoReader.getSearchField("CreditRecord")'
+	var searchFieldNameCreditRecordComment = '@TableInfoReader.getFieldComment("CreditRecord", TableInfoReader.getSearchField("CreditRecord"))'
+    
+    objFieldInfo.CreditRecord = {};
+    objFieldInfo.CreditRecord.name = '@TableInfoReader.getFieldComment("CreditRecord", "name")';
+    objFieldInfo.CreditRecord.creditRaise = '@TableInfoReader.getFieldComment("CreditRecord", "creditRaise")';
+    objFieldInfo.CreditRecord.status = '@TableInfoReader.getFieldComment("CreditRecord", "status")';
+    objFieldInfo.CreditRecord.createdAt = '@TableInfoReader.getFieldComment("CreditRecord", "createdAt")';
+    objFieldInfo.CreditRecord.lastUpdateTime = '@TableInfoReader.getFieldComment("CreditRecord", "lastUpdateTime")';
+    objFieldInfo.CreditRecord.comment = '@TableInfoReader.getFieldComment("CreditRecord", "comment")';
+    objFieldInfo.CreditRecord.refHostId = '@TableInfoReader.getFieldComment("CreditRecord", "refHostId")';
+        
+    objEnumInfo.CreditRecord = {}
+    objEnumInfo.CreditRecord.status = {}
+	for (var i = 0; i < @EnumInfoReader.getEnumCount("CreditRecord", "status"); i++) {
+		objEnumInfo.CreditRecord.status[i] = '@EnumInfoReader.getEnumNameLinkString("CreditRecord", "status")'.split(',')[i];
+	}
+	var searchFieldNameFundBackRecord = '@TableInfoReader.getSearchField("FundBackRecord")'
+	var searchFieldNameFundBackRecordComment = '@TableInfoReader.getFieldComment("FundBackRecord", TableInfoReader.getSearchField("FundBackRecord"))'
+    
+    objFieldInfo.FundBackRecord = {};
+    objFieldInfo.FundBackRecord.name = '@TableInfoReader.getFieldComment("FundBackRecord", "name")';
+    objFieldInfo.FundBackRecord.amount = '@TableInfoReader.getFieldComment("FundBackRecord", "amount")';
+    objFieldInfo.FundBackRecord.status = '@TableInfoReader.getFieldComment("FundBackRecord", "status")';
+    objFieldInfo.FundBackRecord.createdAt = '@TableInfoReader.getFieldComment("FundBackRecord", "createdAt")';
+    objFieldInfo.FundBackRecord.lastUpdateTime = '@TableInfoReader.getFieldComment("FundBackRecord", "lastUpdateTime")';
+    objFieldInfo.FundBackRecord.comment = '@TableInfoReader.getFieldComment("FundBackRecord", "comment")';
+    objFieldInfo.FundBackRecord.refHostId = '@TableInfoReader.getFieldComment("FundBackRecord", "refHostId")';
+    objFieldInfo.FundBackRecord.refProductId = '@TableInfoReader.getFieldComment("FundBackRecord", "refProductId")';
+        
+    objEnumInfo.FundBackRecord = {}
+    objEnumInfo.FundBackRecord.status = {}
+	for (var i = 0; i < @EnumInfoReader.getEnumCount("FundBackRecord", "status"); i++) {
+		objEnumInfo.FundBackRecord.status[i] = '@EnumInfoReader.getEnumNameLinkString("FundBackRecord", "status")'.split(',')[i];
+	}
+	var searchFieldNameHouse = '@TableInfoReader.getSearchField("House")'
+	var searchFieldNameHouseComment = '@TableInfoReader.getFieldComment("House", TableInfoReader.getSearchField("House"))'
+    
+    objFieldInfo.House = {};
+    objFieldInfo.House.name = '@TableInfoReader.getFieldComment("House", "name")';
+    objFieldInfo.House.classify = '@TableInfoReader.getFieldComment("House", "classify")';
+    objFieldInfo.House.province = '@TableInfoReader.getFieldComment("House", "province")';
+    objFieldInfo.House.city = '@TableInfoReader.getFieldComment("House", "city")';
+    objFieldInfo.House.zone = '@TableInfoReader.getFieldComment("House", "zone")';
+    objFieldInfo.House.address = '@TableInfoReader.getFieldComment("House", "address")';
+    objFieldInfo.House.age = '@TableInfoReader.getFieldComment("House", "age")';
+    objFieldInfo.House.size = '@TableInfoReader.getFieldComment("House", "size")';
+    objFieldInfo.House.structure = '@TableInfoReader.getFieldComment("House", "structure")';
+    objFieldInfo.House.rent = '@TableInfoReader.getFieldComment("House", "rent")';
+    objFieldInfo.House.credit = '@TableInfoReader.getFieldComment("House", "credit")';
+    objFieldInfo.House.visible = '@TableInfoReader.getFieldComment("House", "visible")';
+    objFieldInfo.House.status = '@TableInfoReader.getFieldComment("House", "status")';
+    objFieldInfo.House.images = '@TableInfoReader.getFieldComment("House", "images")';
+    objFieldInfo.House.createdAt = '@TableInfoReader.getFieldComment("House", "createdAt")';
+    objFieldInfo.House.lastUpdateTime = '@TableInfoReader.getFieldComment("House", "lastUpdateTime")';
+    objFieldInfo.House.description = '@TableInfoReader.getFieldComment("House", "description")';
+    objFieldInfo.House.comment = '@TableInfoReader.getFieldComment("House", "comment")';
+    objFieldInfo.House.refHostId = '@TableInfoReader.getFieldComment("House", "refHostId")';
+    objFieldInfo.House.refPartnerId = '@TableInfoReader.getFieldComment("House", "refPartnerId")';
+        
+    objEnumInfo.House = {}
+    objEnumInfo.House.status = {}
+	for (var i = 0; i < @EnumInfoReader.getEnumCount("House", "status"); i++) {
+		objEnumInfo.House.status[i] = '@EnumInfoReader.getEnumNameLinkString("House", "status")'.split(',')[i];
+	}
+	var searchFieldNameProductRecord = '@TableInfoReader.getSearchField("ProductRecord")'
+	var searchFieldNameProductRecordComment = '@TableInfoReader.getFieldComment("ProductRecord", TableInfoReader.getSearchField("ProductRecord"))'
+    
+    objFieldInfo.ProductRecord = {};
+    objFieldInfo.ProductRecord.name = '@TableInfoReader.getFieldComment("ProductRecord", "name")';
+    objFieldInfo.ProductRecord.inDate = '@TableInfoReader.getFieldComment("ProductRecord", "inDate")';
+    objFieldInfo.ProductRecord.outDate = '@TableInfoReader.getFieldComment("ProductRecord", "outDate")';
+    objFieldInfo.ProductRecord.fundBackDate = '@TableInfoReader.getFieldComment("ProductRecord", "fundBackDate")';
+    objFieldInfo.ProductRecord.amount = '@TableInfoReader.getFieldComment("ProductRecord", "amount")';
+    objFieldInfo.ProductRecord.status = '@TableInfoReader.getFieldComment("ProductRecord", "status")';
+    objFieldInfo.ProductRecord.createdAt = '@TableInfoReader.getFieldComment("ProductRecord", "createdAt")';
+    objFieldInfo.ProductRecord.lastUpdateTime = '@TableInfoReader.getFieldComment("ProductRecord", "lastUpdateTime")';
+    objFieldInfo.ProductRecord.comment = '@TableInfoReader.getFieldComment("ProductRecord", "comment")';
+    objFieldInfo.ProductRecord.refHostId = '@TableInfoReader.getFieldComment("ProductRecord", "refHostId")';
+    objFieldInfo.ProductRecord.refProductId = '@TableInfoReader.getFieldComment("ProductRecord", "refProductId")';
+        
+    objEnumInfo.ProductRecord = {}
+    objEnumInfo.ProductRecord.status = {}
+	for (var i = 0; i < @EnumInfoReader.getEnumCount("ProductRecord", "status"); i++) {
+		objEnumInfo.ProductRecord.status[i] = '@EnumInfoReader.getEnumNameLinkString("ProductRecord", "status")'.split(',')[i];
+	}
+	var searchFieldNameRentRecord = '@TableInfoReader.getSearchField("RentRecord")'
+	var searchFieldNameRentRecordComment = '@TableInfoReader.getFieldComment("RentRecord", TableInfoReader.getSearchField("RentRecord"))'
+    
+    objFieldInfo.RentRecord = {};
+    objFieldInfo.RentRecord.name = '@TableInfoReader.getFieldComment("RentRecord", "name")';
+    objFieldInfo.RentRecord.rent = '@TableInfoReader.getFieldComment("RentRecord", "rent")';
+    objFieldInfo.RentRecord.createdAt = '@TableInfoReader.getFieldComment("RentRecord", "createdAt")';
+    objFieldInfo.RentRecord.lastUpdateTime = '@TableInfoReader.getFieldComment("RentRecord", "lastUpdateTime")';
+    objFieldInfo.RentRecord.status = '@TableInfoReader.getFieldComment("RentRecord", "status")';
+    objFieldInfo.RentRecord.payDate = '@TableInfoReader.getFieldComment("RentRecord", "payDate")';
+    objFieldInfo.RentRecord.comment = '@TableInfoReader.getFieldComment("RentRecord", "comment")';
+    objFieldInfo.RentRecord.refHostId = '@TableInfoReader.getFieldComment("RentRecord", "refHostId")';
+    objFieldInfo.RentRecord.refGuestId = '@TableInfoReader.getFieldComment("RentRecord", "refGuestId")';
+        
+    objEnumInfo.RentRecord = {}
+    objEnumInfo.RentRecord.status = {}
+	for (var i = 0; i < @EnumInfoReader.getEnumCount("RentRecord", "status"); i++) {
+		objEnumInfo.RentRecord.status[i] = '@EnumInfoReader.getEnumNameLinkString("RentRecord", "status")'.split(',')[i];
+	}
+
+    // 处理多对多的字段注释, enum枚举
+	var searchFieldNameGuest = '@TableInfoReader.getSearchField("Guest")'
+	var searchFieldNameGuestComment = '@TableInfoReader.getFieldComment("Guest", TableInfoReader.getSearchField("Guest"))'
+    
+    objFieldInfo.Guest = {};
+    objFieldInfo.Guest.name = '@TableInfoReader.getFieldComment("Guest", "name")';
+    objFieldInfo.Guest.loginName = '@TableInfoReader.getFieldComment("Guest", "loginName")';
+    objFieldInfo.Guest.wxId = '@TableInfoReader.getFieldComment("Guest", "wxId")';
+    objFieldInfo.Guest.sexEnum = '@TableInfoReader.getFieldComment("Guest", "sexEnum")';
+    objFieldInfo.Guest.phone = '@TableInfoReader.getFieldComment("Guest", "phone")';
+    objFieldInfo.Guest.cardNumber = '@TableInfoReader.getFieldComment("Guest", "cardNumber")';
+    objFieldInfo.Guest.email = '@TableInfoReader.getFieldComment("Guest", "email")';
+    objFieldInfo.Guest.address = '@TableInfoReader.getFieldComment("Guest", "address")';
+    objFieldInfo.Guest.birth = '@TableInfoReader.getFieldComment("Guest", "birth")';
+    objFieldInfo.Guest.password = '@TableInfoReader.getFieldComment("Guest", "password")';
+    objFieldInfo.Guest.createdAt = '@TableInfoReader.getFieldComment("Guest", "createdAt")';
+    objFieldInfo.Guest.status = '@TableInfoReader.getFieldComment("Guest", "status")';
+    objFieldInfo.Guest.userRoleEnum = '@TableInfoReader.getFieldComment("Guest", "userRoleEnum")';
+    objFieldInfo.Guest.images = '@TableInfoReader.getFieldComment("Guest", "images")';
+    objFieldInfo.Guest.houseName = '@TableInfoReader.getFieldComment("Guest", "houseName")';
+    objFieldInfo.Guest.building = '@TableInfoReader.getFieldComment("Guest", "building")';
+    objFieldInfo.Guest.unit = '@TableInfoReader.getFieldComment("Guest", "unit")';
+    objFieldInfo.Guest.room = '@TableInfoReader.getFieldComment("Guest", "room")';
+    objFieldInfo.Guest.amount = '@TableInfoReader.getFieldComment("Guest", "amount")';
+    objFieldInfo.Guest.totalAmount = '@TableInfoReader.getFieldComment("Guest", "totalAmount")';
+    objFieldInfo.Guest.contractLength = '@TableInfoReader.getFieldComment("Guest", "contractLength")';
+    objFieldInfo.Guest.contractStartDate = '@TableInfoReader.getFieldComment("Guest", "contractStartDate")';
+    objFieldInfo.Guest.contractEndDate = '@TableInfoReader.getFieldComment("Guest", "contractEndDate")';
+    objFieldInfo.Guest.lastUpdateTime = '@TableInfoReader.getFieldComment("Guest", "lastUpdateTime")';
+    objFieldInfo.Guest.comment = '@TableInfoReader.getFieldComment("Guest", "comment")';
+        
+    objEnumInfo.Guest = {}
+    objEnumInfo.Guest.sexEnum = {}  
+	for (var i = 0; i < @EnumInfoReader.getEnumCount("Guest", "sexEnum"); i++) {
+		objEnumInfo.Guest.sexEnum[i] = '@EnumInfoReader.getEnumNameLinkString("Guest", "sexEnum")'.split(',')[i];
+	}
+    objEnumInfo.Guest.status = {}  
+	for (var i = 0; i < @EnumInfoReader.getEnumCount("Guest", "status"); i++) {
+		objEnumInfo.Guest.status[i] = '@EnumInfoReader.getEnumNameLinkString("Guest", "status")'.split(',')[i];
+	}
+    objEnumInfo.Guest.userRoleEnum = {}  
+	for (var i = 0; i < @EnumInfoReader.getEnumCount("Guest", "userRoleEnum"); i++) {
+		objEnumInfo.Guest.userRoleEnum[i] = '@EnumInfoReader.getEnumNameLinkString("Guest", "userRoleEnum")'.split(',')[i];
+	}
+</script>
+}

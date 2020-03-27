@@ -1,0 +1,113 @@
+@(item: Host) @front_frame_no_footer("我的个人信息", "", "") {
+
+    <style>
+    .m_top{
+    overflow:auto;
+    width:320px;
+    margin:20px auto;
+    text-align:center;
+    color:#666;
+    }
+    .m_top_t{
+    float:left;
+    width:75px;
+    }
+    .m_top_t p{
+    line-height:150%;
+    }
+    .m_top_t div{
+    background-color:#b2b2b2;
+    -moz-border-radius:50px;
+    border-radius: 50px;
+    }
+    .m_top_img{
+    width:60px;
+    height:60px;
+    line-height:60px;
+    margin:0 auto;
+    }
+    .m_top_t img{
+    width:40px;
+    padding:10px;
+    }
+    .m_action{
+    background-color:#00b5aa !important;
+    }
+
+    .m_top_tt{
+    float:left;
+    width:2%;
+    }
+    .m_top_tt img{
+    width:100%;
+    margin-top:25px;
+    }
+
+    .m_form{
+    text-align:left;
+    font-size:1.4rem;
+    color:#666;
+    }
+    .m_form div{
+    height:40px;
+    line-height:40px;
+    background-color:#fff;
+    border:1px #b2b2b2 solid;
+    margin:3% 5%;
+    -moz-border-radius:5px;
+    border-radius: 5px;
+    }
+    .m_form span{
+    margin:0 10px;
+    color:#9e9e9e;
+    }
+    .m_input{
+    height:36px;
+    width:46%;
+    border:0;
+    }
+    .m_code{
+    color:#70c4ba;
+    }
+    .m_idcard{
+    text-align:left;
+    margin-left:5%;
+    font-size:1.4rem;
+    }
+    .m_idcard p{
+    margin:10px 0;
+    }
+    .m_idcard div{
+    width:20%;
+    float:left;
+    margin-right:20px;
+    border:1px #c2c2c2 solid;
+    }
+    .m_idcard img{
+    width:100% !important;
+    height:100% !important;
+    }
+    </style>
+
+    <div class="content">
+        <div class="mid">
+                <!--内容开始-->
+            <div class="m_form">
+                <div><span>姓&nbsp;&nbsp;名</span><input style="width:77%;" class="m_input" type="text" value="@item.loginName" readonly="readonly" /></div>
+                <div><span>手机号</span><input style="width:77%;" class="m_input" type="text" value="@item.phone" readonly="readonly" /></div>
+                @*<div><span>身份证</span><input style="width:77%;" class="m_input" type="text" value="@item.cardNumber" readonly="readonly" /></div>*@
+            </div>
+
+            @*<div class="m_idcard">*@
+                @*<p>身份证拍照</p>*@
+                @*<div>*@
+                    @*<a href="/showimg/upload/@item.images.split(",")(1)"><img id="img0" src="/showimg/thumb/@item.images.split(",")(0)" /></a>*@
+                @*</div>*@
+                @*<div>*@
+                    @*<a href="/showimg/upload/@item.images.split(",")(1)"><img id="img1" src="/showimg/thumb/@item.images.split(",")(1)" /></a>*@
+                @*</div>*@
+            @*</div>*@
+                <!--内容结束-->
+        </div>
+    </div>
+}

@@ -1,0 +1,135 @@
+@(uid: Long) @front_frame_no_footer("房产资料提交", "MyHouseSubmitApp", "MyHouseSubmitController") {
+    <script src="@routes.Assets.at("js/jquery.min.js")"></script>
+    <script src="@routes.Assets.at("js/angular.min.js")"></script>
+    <script src="@routes.Assets.at("js/angular-file-upload-shim.min.js")"></script>
+    <script src="@routes.Assets.at("js/angular-file-upload.min.js")"></script>
+    <script src='@routes.Assets.at("js/front_controllers/my_house_submit_controller.js")'></script>
+    <script type="application/javascript">
+            function F_Open_dialog($pic) {
+                document.getElementById($pic).click();
+            }
+    </script>
+    <style>
+    #m_mid {
+        margin-top: 10px;
+        text-align: center;
+
+    }
+
+    .m_base_pic {
+        text-align: left;
+        height: 30px;
+        line-height: 30px;
+        border-bottom: 1px #f8bb7a solid;
+        margin: 10px 10px 0;
+        text-indent: 15px;
+        font-weight: bold;
+        font-size: 1.6rem;
+    }
+
+    .m_form {
+        height: 40px;
+        line-height: 40px;
+        text-align: left;
+        border-bottom: 1px #dfdfdf dotted;
+        margin: 10px 5% 0;
+
+    }
+
+    .m_form p:nth-child(1) {
+        float: left;
+        width: 28%;
+        text-align: right;
+        font-size: 1.6rem;
+    }
+
+    #m_mid div {
+
+    }
+
+    .m_form_sex p:nth-child(2) {
+        text-align: right;
+        margin-right: 10%;
+    }
+
+    .m_from_pic {
+        text-align: center;
+        font-size: 1.4rem;
+        height: 200px;
+    }
+
+    .m_from_pic img {
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+        width: 30%;
+        float: left;
+        max-height: 140px;
+        margin-left: 2.5%;
+    }
+
+    .m_input {
+        text-align: right;
+        color: #666;
+        padding-right: 8px;
+        background-color: #FFF;
+    }
+
+    .m_mid_bom {
+        position: fixed;
+        width: 100%;
+        bottom: 20px;
+    }
+    </style>
+
+    <div id="m_head">
+        <p>新增房产资料认证</p>
+        <p><a href="#" onClick="javascript:history.go(-1);">< 返回</a></p>
+    </div>
+
+    <div id="m_mid">
+        <div class="m_form m_t_10">
+            <p>小&nbsp;&nbsp;区：</p><p><input type="text" ng-model="name" class="m_input w_60 h_30" /></p>
+        </div>
+        <div class="m_form m_t_10">
+            <p>地&nbsp;&nbsp;址：</p><p><input type="text" ng-model="address" class="m_input w_60 h_30" /></p>
+        </div>
+        <div class="m_form m_t_10">
+            <p>产权人：</p><p><input type="text" ng-model="comment" class="m_input w_60 h_30" /></p>
+        </div>
+        <div class="m_form m_t_10">
+            <p>房龄（年）：</p><p><input type="text" ng-model="age" class="m_input w_60 h_30" /></p>
+        </div>
+        <div class="m_form m_t_10">
+            <p>平方数：</p><p><input type="text" ng-model="size" class="m_input w_60 h_30" /></p>
+        </div>
+        <div class="m_form m_t_10">
+            <p>房/厅：</p><p><input type="text" ng-model="structure" class="m_input w_60 h_30" /></p>
+        </div>
+
+        <div class="m_base_pic">房产图</div>
+
+        <div class="m_from_pic m_t_10">
+            <p class="m_t_10">
+                <input type="file" name="files[]" id="file0" accept="image/gif,image/jpeg,image/jpg,image/png" ng-file-select="uploadImage($files, 0)" style="display: none" />
+                <img src="/showimg/images/load1.jpg" onclick="F_Open_dialog('file0')" />
+                <input type="file" name="files[]" id="file1" accept="image/gif,image/jpeg,image/jpg,image/png" ng-file-select="uploadImage($files, 1)" style="display: none" />
+                <img src="/showimg/images/load1.jpg" onclick="F_Open_dialog('file1')" />
+                <input type="file" name="files[]" id="file2" accept="image/gif,image/jpeg,image/jpg,image/png" ng-file-select="uploadImage($files, 2)" style="display: none" />
+                <img src="/showimg/images/load1.jpg" onclick="F_Open_dialog('file2')" />
+            </p>
+
+            <p class="m_t_10">
+                <img src="" id="img0" style="display: none" >
+                <img src="" id="img1" style="display: none" >
+                <img src="" id="img2" style="display: none" >
+            </p>
+        </div>
+
+        <div style="height: 30px;">  </div>
+
+        <div class="m_mid_bom">
+            <input type="button" class="m_sub_btn w_70 m_btn h_40" ng-click="doSubmit(@uid)" value="保存" />
+        </div>
+        <BR />
+    </div>
+}

@@ -1,0 +1,104 @@
+@(item: Host) @front_frame_no_footer("我的所有借款", "MyProductHistoryApp", "MyProductHistoryController") {
+
+    <style>
+    .loan{
+    margin:3%;
+    padding:4%;
+    overflow:auto;
+    -moz-border-radius:5px;
+    border-radius: 5px;
+    line-height:200%;
+    color:#fff;
+    background-color:#00b5aa;
+    }
+
+    .loan_b{
+    margin:3%;
+    padding:4%;
+    overflow:auto;
+    -moz-border-radius:5px;
+    border-radius: 5px;
+    line-height:200%;
+    color:#fff;
+    background-color:#f5a723;
+    }
+
+    .loan .loan_div:nth-child(1){
+    height:auto;
+    overflow:auto;
+
+    }
+    .loan .loan_div:nth-child(2){
+    height:auto;
+    overflow:auto;
+
+    }
+    .loan_div{
+    clear:left;
+    }
+    .loan_div span:nth-child(1){
+    float:left;
+    font-size:1.4rem;
+    }
+    .loan_div span:nth-child(2){
+    float:right;
+    font-size:1.4rem;
+    }
+    </style>
+
+    <div class="content">
+        <div class="mid">
+                <!--内容开始-->
+            @(java.util.Collections.reverse(item.productRecords))
+            @for(child <- item.productRecords) {
+                @if(child.status == 1) {
+                    <div class="loan_b">
+                        <div class="loan_div">
+                            <span>借款日期</span>
+                            <span>@LyLib.Utils.DateUtil.Date2Str(child.inDate, "yyyy-MM-dd")</span>
+                        </div>
+                        <div class="loan_div">
+                            <span>借款金额</span>
+                            <span>￥@child.amount</span>
+                        </div>
+                        <div class="loan_div">
+                            <span>已借天数</span>
+                            <span>@(LyLib.Utils.DateUtil.findDates(child.inDate, (new java.util.Date())).size() -1)天</span>
+                        </div>
+                        <div class="loan_div">
+                            <span>应还利息</span>
+                            <span>￥@biz.ProductRecordBiz.getInterest(child).setScale(2, java.math.BigDecimal.ROUND_HALF_UP)</span>
+                        </div>
+                        <div class="loan_div">
+                            <span>合计还款</span>
+                            <span>￥@biz.ProductRecordBiz.getActualAmount(child).setScale(2, java.math.BigDecimal.ROUND_HALF_UP)</span>
+                        </div>
+                    </div>
+                }
+            }
+            @for(child <- item.productRecords) {
+                @if(child.status != 0 && child.status != 1 && child.status != 4){
+                    <div class="loan">
+                        <div class="loan_div">
+                            <span>借款日期</span>
+                            <span>@LyLib.Utils.DateUtil.Date2Str(child.inDate, "yyyy-MM-dd")</span>
+                        </div>
+                        <div class="loan_div">
+                            <span>借款金额</span>
+                            <span>￥@child.amount</span>
+                        </div>
+                        <div class="loan_div">
+                            <span>累计利息</span>
+                            <span>￥@biz.ProductRecordBiz.getInterest(child).setScale(2, java.math.BigDecimal.ROUND_HALF_UP)</span>
+                        </div>
+                        <div class="loan_div">
+                            <span>还清日期</span>
+                            <span>@LyLib.Utils.DateUtil.Date2Str(child.fundBackDate, "yyyy-MM-dd")</span>
+                        </div>
+                    </div>
+                }
+            }
+                <!--内容结束-->
+        </div>
+    </div>
+}

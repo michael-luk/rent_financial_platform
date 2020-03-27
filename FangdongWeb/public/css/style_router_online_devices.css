@@ -1,0 +1,144 @@
+#m_contents {
+    background-color: #FFF;
+}
+
+.m_top {
+    background-color: #5c84c1;
+    overflow: auto;
+    text-align: center;
+}
+
+.m_top_title {
+    color: #FFF;
+    line-height: 80px;
+    font-size: 1.6rem;
+
+}
+
+.m_top img {
+    width: 100px;
+    height: 100px;
+    margin-top: 30px;
+}
+
+.m_top_tip {
+    height: 20px;
+    border: 1px #999 solid;
+    width: 30px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    text-align: center;
+    position: absolute;
+    color: #fff;
+    font-size: 1.0rem;
+    line-height: 15px;
+    top: 10px;
+    right: 10px;
+}
+
+.m_mid {
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    overflow: auto;
+    margin-bottom: 80px;
+}
+
+.m_list {
+    overflow: auto;
+    padding: 10px;
+}
+
+.m_list_img {
+    float: left;
+    text-align: center;
+}
+
+.m_list_img img {
+    width: 60px;
+}
+
+.m_list_right {
+    float: left;
+    margin-left: 5%;
+    height: 65px;
+    border-bottom: 1px #e1e1e1 solid;
+}
+
+@media screen and (min-width: 320px) {
+    .m_list_img {
+        width: 20%;
+    }
+
+    .m_list_right {
+        width: 75%;
+    }
+}
+
+@media screen and (min-width: 480px) {
+    .m_list_img {
+        width: 10%;
+    }
+
+    .m_list_right {
+        width: 85%;
+    }
+}
+
+@media screen and (min-width: 640px) {
+    .m_list_img {
+        width: 10%;
+    }
+
+    .m_list_right {
+        width: 85%;
+    }
+}
+
+@media screen and (min-width: 960px) {
+    .m_list_img {
+        width: 5%;
+    }
+
+    .m_list_right {
+        width: 90%;
+    }
+}
+
+.m_list_right p:nth-child(1) {
+    line-height: 30px;
+    color: #57565b;
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+
+.m_list_right p:nth-child(2) {
+
+    color: #919598;
+    font-size: 1.2rem;
+}
+
+#m_foot {
+    position: fixed;
+    width: 100%;
+    bottom: 0px;
+    text-align: center;
+    background-color: #FFF;
+    padding: 4px 0;
+    border-top: 1px #d9d9d9 solid;
+    font-size: 1.2rem;
+    color: #95999c;
+
+}
+
+#m_foot div {
+    width: 20%;
+    float: left;
+}
+
+#m_foot img {
+    width: 30px;
+    height: 30px;
+    margin: 5px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}

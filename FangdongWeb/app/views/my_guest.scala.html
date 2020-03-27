@@ -1,0 +1,138 @@
+@(item: Host) @front_frame_no_footer("我的租客", "MyGuestApp", "MyGuestController") {
+
+    <style>
+    #m_contents{
+    background-image:url(/showimg/images/bg.jpg);
+
+    }
+    #m_mid{
+    margin-top:10px;
+    margin-bottom:100px;
+    text-align:center;
+
+    }
+    .m_list{
+    -moz-border-radius:5px;
+    border-radius: 5px;
+    border:1px #dedede solid;
+    height:140px;
+    margin:10px 4%;
+    font-size:1.4rem;
+    line-height:100%;
+    background-color:#facc6d;
+    color:#939393;
+    background-image:url(/showimg/images/bg4.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    }
+    .m_list div:nth-child(1){
+    font-size:1.6rem;
+    }
+
+    .m_list div:nth-child(2){
+    width:60%;
+    float:left;
+    text-align:left;
+    }
+    .m_list div:nth-child(2) p{
+    margin-top:3px;
+    text-indent:10px;
+
+    }
+    .m_list div:nth-child(3){
+    margin-top:10px;
+    }
+
+    .m_list_title{
+    padding-bottom:10px;
+    text-shadow:1px 1px 2px #e0e2e2;
+    }
+
+    .m_list:nth-child(odd) .m_list_title{
+    color:#37d1d1;
+    border-bottom:1px #e0e2e2 solid;
+    }
+    .m_list:nth-child(even) .m_list_title{
+    color:#ff5d3a;
+    border-bottom:1px #e0e2e2 solid;
+    }
+    .m_htdate{
+    font-size:1.4rem;
+    color:#fff;
+    }
+    .m_name{
+    color:#c17869;
+    padding:5px 0;
+    }
+    .m_sdate{
+    padding:18px 0 2px 0;
+    color:#939393;
+    font-size:1.4rem;
+    }
+
+    .m_is_pass{
+    -moz-border-radius:30px;
+    border-radius: 30px;
+    width:60px;
+    height:60px;
+    line-height:60px;
+    color:#fff;
+    float:right;
+    margin-right:5%;
+    background-color:#37d1d1;
+    margin-top:12px;
+
+    -moz-box-shadow:0px 0px 3px #ADADAD;
+    -webkit-box-shadow:0px 0px 3px #ADADAD;
+    box-shadow:0px 0px 3px #ADADAD;
+    }
+
+    .m_no_pass{
+    -moz-border-radius:30px;
+    border-radius: 30px;
+    width:60px;
+    height:60px;
+    line-height:60px;
+    color:#fff;
+    background-color:#f97664;
+    float:right;
+    margin-right:5%;
+    margin-top:12px;
+
+    -moz-box-shadow:0px 0px 3px #ADADAD;
+    -webkit-box-shadow:0px 0px 3px #ADADAD;
+    box-shadow:0px 0px 3px #ADADAD;
+    }
+    .m_mid_bom{
+    position:fixed;
+    width:100%;
+    bottom:20px;
+    }
+    </style>
+
+    <div id="m_head">
+        <p>我的租客</p>
+        <p><a href="#" onClick="javascript:history.go(-1);">< 返回</a></p>
+    </div>
+
+    <div id="m_mid">
+        @for(child <- item.guests) {
+            <div class="m_list">
+                <div class="m_t_10 m_list_title">@child.houseName 小区 @child.building 栋 @child.unit 单元 @child.room 房</div>
+                <div>
+                    <p class="m_name">@child.name：@child.phone</p>
+                    <p class="m_htdate">合同时间：@child.contractLength 月</p>
+                    <p class="m_sdate">开始日期：@LyLib.Utils.DateUtil.Date2Str(child.contractStartDate)</p>
+                    <p>到期日期：@LyLib.Utils.DateUtil.Date2Str(child.contractEndDate)</p>
+                </div>
+                <div>
+                    @if(child.status == 0){
+                        <p class="m_is_pass">@EnumInfoReader.getEnumName("Guest", "status", child.status)</p>
+                    } else {
+                        <p class="m_no_pass">@EnumInfoReader.getEnumName("Guest", "status", child.status)</p>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+}

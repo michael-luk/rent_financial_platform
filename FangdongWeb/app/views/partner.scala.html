@@ -1,0 +1,68 @@
+@front_frame_no_footer("合作伙伴", "", "") {
+    <style>
+    body{
+    }
+    .mid{
+    width:94%;
+    padding:3%;
+    }
+    .logo{
+    padding:20px;
+    width:30%;
+    margin:0 auto;
+    overflow:auto;
+    }
+    .logo img{
+    width:100%;
+    }
+    .bank_li{
+    width:48%;
+    float:left;
+    margin:1%;
+    }
+    .bank_li img{
+    width:100%;
+    height:100%;
+    -moz-border-radius:5px;
+    border-radius: 5px;
+    }
+    </style>
+    <div class="content">
+        <div class="mid">
+                <!--内容开始-->
+            <div class="logo"><img src="/showimg/images/logo2.png" /></div>
+
+            <div class="bank_li">
+                <img src="/showimg/images/01.jpg" />
+            </div>
+
+            <div class="bank_li">
+                <img src="/showimg/images/02.jpg" />
+            </div>
+
+            <div class="bank_li">
+                <img src="/showimg/images/03.jpg" />
+            </div>
+
+            <div class="bank_li">
+                <img src="/showimg/images/04.jpg" />
+            </div>
+
+            @*<div class="bank_li">*@
+                @*<img src="/showimg/images/b5.png" />*@
+            @*</div>*@
+
+            @*<div class="bank_li">*@
+                @*<img src="/showimg/images/b6.png" />*@
+            @*</div>*@
+                <!--内容结束-->
+        </div>
+    </div>
+    <script src="@routes.Assets.at("js/jquery.min.js")"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+    $(".bank_li").height($(".bank_li").width()-30);
+
+    });
+    </script>
+}

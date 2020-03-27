@@ -1,0 +1,62 @@
+@(item: Host) @front_frame_no_footer("手机绑定", "PhoneInfoApp", "PhoneInfoController") {
+    <style>
+    #m_contents{
+        background-color:#fff;
+    }
+    #m_mid{
+        text-align:center;
+        margin-bottom:20px;
+    }
+    .m_phone_num{
+        margin-top:20%;
+    }
+    #m_mid  p:nth-child(1){
+        text-align:center;
+        font-size:1.6rem;
+    }
+    #m_mid  p:nth-child(2){
+        margin-top:10px;
+        text-align:center;
+        font-size:1.6rem;
+    }
+
+    .m_phone_img img{
+        width:40%;
+    }
+    .m_name{
+        color:#c17869;
+    }
+    .m_phone{
+        color:#000;
+        font-size:1.6rem !important;
+    }
+    .m_phone1{
+        color:#999;
+        font-size:1.4rem !important;
+        line-height:150%;
+        margin:0 2%;
+        padding:10px 0;
+    }
+    .m_sub_btn{
+        width:96%;
+        margin-left:0px;
+        margin-right:0px;
+    }
+    </style>
+
+    <div id="m_head">
+        <p>绑定手机号</p>
+        <p><a href="/p/mine">< 返回</a></p>
+    </div>
+
+    <div id="m_mid">
+        <div class="m_phone_img m_t_40"><p><img src="/showimg/images/phone1.png" /></p></div>
+        <div class="m_phone_num m_t_10">
+            <p class="m_phone">绑定的手机号：@item.phone</p>
+            <p class="m_phone1">重要信息将会通过短信形式通知或致电联系你。</p>
+        </div>
+        <div class="m_t_20"><input type="button" onclick='location="/p/phone/bind"' class="m_sub_btn w_70 h_40 m_btn" value="更换手机号" /></div>
+    </div>
+}
+@*<script src="@routes.Assets.at("js/angular.min.js")"></script>*@
+@*<script src='@routes.Assets.at("js/front_controllers/phone_bind_controller.js")'></script>*@

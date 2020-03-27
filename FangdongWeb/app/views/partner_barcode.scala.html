@@ -1,0 +1,42 @@
+@(barcode :String)@front_frame_no_footer("我的邀请码", "", "") {
+
+    <style>
+    body{
+
+    }
+    .codes{
+        height:150px;
+        margin: auto;
+        position: absolute;
+        top: -75px; left: 0; bottom: 0; right: 0;
+    }
+    .codes img{
+        width:150px;
+        height:150px;
+    }
+
+    .m_bottom{
+        width:60%;
+        margin:0 auto;
+        position:fixed;
+        left:20%;
+        bottom:20px;
+    }
+    .m_bottom img{
+        width:100%;
+    }
+    </style>
+    <div class="content">
+        <div class="mid">
+
+                <!--内容开始-->
+            <div class="codes">
+                <img src="/showimg/barcode/@(barcode + ".")jpg" />
+            </div>
+
+            <div class="m_bottom"><img src="/showimg/images/63.png" /></div>
+                <!--内容结束-->
+
+        </div>
+    </div>
+}

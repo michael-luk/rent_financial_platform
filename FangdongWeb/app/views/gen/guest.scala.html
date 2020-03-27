@@ -1,0 +1,40 @@
+@(guestList: List[Guest]) @front_frame(TableInfoReader.getTableComment("Guest"), "GuestApp", "GuestController") {
+    @for(guest <- guestList) {
+        <ul>
+            <li>@TableInfoReader.getFieldComment("Guest", "id"): @guest.id</li>
+            <li>@TableInfoReader.getFieldComment("Guest", "name"): @guest.name</li>
+            <li>@TableInfoReader.getFieldComment("Guest", "loginName"): @guest.loginName</li>
+            <li>@TableInfoReader.getFieldComment("Guest", "wxId"): @guest.wxId</li>
+            <li>@TableInfoReader.getFieldComment("Guest", "sexEnum"): @EnumInfoReader.getEnumName("Guest", "sexEnum", guest.sexEnum)</li>
+            <li>@TableInfoReader.getFieldComment("Guest", "phone"): @guest.phone</li>
+            <li>@TableInfoReader.getFieldComment("Guest", "cardNumber"): @guest.cardNumber</li>
+            <li>@TableInfoReader.getFieldComment("Guest", "email"): @guest.email</li>
+            <li>@TableInfoReader.getFieldComment("Guest", "address"): @guest.address</li>
+            <li>@TableInfoReader.getFieldComment("Guest", "birth"): @LyLib.Utils.DateUtil.Date2Str(guest.birth)</li>
+            <li>@TableInfoReader.getFieldComment("Guest", "password"): @guest.password</li>
+            <li>@TableInfoReader.getFieldComment("Guest", "createdAt"): @LyLib.Utils.DateUtil.Date2Str(guest.createdAt)</li>
+            <li>@TableInfoReader.getFieldComment("Guest", "status"): @EnumInfoReader.getEnumName("Guest", "status", guest.status)</li>
+            <li>@TableInfoReader.getFieldComment("Guest", "userRoleEnum"): @EnumInfoReader.getEnumName("Guest", "userRoleEnum", guest.userRoleEnum)</li>
+            <li>@TableInfoReader.getFieldComment("Guest", "images"): 
+                @if(guest.images) {
+                    @for(imageFile <- guest.images.split(",")) {
+                        <a href="/showimg/upload/@imageFile" target="_blank"><img src="/showimg/thumb/@imageFile" /></a>
+                    }
+                } else {
+                      <span>无</span>                    
+                }
+            </li>
+            <li>@TableInfoReader.getFieldComment("Guest", "houseName"): @guest.houseName</li>
+            <li>@TableInfoReader.getFieldComment("Guest", "building"): @guest.building</li>
+            <li>@TableInfoReader.getFieldComment("Guest", "unit"): @guest.unit</li>
+            <li>@TableInfoReader.getFieldComment("Guest", "room"): @guest.room</li>
+            <li>@TableInfoReader.getFieldComment("Guest", "amount"): @guest.amount</li>
+            <li>@TableInfoReader.getFieldComment("Guest", "totalAmount"): @guest.totalAmount</li>
+            <li>@TableInfoReader.getFieldComment("Guest", "contractLength"): @guest.contractLength</li>
+            <li>@TableInfoReader.getFieldComment("Guest", "contractStartDate"): @LyLib.Utils.DateUtil.Date2Str(guest.contractStartDate)</li>
+            <li>@TableInfoReader.getFieldComment("Guest", "contractEndDate"): @LyLib.Utils.DateUtil.Date2Str(guest.contractEndDate)</li>
+            <li>@TableInfoReader.getFieldComment("Guest", "lastUpdateTime"): @LyLib.Utils.DateUtil.Date2Str(guest.lastUpdateTime)</li>
+            <li>@TableInfoReader.getFieldComment("Guest", "comment"): @guest.comment</li>
+        </ul>
+    }
+}

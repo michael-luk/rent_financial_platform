@@ -1,0 +1,127 @@
+<div class="row">
+	<div class="col-xs-12">
+		<form class="form-horizontal" role="form" name="myform" ng-submit="formSave(myform.$valid)" novalidate>
+
+
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right">
+					搜索:
+				</label>
+				<div class="col-sm-9">
+					<input type="text" ng-model="currentObj.queryKeyword4House" class="form-control" placeholder='按{{searchFieldNameHouseComment}}搜' style="display: inline-block; width: 140px;text-align: center;" />
+					<div class="btn btn-primary" ng-click="searchContent4House()">搜索</div>
+				</div>
+			</div>
+            
+            <div class="form-group">
+        		<label class="col-sm-3 control-label no-padding-right" > {{objFieldInfo.RentContract.house}}: </label>
+        		<div class="col-sm-9">
+        			<div ui-grid="gridParentHouses" ui-grid-resize-columns ui-grid-selection ui-grid-auto-fit-columns></div>
+        			<tm-pagination conf="paginationConf4ParentHouse"></tm-pagination>
+        		    <br>
+        		</div>
+        	</div>
+
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.RentContract.name}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="name" ng-model="currentObj.name" class="col-xs-10 col-sm-5 button_border" required />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.RentContract.rent}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="number" name="rent" ng-model="currentObj.rent" class="col-xs-10 col-sm-5 button_border" />
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.RentContract.images}}:
+                </label>
+		        <div class="col-sm-9">
+		            <div><input type="file" name="images" accept="image/gif,image/jpeg,image/jpg,image/png" ng-file-select="uploadImage($files, 'images', currentObj, false)"/><div ng-repeat="imageName in currentObj.images.split(',')"><div ng-show="imageName"><a class="fancybox" target="_blank" data-fancybox-group="gallery" fancybox ng-href="/showImage/{{imageName}}"><img ng-src="/showimg/thumb/{{imageName}}" style="width:50px;height:50px;float:left"></a><input type="button" ng-click="deleteImage(currentObj, 'images', imageName)" value="删除" style="float:left" /></div></div></div>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.RentContract.status}}:
+                </label>
+		        <div class="col-sm-9">
+		            <select name="status" ng-model="currentObj.status" ng-options="item.id as item.name disable when item.id == -100 for item in status" class="col-xs-10 col-sm-5 button_border"></select>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.RentContract.rentPayTime}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" id="rentPayTime" name="rentPayTime" ng-model="currentObj.rentPayTime" class="col-xs-10 col-sm-5 button_border" />
+                    <script type='text/javascript'>
+                        $('#rentPayTime').datetimepicker({
+                            language: 'zh-CN',
+                            format: 'yyyy-mm-dd',
+                            minView: 'month',
+                            todayBtn: true,
+                            todayHighlight: true,
+                            autoclose: true
+                        });
+                    </script>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.RentContract.contractEndTime}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" id="contractEndTime" name="contractEndTime" ng-model="currentObj.contractEndTime" class="col-xs-10 col-sm-5 button_border" />
+                    <script type='text/javascript'>
+                        $('#contractEndTime').datetimepicker({
+                            language: 'zh-CN',
+                            format: 'yyyy-mm-dd',
+                            minView: 'month',
+                            todayBtn: true,
+                            todayHighlight: true,
+                            autoclose: true
+                        });
+                    </script>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.RentContract.comment}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="comment" ng-model="currentObj.comment" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+			<div class="form-group" ng-show="myform.$invalid">
+    			<label class="col-sm-2 control-label"></label>
+			    <div class="col-sm-10">
+			      <div class="alert alert-warning" style="margin-bottom: 0px">
+			        <ul>                    
+                        <li ng-show='myform.name.$error.required'>{{objFieldInfo.RentContract.name}} 不能为空！</li>
+                        <li ng-show='myform.name.$error.maxlength'>{{objFieldInfo.RentContract.name}} 超出长度！</li>
+                        <li ng-show='myform.rent.$error.maxlength'>{{objFieldInfo.RentContract.rent}} 超出长度！</li>
+                        <li ng-show='myform.rentPayTime.$error.maxlength'>{{objFieldInfo.RentContract.rentPayTime}} 超出长度！</li>
+                        <li ng-show='myform.contractEndTime.$error.maxlength'>{{objFieldInfo.RentContract.contractEndTime}} 超出长度！</li>
+                        <li ng-show='myform.lastUpdateTime.$error.maxlength'>{{objFieldInfo.RentContract.lastUpdateTime}} 超出长度！</li>
+                        <li ng-show='myform.comment.$error.maxlength'>{{objFieldInfo.RentContract.comment}} 超出长度！</li>
+			        </ul>
+			      </div>
+			    </div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-10 no-padding-right">
+					<input type="button" class="btn btn-danger" value="取消" ng-click="dialogClose()" style="float:right;margin: 0 -11%;"/>
+					<input type="submit" class="btn btn-primary" value="确定" ng-disabled="myform.$invalid" style="float:right;"/>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

@@ -1,0 +1,253 @@
+@(item: Host) @front_frame_no_footer("授信第一步", "MineApp", "MineController") {
+
+    <style>
+
+
+    .user_top{
+    margin:20px 30px;
+    width:90%;
+    overflow:auto;
+    }
+    .user_face{
+    width:80px;
+    height:80px;
+    float:left;
+    }
+    .user_face img{
+    width:100%;
+    height:100%;
+    -moz-border-radius:50px;
+    border-radius: 50px;
+    }
+
+    .user_info{
+    float:left;
+    text-align:left;
+    padding:15px 0 0 10px;
+    }
+    .user_info p:nth-child(1){
+    font-size:1.4rem;
+    height:25px;
+    line-height:25px;
+    color:#666;
+    }
+    .user_info span{
+    float:left;
+    padding:3px 5px;
+    color:#fff;
+    }
+    .is_rz{
+    background-color:#00b5aa;
+    -moz-border-radius:3px;
+    border-radius:3px;
+    margin-right:5px;
+    }
+    .is_idcard{
+    background-color:#f5a723;
+    -moz-border-radius:3px;
+    border-radius:3px;
+    }
+
+
+
+    .m_form{
+    line-height:100%;
+    text-align:left;
+    font-size:1.4rem;
+    color:#bfbfbf;
+    background-color:#fff;
+
+    margin:3% 5%;
+    -moz-border-radius:5px;
+    border-radius: 5px;
+    }
+    .m_form div{
+    height:52px;
+    line-height:52px;
+    }
+    .m_form div+div{
+    border-top:1px #c9c9c9 solid;
+    }
+
+    .m_form_info span:nth-child(1){
+    float:left;
+    margin-left:3%;
+    width:37%;
+    color:#bfbfbf;
+    }
+    .m_form_info span:nth-child(2){
+    float:left;
+    width:50%;
+    text-align:right;
+    color:#848484;
+    }
+    .m_form_info span:nth-child(3){
+    float:left;
+    width:8%;
+    padding-top:10px;
+    text-align:right;
+    margin-right:2%;
+    }
+
+
+
+    .m_form img{
+    width:10px;
+    text-align:right;
+    position:relative;
+    top:5px;
+    }
+
+    </style>
+
+    <div class="content">
+        <div class="mid">
+                <!--内容开始-->
+            <div class="user_top">
+                <div class="user_face"><img src="@ImageController.getImageString(item.headImages)" /></div>
+                <div class="user_info">
+                    <p>@item.name</p>
+                    <p><span class="is_rz">@EnumInfoReader.getEnumName("Host", "status", item.status)</span>
+                        @*<span class="is_idcard">身份证验证通过</span>*@
+                    </p>
+                </div>
+            </div>
+            <div class="m_form">
+                <div class="m_form_info">
+                    <span>个人资料</span>
+                    <span>@EnumInfoReader.getEnumName("Host", "status", item.status)</span>
+                    <span><img src="/showimg/images/tt.png" /></span>
+                </div>
+                <div class="m_form_info">
+                    <span>银行卡</span>
+                    <span>@item.bankCards.size()</span>
+                    <span><img src="/showimg/images/tt.png" /></span>
+                </div>
+            </div>
+
+            <div class="m_form">
+                <div class="m_form_info">
+                    <span>房源</span>
+                    <span>@item.houses.size()</span>
+                    <span><img src="/showimg/images/tt.png" /></span>
+                </div>
+                <div class="m_form_info">
+                    <span>我的借款</span>
+                    <span>￥@biz.HostBiz.getProductRecordAmountWithInterest(item)</span>
+                    <span><img src="/showimg/images/tt.png" /></span>
+                </div>
+            </div>
+                <!--内容结束-->
+        </div>
+    </div>
+
+
+
+    @*
+    <div id="m_head_user">
+        <div class="m_face">
+            <img src="@ImageController.getImageString(item.headImages)" height="65" width="65" />
+        </div>
+        <p class="m_name">姓&nbsp;&nbsp;名：<span class="m_user">@item.name </span></p>
+        <p class="m_name">房东认证：<span class="m_pass">@EnumInfoReader.getEnumName("Host", "status", item.status)</span></p>
+    </div>
+
+    <div id="m_mid">
+
+        <div class="m_user_list">
+            @if(LyLib.Utils.StrUtil.isNull(item.phone)) {
+                <a href="/p/phone/bind">
+                } else {
+                <a href="/p/phone/info">
+                }
+            <div style="width: 15%"><img src="/showimg/images/ico4.png" /></div>
+            <div style="width: 48%">手机号</div>
+            <div style="width: 37%"><span class="m_no_bind">
+            @if(LyLib.Utils.StrUtil.isNull(item.phone)) {
+                未绑定 >&nbsp;&nbsp;
+            } else {
+                @item.phone >&nbsp;&nbsp;
+            }
+            </span></div>
+        </a>
+        </div>
+
+        <div class="m_user_list">
+            <a href="/p/my/info">
+                <div><img src="/showimg/images/ico5.png" /></div>
+                <div>房东资料认证</div>
+                <div><span class="m_no_bind">>&nbsp;&nbsp;</span></div>
+            </a>
+        </div>
+
+        <div class="m_user_list" onclick="if (!(@item.status == 3)) alert('仅对认证房东开放')">
+            @if(item.status == 3) {
+                <a href="/p/my/house">
+            }
+            <div><img src="/showimg/images/ico6.png" /></div>
+            <div>房产资料认证</div>
+            <div><span class="m_no_bind">>&nbsp;&nbsp;</span></div>
+            @if(item.status == 3) {
+                </a>
+            }
+        </div>
+
+        @*<div class="m_user_list">
+        <a href="#">
+        <div><img src="/showimg/images/ico7.png" /></div>
+        <div>电子合约</div>
+        <div><span class="m_no_bind">>&nbsp;&nbsp;</span></div>
+        </a>
+        </div>*@
+    @*
+        <div class="m_user_list" onclick="if (!(@item.status == 3)) alert('仅对认证房东开放')">
+            @if(item.status == 3) {
+                <a href="/p/my/guest">
+            }
+                <div><img src="/showimg/images/ico8.png" /></div>
+                <div>我的租客</div>
+                <div><span class="m_no_bind">>&nbsp;&nbsp;</span></div>
+            @if(item.status == 3) {
+                </a>
+            }
+        </div>
+
+        <div class="m_user_list" onclick="if (!(@item.status == 3)) alert('仅对认证房东开放')">
+            @if(item.status == 3) {
+                <a href="/p/my/rent">
+            }
+                <div><img src="/showimg/images/ico9.png" /></div>
+                <div>房租缴费记录</div>
+                <div><span class="m_no_bind">>&nbsp;&nbsp;</span></div>
+            @if(item.status == 3) {
+                </a>
+            }
+        </div>
+
+        <div class="m_user_list" onclick="if (!(@item.status == 3)) alert('仅对认证房东开放')">
+            @if(item.status == 3) {
+                <a href="/p/my/product">
+            }
+                <div><img src="/showimg/images/ico10.png" /></div>
+                <div>我的金融产品</div>
+                <div><span class="m_no_bind">>&nbsp;&nbsp;</span></div>
+            @if(item.status == 3) {
+                </a>
+            }
+        </div>
+
+        <div class="m_user_list" onclick="if (!(@item.status == 3)) alert('仅对认证房东开放')">
+            @if(item.status == 3) {
+                <a href="/p/my/credit">
+            }
+                <div><img src="/showimg/images/ico11.png" /></div>
+                <div>我的信用额度</div>
+                <div><span class="m_no_bind">>&nbsp;&nbsp;</span></div>
+            @if(item.status == 3) {
+                </a>
+            }
+        </div>
+
+    </div>*@
+
+}

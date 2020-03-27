@@ -1,0 +1,76 @@
+@(item: House) @front_frame_no_footer("房源极路由", "MyHouseApp", "MyHouseController") {
+    <style>
+    #m_contents {
+        background-image: url(/showimg/images/bg.jpg);
+    }
+
+    #m_mid {
+        margin-top: 10px;
+        margin-bottom: 100px;
+        text-align: center;
+
+    }
+
+    .m_list {
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+        border: 1px #c0c0c0 solid;
+        height: 80px;
+        margin: 10px 2%;
+        font-size: 1.4rem;
+        background-color: #fff;
+        line-height: 100%;
+    }
+
+    .m_list div:nth-child(1) {
+        width: 80%;
+        float: left;
+        text-align: left;
+    }
+
+    .m_list div:nth-child(1) p {
+        text-indent: 10px;
+
+    }
+
+    .m_list div:nth-child(2) {
+        margin-top: 23px;
+    }
+
+    .m_name {
+        color: #c17869;
+        line-height: 80px;
+    }
+
+    .wifi {
+        float: left;
+        width: 20%;
+
+    }
+
+    .wifi img {
+        width: 40px;
+        height: 35px;
+    }
+    </style>
+
+    <div id="m_head">
+        <p>房源极路由</p>
+        <p><a href="#" onClick="javascript:history.go(-1);">< 返回</a></p>
+    </div>
+
+    <div id="m_mid">
+    @for(router <- item.routers) {
+        <a href="/p/router/@router.id">
+            <div class="m_list">
+                <div>
+                    <p class="m_name">MAC地址：@router.name</p>
+                </div>
+                <div class="wifi">
+                    <p><img src="/showimg/images/wifibg.png" /></p>
+                </div>
+            </div>
+        </a>
+    }
+    </div>
+}

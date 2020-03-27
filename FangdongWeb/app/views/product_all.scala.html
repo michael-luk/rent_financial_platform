@@ -1,0 +1,70 @@
+@(productList: List[Product]) @front_frame(TableInfoReader.getTableComment("Product"), "ProductApp", "ProductController") {
+    <style>
+    #m_head{
+    text-align:center;
+    font-size:1.6rem;
+    height:40px;
+    line-height:40px;
+    background-color:#3c6eac;
+    }
+
+
+    #m_head p{
+    color:#FFFFFF;
+    }
+    </style>
+
+    <div id="m_head">
+        <p>金融产品</p>
+    </div>
+
+    <div class="m_rec_div">
+        @for(product <- productList) {
+            <div class="m_rec_list">
+                <div class="m_rec_pro">
+                    <a href="/p/product/details/@product.id">
+                        <div class="m_rec_pro_img"><img src="/showimg/mid_thumb/@ImageController.getImageString(product.images)" /></div>
+                        <p class="m_rec_pro_t">@product.name</p>
+                        <p class="m_rec_pro_d">@product.length 月</p>
+                    </a>
+                </div>
+            </div>
+            @*<ul>
+                <li>@TableInfoReader.getFieldComment("Product", "id"): @product.id</li>
+                <li>@TableInfoReader.getFieldComment("Product", "name"): @product.name</li>
+                <li>@TableInfoReader.getFieldComment("Product", "indexNum"): @product.indexNum</li>
+                <li>@TableInfoReader.getFieldComment("Product", "promote"): @product.promote</li>
+                <li>@TableInfoReader.getFieldComment("Product", "length"): @product.length</li>
+                <li>@TableInfoReader.getFieldComment("Product", "requireCredit"): @product.requireCredit</li>
+                <li>@TableInfoReader.getFieldComment("Product", "minInvestAmount"): @product.minInvestAmount</li>
+                <li>@TableInfoReader.getFieldComment("Product", "maxInvestAmount"): @product.maxInvestAmount</li>
+                <li>@TableInfoReader.getFieldComment("Product", "visible"): @product.visible</li>
+                <li>@TableInfoReader.getFieldComment("Product", "status"): @EnumInfoReader.getEnumName("Product", "status", product.status)</li>
+                <li>@TableInfoReader.getFieldComment("Product", "images"):
+                    @if(product.images) {
+                        @for(imageFile <- product.images.split(",")) {
+                            <a href="/showimg/upload/@imageFile" target="_blank"><img src="/showimg/thumb/@imageFile" /></a>
+                        }
+                    } else {
+                        <span>无</span>
+                    }
+                </li>
+                <li>@TableInfoReader.getFieldComment("Product", "smallImages"):
+                    @if(product.smallImages) {
+                        @for(imageFile <- product.smallImages.split(",")) {
+                            <a href="/showimg/upload/@imageFile" target="_blank"><img src="/showimg/thumb/@imageFile" /></a>
+                        }
+                    } else {
+                        <span>无</span>
+                    }
+                </li>
+                <li>@TableInfoReader.getFieldComment("Product", "createdAt"): @LyLib.Utils.DateUtil.Date2Str(product.createdAt)</li>
+                <li>@TableInfoReader.getFieldComment("Product", "description"): @product.description</li>
+                <li>@TableInfoReader.getFieldComment("Product", "description2"): @product.description2</li>
+                <li>@TableInfoReader.getFieldComment("Product", "comment"): @product.comment</li>
+                <li>@TableInfoReader.getFieldComment("Product", "contractTitle"): @product.contractTitle</li>
+                <li>@TableInfoReader.getFieldComment("Product", "contractContent"): @product.contractContent</li>
+            </ul>*@
+        }
+    </div>
+}

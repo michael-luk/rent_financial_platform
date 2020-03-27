@@ -1,0 +1,132 @@
+@(item: Host) @front_frame_no_footer("我的房产租约", "MyHouseContractApp", "MyHouseContractController") {
+    <style>
+    .m_form{
+    width:96%;
+    line-height:100%;
+    text-align:left;
+    font-size:1.4rem;
+    color:#666;
+    background-color:#fff;
+    margin:3% 2%;
+    -moz-border-radius:5px;
+    border-radius: 5px;
+    }
+
+    .form-group{
+    float:left;
+    width:33.33%;
+    text-align:center ;
+
+    }
+    .form-control{
+    border:0px;
+    height:40px;
+    line-height:40px;
+    width:82%;
+    -moz-border-radius:5px!important;
+    border-radius:5px!important;
+    }
+
+    .contract_li{
+    background-color:#fff;
+    -moz-border-radius:5px;
+    border-radius:5px;
+    width:90%;
+    margin:0 auto 20px;
+    text-align:left;
+    font-size:1.4rem;
+    position:relative;
+    padding:10px 0;
+    }
+    .contract_li p{
+    height:35px;
+    line-height:35px;
+    }
+    .contract_li p span:nth-child(1){
+    float:left;
+    color:#bababa;
+    text-align:left;
+    padding-left:20px;
+    width:70px;
+
+    }
+    .contract_li p span:nth-child(2){
+    float:left;
+    color:#848484;
+    padding-left:20px;
+    }
+    .right_top{
+    width:50px;
+    position:absolute;
+    right:0px;
+    top:0px;
+
+    }
+    .right_top img{
+    width:100%;
+
+    }
+    .footer_add{
+    width:100%;
+    max-width:640px;
+    text-align:center;
+    margin-top:20px;
+    position:fixed;
+    bottom:0;
+
+    }
+    .m_add{
+    background-color:#00b5aa;
+    margin:5%;
+    height:40px;
+    line-height:40px;
+    color:#fff;
+    font-size:1.8rem;
+    font-weight:bold;
+    -moz-border-radius:5px;
+    border-radius: 5px;
+    }
+    </style>
+
+    <div class="content">
+        <div class="mid">
+                <!--内容开始-->
+            <div style="clear:both; height:20px"></div>
+            @for(house <- item.houses){
+                @if(house.status != 1){
+                    @for(contract <- house.rentContracts){
+                        @if(contract.status != 4) {
+                            <div class="contract_li">
+                                <div class="right_top"><img src="/showimg/images/rentContractStatus@(contract.status).png" /></div>
+                                <p><span>房源地址</span><span>@house.address</span></p>
+                                <p><span>小区门牌</span><span>@house.name</span></p>
+                                <p><span>房型</span><span>@house.structure</span></p>
+                                <p><span>租金</span><span>@contract.rent</span></p>
+                                <p><span>运营管理方</span><span>@house.comment</span></p>
+
+                                @*<p><span>合同编号</span><span>@contract.name</span></p>*@
+                                @*<p><span>姓名</span><span>*@
+                                    @*if(contract.guest != null) {*@
+                                        @*contract.guest.name*@
+                                    @*}else{*@
+                                        @*无*@
+                                    @*}</span></p>*@
+                                @*<p><span>手机号码</span><span>*@
+                                    @*if(contract.guest != null) {*@
+                                        @*contract.guest.phone*@
+                                    @*}else{*@
+                                        @*无*@
+                                    @*}</span></p>*@
+                                @*<p><span>房源地址</span><span>@house.address</span></p>*@
+                            </div>
+                        }
+                    }
+                }
+            }
+            <div style="clear:both; height:60px"></div>
+            @*<div class="footer_add"><a href="/p/my/housecontract/submit"><div class="m_add">新&nbsp;&nbsp;增</div></a></div>*@
+                <!--内容结束-->
+        </div>
+    </div>
+    @*<script src="@routes.Assets.at("js/front_controllers/my_house_contract_controller.js")"></script>*@
+}

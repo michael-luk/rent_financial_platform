@@ -1,0 +1,27 @@
+@(partnerList: List[Partner]) @front_frame(TableInfoReader.getTableComment("Partner"), "PartnerApp", "PartnerController") {
+    @for(partner <- partnerList) {
+        <ul>
+            <li>@TableInfoReader.getFieldComment("Partner", "id"): @partner.id</li>
+            <li>@TableInfoReader.getFieldComment("Partner", "name"): @partner.name</li>
+            <li>@TableInfoReader.getFieldComment("Partner", "area"): @partner.area</li>
+            <li>@TableInfoReader.getFieldComment("Partner", "phone"): @partner.phone</li>
+            <li>@TableInfoReader.getFieldComment("Partner", "address"): @partner.address</li>
+            <li>@TableInfoReader.getFieldComment("Partner", "password"): @partner.password</li>
+            <li>@TableInfoReader.getFieldComment("Partner", "createdAt"): @LyLib.Utils.DateUtil.Date2Str(partner.createdAt)</li>
+            <li>@TableInfoReader.getFieldComment("Partner", "lastUpdateTime"): @LyLib.Utils.DateUtil.Date2Str(partner.lastUpdateTime)</li>
+            <li>@TableInfoReader.getFieldComment("Partner", "images"): 
+                @if(partner.images) {
+                    @for(imageFile <- partner.images.split(",")) {
+                        <a href="/showimg/upload/@imageFile" target="_blank"><img src="/showimg/thumb/@imageFile" /></a>
+                    }
+                } else {
+                      <span>无</span>                    
+                }
+            </li>
+            <li>@TableInfoReader.getFieldComment("Partner", "status"): @EnumInfoReader.getEnumName("Partner", "status", partner.status)</li>
+            <li>@TableInfoReader.getFieldComment("Partner", "credit"): @partner.credit</li>
+            <li>@TableInfoReader.getFieldComment("Partner", "levelEnum"): @EnumInfoReader.getEnumName("Partner", "levelEnum", partner.levelEnum)</li>
+            <li>@TableInfoReader.getFieldComment("Partner", "comment"): @partner.comment</li>
+        </ul>
+    }
+}

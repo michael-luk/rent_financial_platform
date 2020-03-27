@@ -1,0 +1,207 @@
+@(item: Host) @front_frame_no_footer("房东授信", "PhoneBindApp", "PhoneBindController") {
+
+    <style>
+    body{
+
+
+    }
+    .m_top{
+        width:100%;
+    }
+    .m_top img{
+        width:100%;
+    }
+
+    .sls{
+        height:40px;
+        width:90%;
+        margin:20px auto;
+        background-color:#fff;
+        border:3px #00b5aa solid;
+        -moz-border-radius:25px;
+        border-radius: 25px;
+    }
+    .slsinput{
+        width:90%;
+        height:100%;
+        BACKGROUND-COLOR: transparent;
+        border:0;
+        color:#666;
+        padding:0 20px;
+
+    }
+
+    .m_code{
+        width:90%;
+        overflow:auto;
+        margin:0 auto;
+    }
+    .sls1{
+        height:40px;
+        width:50%;
+        background-color:#fff;
+        border:3px #00b5aa solid;
+        -moz-border-radius:25px;
+        border-radius: 25px;
+        float:left;
+
+
+    }
+    .slsinput1{
+        width:100%;
+        height:100%;
+        BACKGROUND-COLOR: transparent;
+        border:0;
+        color:#666;
+        padding:0 20px;
+    }
+    .sls2{
+        height:40px;
+        width:35%;
+        background-color:#fff;
+        -moz-border-radius:25px;
+        border-radius: 25px;
+        float:right;
+        position:relative;
+        top:3px;
+    }
+    .code_btn{
+        width:100%;
+        height:40px;
+        line-height:40px;
+        BACKGROUND-COLOR: transparent;
+        background-color:#00b5aa;
+        border:0px;
+        color:#fff;
+        -moz-border-radius:25px;
+        border-radius: 25px;
+
+    }
+
+    .next_btn{
+        clear:left;
+        height:40px;
+        line-height:40px;
+        font-size:1.8rem;
+        color:#fff;
+        width:80%;
+        margin:40px auto;
+        background-color:#00b5aa;
+        -moz-border-radius:25px;
+        border-radius: 25px;
+        padding:0 5%;
+    }
+    .m_bottom{
+        width:60%;
+        margin:0 auto;
+        position:fixed;
+        left:20%;
+
+        bottom:20px;
+    }
+    .m_bottom img{
+        width:100%;
+    }
+
+    </style>
+
+    <div class="content">
+        <div class="mid">
+                <!--内容开始-->
+            <div class="m_top"><img src='@routes.Assets.at("images/61.jpg")' /></div>
+            <div style="margin-top:40px;">
+                <div class="sls">
+                    <input class="slsinput" type="text" value="@item.partner.name"  />
+                </div>
+
+                <div class="sls">
+                    <input class="slsinput" type="text" ng-model="name" placeholder="姓名"  />
+                </div>
+
+                <div class="sls">
+                    <input class="slsinput" type="number" ng-model="phoneNumber" placeholder="手机号"  />
+                </div>
+
+                <div class="m_code">
+                    <div class="sls1">
+                        <input class="slsinput1" type="text" ng-model="smsCaptcha" placeholder="验证码" />
+                    </div>
+
+                    <div class="sls2">
+                        <input class="code_btn" type="button" value="发送验证码" id="btnSendCode" ng-click="getSmsCaptcha()" />
+                    </div>
+                </div>
+
+                <p id="smsInfo"><br>为了验证您的手机号，我们将会给您发送短信验证码</p>
+                <div class="next_btn" id="btnBind" ng-click='doBind()'>
+                    下一步
+                </div>
+            </div>
+            <div class="m_bottom"><img src='@routes.Assets.at("images/63.png")' /></div>
+                <!--内容结束-->
+        </div>
+    </div>
+
+    @*<div class="content">*@
+        @*<div class="mid">*@
+                @*<!--内容开始-->*@
+            @*<div class="m_top">*@
+                @*<div class="m_top_l">*@
+                    @*<div><img src="/showimg/images/m12.png" /></div>*@
+                    @*<div>基础信息</div>*@
+                @*</div>*@
+                @*<div class="m_top_m"><img src="/showimg/images/m14.png" /></div>*@
+                @*<div class="m_top_r">*@
+                    @*<div><img src="/showimg/images/m13.png" /></div>*@
+                    @*<div>还款/担保人</div>*@
+                @*</div>*@
+            @*</div>*@
+
+            @*<div class="m_form">*@
+                @*<div><span>姓&nbsp;&nbsp;名</span><input style="width:77%;" ng-model="name" class="m_input" type="text" /></div>*@
+                @*<div><span>手机号</span><input style="width:77%;" class="m_input" type="number" ng-model="phoneNumber" /></div>*@
+                @*<div><span>验证码</span><input class="m_input" type="text" ng-model="smsCaptcha" style="width:40%;" /><span class="m_code">*@
+                    @*<input class="code_btn" type="button" id="btnSendCode" ng-click="getSmsCaptcha()" value="发送验证码" /></span></div>*@
+            @*</div>*@
+
+            @*<div class="m_idcard">*@
+                @*<p id="smsInfo">为了验证您的手机号，我们将会给您发送短信验证码</p>*@
+                @*<br>*@
+                @*<p>身份证</p>*@
+                @*<div>*@
+                    @*<input type="file" name="files[]" id="file0" accept="image/gif,image/jpeg,image/jpg,image/png" ng-file-select="uploadImage($files, 0)" style="display: none" />*@
+                    @*<img id="img0" src="/showimg/images/m4.png" onclick="F_Open_dialog('file0')" />*@
+                @*</div>*@
+                @*<div>*@
+                    @*<input type="file" name="files[]" id="file1" accept="image/gif,image/jpeg,image/jpg,image/png" ng-file-select="uploadImage($files, 1)" style="display: none" />*@
+                    @*<img id="img1" src="/showimg/images/m4.png" onclick="F_Open_dialog('file1')" />*@
+                @*</div>*@
+            @*</div>*@
+
+            @*<div style="clear:both"></div>*@
+            @*<div class="footer_btn"><div class="m_reg" id="btnBind" ng-click='doBind()'>下一步</div></div>*@
+                @*<!--内容结束-->*@
+        @*</div>*@
+    @*</div>*@
+
+    <script src="@routes.Assets.at("js/jquery.min.js")"></script>
+    <script src="@routes.Assets.at("js/angular.min.js")"></script>
+    <script src="@routes.Assets.at("js/angular-file-upload-shim.min.js")"></script>
+    <script src="@routes.Assets.at("js/angular-file-upload.min.js")"></script>
+    <script src='@routes.Assets.at("js/front_controllers/phone_bind_controller.js")'></script>
+    <script type="application/javascript">
+    function F_Open_dialog($pic) {
+    document.getElementById($pic).click();
+    }
+    </script>
+    <script type="text/javascript">
+    $(function() {
+
+    $('input').focus(function(){
+    $('.m_bottom').css('position','static');
+    }).blur(function(){
+    $('.m_bottom').css('position','fixed');
+    });
+
+    });
+}

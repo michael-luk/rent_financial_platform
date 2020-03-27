@@ -1,0 +1,42 @@
+@(productList: List[Product]) @front_frame(TableInfoReader.getTableComment("Product"), "ProductApp", "ProductController") {
+    @for(product <- productList) {
+        <ul>
+            <li>@TableInfoReader.getFieldComment("Product", "id"): @product.id</li>
+            <li>@TableInfoReader.getFieldComment("Product", "name"): @product.name</li>
+            <li>@TableInfoReader.getFieldComment("Product", "indexNum"): @product.indexNum</li>
+            <li>@TableInfoReader.getFieldComment("Product", "promote"): @product.promote</li>
+            <li>@TableInfoReader.getFieldComment("Product", "length"): @product.length</li>
+            <li>@TableInfoReader.getFieldComment("Product", "requireCredit"): @product.requireCredit</li>
+            <li>@TableInfoReader.getFieldComment("Product", "minInvestAmount"): @product.minInvestAmount</li>
+            <li>@TableInfoReader.getFieldComment("Product", "maxInvestAmount"): @product.maxInvestAmount</li>
+            <li>@TableInfoReader.getFieldComment("Product", "interest"): @product.interest</li>
+            <li>@TableInfoReader.getFieldComment("Product", "visible"): @product.visible</li>
+            <li>@TableInfoReader.getFieldComment("Product", "status"): @EnumInfoReader.getEnumName("Product", "status", product.status)</li>
+            <li>@TableInfoReader.getFieldComment("Product", "images"): 
+                @if(product.images) {
+                    @for(imageFile <- product.images.split(",")) {
+                        <a href="/showimg/upload/@imageFile" target="_blank"><img src="/showimg/thumb/@imageFile" /></a>
+                    }
+                } else {
+                      <span>无</span>                    
+                }
+            </li>
+            <li>@TableInfoReader.getFieldComment("Product", "smallImages"): 
+                @if(product.smallImages) {
+                    @for(imageFile <- product.smallImages.split(",")) {
+                        <a href="/showimg/upload/@imageFile" target="_blank"><img src="/showimg/thumb/@imageFile" /></a>
+                    }
+                } else {
+                      <span>无</span>                    
+                }
+            </li>
+            <li>@TableInfoReader.getFieldComment("Product", "createdAt"): @LyLib.Utils.DateUtil.Date2Str(product.createdAt)</li>
+            <li>@TableInfoReader.getFieldComment("Product", "lastUpdateTime"): @LyLib.Utils.DateUtil.Date2Str(product.lastUpdateTime)</li>
+            <li>@TableInfoReader.getFieldComment("Product", "description"): @product.description</li>
+            <li>@TableInfoReader.getFieldComment("Product", "description2"): @product.description2</li>
+            <li>@TableInfoReader.getFieldComment("Product", "comment"): @product.comment</li>
+            <li>@TableInfoReader.getFieldComment("Product", "contractTitle"): @product.contractTitle</li>
+            <li>@TableInfoReader.getFieldComment("Product", "contractContent"): @product.contractContent</li>
+        </ul>
+    }
+}

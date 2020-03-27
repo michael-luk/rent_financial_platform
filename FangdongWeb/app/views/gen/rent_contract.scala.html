@@ -1,0 +1,25 @@
+@(rentContractList: List[RentContract]) @front_frame(TableInfoReader.getTableComment("RentContract"), "RentContractApp", "RentContractController") {
+    @for(rentContract <- rentContractList) {
+        <ul>
+            <li>@TableInfoReader.getFieldComment("RentContract", "id"): @rentContract.id</li>
+            <li>@TableInfoReader.getFieldComment("RentContract", "name"): @rentContract.name</li>
+            <li>@TableInfoReader.getFieldComment("RentContract", "rent"): @rentContract.rent</li>
+            <li>@TableInfoReader.getFieldComment("RentContract", "images"): 
+                @if(rentContract.images) {
+                    @for(imageFile <- rentContract.images.split(",")) {
+                        <a href="/showimg/upload/@imageFile" target="_blank"><img src="/showimg/thumb/@imageFile" /></a>
+                    }
+                } else {
+                      <span>无</span>                    
+                }
+            </li>
+            <li>@TableInfoReader.getFieldComment("RentContract", "status"): @EnumInfoReader.getEnumName("RentContract", "status", rentContract.status)</li>
+            <li>@TableInfoReader.getFieldComment("RentContract", "rentPayTime"): @LyLib.Utils.DateUtil.Date2Str(rentContract.rentPayTime)</li>
+            <li>@TableInfoReader.getFieldComment("RentContract", "createdAt"): @LyLib.Utils.DateUtil.Date2Str(rentContract.createdAt)</li>
+            <li>@TableInfoReader.getFieldComment("RentContract", "contractEndTime"): @LyLib.Utils.DateUtil.Date2Str(rentContract.contractEndTime)</li>
+            <li>@TableInfoReader.getFieldComment("RentContract", "lastUpdateTime"): @LyLib.Utils.DateUtil.Date2Str(rentContract.lastUpdateTime)</li>
+            <li>@TableInfoReader.getFieldComment("RentContract", "comment"): @rentContract.comment</li>
+            <li>@TableInfoReader.getFieldComment("RentContract", "refHouseId"): @rentContract.refHouseId</li>
+        </ul>
+    }
+}

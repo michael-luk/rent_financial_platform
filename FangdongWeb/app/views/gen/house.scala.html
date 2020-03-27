@@ -1,0 +1,35 @@
+@(houseList: List[House]) @front_frame(TableInfoReader.getTableComment("House"), "HouseApp", "HouseController") {
+    @for(house <- houseList) {
+        <ul>
+            <li>@TableInfoReader.getFieldComment("House", "id"): @house.id</li>
+            <li>@TableInfoReader.getFieldComment("House", "name"): @house.name</li>
+            <li>@TableInfoReader.getFieldComment("House", "classify"): @house.classify</li>
+            <li>@TableInfoReader.getFieldComment("House", "province"): @house.province</li>
+            <li>@TableInfoReader.getFieldComment("House", "city"): @house.city</li>
+            <li>@TableInfoReader.getFieldComment("House", "zone"): @house.zone</li>
+            <li>@TableInfoReader.getFieldComment("House", "address"): @house.address</li>
+            <li>@TableInfoReader.getFieldComment("House", "age"): @house.age</li>
+            <li>@TableInfoReader.getFieldComment("House", "size"): @house.size</li>
+            <li>@TableInfoReader.getFieldComment("House", "structure"): @house.structure</li>
+            <li>@TableInfoReader.getFieldComment("House", "rent"): @house.rent</li>
+            <li>@TableInfoReader.getFieldComment("House", "credit"): @house.credit</li>
+            <li>@TableInfoReader.getFieldComment("House", "visible"): @house.visible</li>
+            <li>@TableInfoReader.getFieldComment("House", "status"): @EnumInfoReader.getEnumName("House", "status", house.status)</li>
+            <li>@TableInfoReader.getFieldComment("House", "images"): 
+                @if(house.images) {
+                    @for(imageFile <- house.images.split(",")) {
+                        <a href="/showimg/upload/@imageFile" target="_blank"><img src="/showimg/thumb/@imageFile" /></a>
+                    }
+                } else {
+                      <span>无</span>                    
+                }
+            </li>
+            <li>@TableInfoReader.getFieldComment("House", "createdAt"): @LyLib.Utils.DateUtil.Date2Str(house.createdAt)</li>
+            <li>@TableInfoReader.getFieldComment("House", "lastUpdateTime"): @LyLib.Utils.DateUtil.Date2Str(house.lastUpdateTime)</li>
+            <li>@TableInfoReader.getFieldComment("House", "description"): @house.description</li>
+            <li>@TableInfoReader.getFieldComment("House", "comment"): @house.comment</li>
+            <li>@TableInfoReader.getFieldComment("House", "refHostId"): @house.refHostId</li>
+            <li>@TableInfoReader.getFieldComment("House", "refPartnerId"): @house.refPartnerId</li>
+        </ul>
+    }
+}

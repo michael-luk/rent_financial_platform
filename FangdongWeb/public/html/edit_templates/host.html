@@ -1,0 +1,259 @@
+<div class="row">
+	<div class="col-xs-12">
+		<form class="form-horizontal" role="form" name="myform" ng-submit="formSave(myform.$valid)" novalidate>
+
+
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right">
+					搜索:
+				</label>
+				<div class="col-sm-9">
+					<input type="text" ng-model="currentObj.queryKeyword4Partner" class="form-control" placeholder='按{{searchFieldNamePartnerComment}}搜' style="display: inline-block; width: 140px;text-align: center;" />
+					<div class="btn btn-primary" ng-click="searchContent4Partner()">搜索</div>
+				</div>
+			</div>
+            
+            <div class="form-group">
+        		<label class="col-sm-3 control-label no-padding-right" > {{objFieldInfo.Host.partner}}: </label>
+        		<div class="col-sm-9">
+        			<div ui-grid="gridParentPartners" ui-grid-resize-columns ui-grid-selection ui-grid-auto-fit-columns></div>
+        			<tm-pagination conf="paginationConf4ParentPartner"></tm-pagination>
+        		    <br>
+        		</div>
+        	</div>
+
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right">
+					搜索:
+				</label>
+				<div class="col-sm-9">
+					<input type="text" ng-model="currentObj.queryKeyword4Guest" class="form-control" placeholder="按{{searchFieldNameGuestComment}}搜" style="display: inline-block; width: 140px;text-align: center;" />
+					<div class="btn btn-primary" ng-click="searchContent4Guest()">搜索</div>
+				</div>
+			</div>
+            
+            <div class="form-group">
+        		<label class="col-sm-3 control-label no-padding-right" > {{objFieldInfo.Host.guests}}: </label>
+        		<div class="col-sm-9">
+        			<div ui-grid="gridFriendsGuest" ui-grid-resize-columns ui-grid-selection ui-grid-auto-fit-columns></div>
+        			<tm-pagination conf="paginationConf4FriendGuest"></tm-pagination>
+        		    <br>
+        		</div>
+        	</div>
+
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Host.name}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="name" ng-model="currentObj.name" class="col-xs-10 col-sm-5 button_border" required />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Host.loginName}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="loginName" ng-model="currentObj.loginName" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Host.wxId}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="wxId" ng-model="currentObj.wxId" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Host.sexEnum}}:
+                </label>
+		        <div class="col-sm-9">
+		            <select name="sexEnum" ng-model="currentObj.sexEnum" ng-options="item.id as item.name disable when item.id == -100 for item in sexEnum" class="col-xs-10 col-sm-5 button_border"></select>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Host.phone}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="phone" ng-model="currentObj.phone" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Host.cardNumber}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="cardNumber" ng-model="currentObj.cardNumber" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Host.email}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="email" ng-model="currentObj.email" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Host.address}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="address" ng-model="currentObj.address" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Host.birth}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" id="birth" name="birth" ng-model="currentObj.birth" class="col-xs-10 col-sm-5 button_border" />
+                    <script type='text/javascript'>
+                        $('#birth').datetimepicker({
+                            language: 'zh-CN',
+                            format: 'yyyy-mm-dd',
+                            minView: 'month',
+                            todayBtn: true,
+                            todayHighlight: true,
+                            autoclose: true
+                        });
+                    </script>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Host.password}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="password" ng-model="currentObj.password" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Host.headImages}}:
+                </label>
+		        <div class="col-sm-9">
+		            <div><input type="file" name="headImages" accept="image/gif,image/jpeg,image/jpg,image/png" ng-file-select="uploadImage($files, 'headImages', currentObj, false)"/><div ng-repeat="imageName in currentObj.headImages.split(',')"><div ng-show="imageName"><a class="fancybox" target="_blank" data-fancybox-group="gallery" fancybox ng-href="/showImage/{{imageName}}"><img ng-src="/showimg/thumb/{{imageName}}" style="width:50px;height:50px;float:left"></a><input type="button" ng-click="deleteImage(currentObj, 'headImages', imageName)" value="删除" style="float:left" /></div></div></div>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Host.images}}:
+                </label>
+		        <div class="col-sm-9">
+		            <div><input type="file" name="images" accept="image/gif,image/jpeg,image/jpg,image/png" ng-file-select="uploadImage($files, 'images', currentObj, false)"/><div ng-repeat="imageName in currentObj.images.split(',')"><div ng-show="imageName"><a class="fancybox" target="_blank" data-fancybox-group="gallery" fancybox ng-href="/showImage/{{imageName}}"><img ng-src="/showimg/thumb/{{imageName}}" style="width:50px;height:50px;float:left"></a><input type="button" ng-click="deleteImage(currentObj, 'images', imageName)" value="删除" style="float:left" /></div></div></div>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Host.lastLoginIp}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="lastLoginIp" ng-model="currentObj.lastLoginIp" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Host.lastLoginTime}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" id="lastLoginTime" name="lastLoginTime" ng-model="currentObj.lastLoginTime" class="col-xs-10 col-sm-5 button_border" />
+                    <script type='text/javascript'>
+                        $('#lastLoginTime').datetimepicker({
+                            language: 'zh-CN',
+                            format: 'yyyy-mm-dd',
+                            minView: 'month',
+                            todayBtn: true,
+                            todayHighlight: true,
+                            autoclose: true
+                        });
+                    </script>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Host.lastLoginIpArea}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="lastLoginIpArea" ng-model="currentObj.lastLoginIpArea" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Host.status}}:
+                </label>
+		        <div class="col-sm-9">
+		            <select name="status" ng-model="currentObj.status" ng-options="item.id as item.name disable when item.id == -100 for item in status" class="col-xs-10 col-sm-5 button_border"></select>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Host.credit}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="number" name="credit" ng-model="currentObj.credit" class="col-xs-10 col-sm-5 button_border" />
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Host.userRoleEnum}}:
+                </label>
+		        <div class="col-sm-9">
+		            <select name="userRoleEnum" ng-model="currentObj.userRoleEnum" ng-options="item.id as item.name disable when item.id == -100 for item in userRoleEnum" class="col-xs-10 col-sm-5 button_border"></select>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.Host.comment}}:
+                </label>
+		        <div class="col-sm-9">
+                    <div simditor ng-model="currentObj.comment" style="width:550px"></div><br>
+		        </div>
+	        </div>
+			<div class="form-group" ng-show="myform.$invalid">
+    			<label class="col-sm-2 control-label"></label>
+			    <div class="col-sm-10">
+			      <div class="alert alert-warning" style="margin-bottom: 0px">
+			        <ul>                    
+                        <li ng-show='myform.name.$error.required'>{{objFieldInfo.Host.name}} 不能为空！</li>
+                        <li ng-show='myform.name.$error.maxlength'>{{objFieldInfo.Host.name}} 超出长度！</li>
+                        <li ng-show='myform.loginName.$error.maxlength'>{{objFieldInfo.Host.loginName}} 超出长度！</li>
+                        <li ng-show='myform.wxId.$error.maxlength'>{{objFieldInfo.Host.wxId}} 超出长度！</li>
+                        <li ng-show='myform.phone.$error.maxlength'>{{objFieldInfo.Host.phone}} 超出长度！</li>
+                        <li ng-show='myform.cardNumber.$error.maxlength'>{{objFieldInfo.Host.cardNumber}} 超出长度！</li>
+                        <li ng-show='myform.email.$error.maxlength'>{{objFieldInfo.Host.email}} 超出长度！</li>
+                        <li ng-show='myform.address.$error.maxlength'>{{objFieldInfo.Host.address}} 超出长度！</li>
+                        <li ng-show='myform.birth.$error.maxlength'>{{objFieldInfo.Host.birth}} 超出长度！</li>
+                        <li ng-show='myform.password.$error.maxlength'>{{objFieldInfo.Host.password}} 超出长度！</li>
+                        <li ng-show='myform.lastUpdateTime.$error.maxlength'>{{objFieldInfo.Host.lastUpdateTime}} 超出长度！</li>
+                        <li ng-show='myform.lastLoginIp.$error.maxlength'>{{objFieldInfo.Host.lastLoginIp}} 超出长度！</li>
+                        <li ng-show='myform.lastLoginTime.$error.maxlength'>{{objFieldInfo.Host.lastLoginTime}} 超出长度！</li>
+                        <li ng-show='myform.lastLoginIpArea.$error.maxlength'>{{objFieldInfo.Host.lastLoginIpArea}} 超出长度！</li>
+                        <li ng-show='myform.credit.$error.maxlength'>{{objFieldInfo.Host.credit}} 超出长度！</li>
+                        <li ng-show='myform.comment.$error.maxlength'>{{objFieldInfo.Host.comment}} 超出长度！</li>
+			        </ul>
+			      </div>
+			    </div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-10 no-padding-right">
+					<input type="button" class="btn btn-danger" value="取消" ng-click="dialogClose()" style="float:right;margin: 0 -11%;"/>
+					<input type="submit" class="btn btn-primary" value="确定" ng-disabled="myform.$invalid" style="float:right;"/>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

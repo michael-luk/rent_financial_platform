@@ -1,0 +1,58 @@
+@(host: Host, item: Product, amount: Long) @front_frame_no_footer("电子合约新签约", "ContractNewApp", "ContractNewController") {
+
+    <style>
+
+    #m_contents{
+    background-color:#FFF;
+    color:#000;
+    }
+
+
+    #m_mid{
+    }
+
+
+
+    .m_contract{
+    margin:2% 2% 2% 2%;
+    padding:5px;
+    -moz-border-radius:5px;
+    border-radius: 5px;
+    background-color:#FFF;
+    min-height:300px;
+    }
+
+    .m_contract h3{
+    text-align:center;
+    margin:10px 0px;
+    font-size:1.8rem;
+    color:#537d31;
+    }
+    .m_info{
+    line-height:160%;
+    font-size:1.4rem;
+    margin-bottom:100px;
+    }
+    .m_mid_bom{
+    text-align:center;
+    position:fixed;
+    width:100%;
+    bottom:20px;
+    }
+    </style>
+
+    <div id="m_head">
+        <p>电子合约</p>
+        <p><a href="#" onClick="javascript:history.go(-1);">< 返回</a></p>
+    </div>
+
+    <div id="m_mid">
+        <div class="m_contract">
+            <h3>@host.name 购买 @item.name 金融产品 贷款金额 人民币@(amount).00元 <br>电子合约</h3>
+            <div class="m_info">
+            @Html(item.contractContent)
+            </div>
+        </div>
+        <div class="m_mid_bom"><input type="button" class="m_sub_btn w_70 h_40 m_btn" onclick="alert('签约提交成功, 请到房东中心查看后续进度'); location='/p/contract/success?hid=@host.id&pid=@item.id&amount=@amount';" value="签订合约" /></div>
+    </div>
+}

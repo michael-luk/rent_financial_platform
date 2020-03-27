@@ -1,0 +1,14 @@
+@(creditRecordList: List[CreditRecord]) @front_frame(TableInfoReader.getTableComment("CreditRecord"), "CreditRecordApp", "CreditRecordController") {
+    @for(creditRecord <- creditRecordList) {
+        <ul>
+            <li>@TableInfoReader.getFieldComment("CreditRecord", "id"): @creditRecord.id</li>
+            <li>@TableInfoReader.getFieldComment("CreditRecord", "name"): @creditRecord.name</li>
+            <li>@TableInfoReader.getFieldComment("CreditRecord", "creditRaise"): @creditRecord.creditRaise</li>
+            <li>@TableInfoReader.getFieldComment("CreditRecord", "status"): @EnumInfoReader.getEnumName("CreditRecord", "status", creditRecord.status)</li>
+            <li>@TableInfoReader.getFieldComment("CreditRecord", "createdAt"): @LyLib.Utils.DateUtil.Date2Str(creditRecord.createdAt)</li>
+            <li>@TableInfoReader.getFieldComment("CreditRecord", "lastUpdateTime"): @LyLib.Utils.DateUtil.Date2Str(creditRecord.lastUpdateTime)</li>
+            <li>@TableInfoReader.getFieldComment("CreditRecord", "comment"): @creditRecord.comment</li>
+            <li>@TableInfoReader.getFieldComment("CreditRecord", "refHostId"): @creditRecord.refHostId</li>
+        </ul>
+    }
+}

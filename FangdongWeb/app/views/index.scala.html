@@ -1,0 +1,36 @@
+@(infoList: List[Info], promoteProductList: List[Product]) @front_frame("首页", "IndexApp", "IndexController") {
+
+    <div id="slider-box">
+        <ul id="slider">
+            @for(item <- infoList) {
+                <li><a href="#"><img src='/showimg/mid_thumb/@ImageController.getImageString(item.images)' alt="" /></a></li>
+            }
+        </ul>
+    </div>
+
+    <div class="m_recommend">
+        <img src='@routes.Assets.at("images/bet.png")' />
+        <span>推荐产品</span>
+    </div>
+
+    <div class="m_rec_div">
+    @for(item <- promoteProductList) {
+        <div class="m_rec_list">
+            <div class="m_rec_pro">
+                <a href="/p/product/details/@item.id">
+                    <div class="m_rec_pro_img"><img src="/showimg/mid_thumb/@ImageController.getImageString(item.images)" /></div>
+                    <p class="m_rec_pro_t">@item.name</p>
+                    <p class="m_rec_pro_d">@item.length 月</p>
+                </a>
+            </div>
+        </div>
+    }
+    </div>
+    <script src='@routes.Assets.at("js/zepto.min.js")'></script>
+    <script src='@routes.Assets.at("js/zepto.touchSlider.min.js")'></script>
+    <script type="text/javascript">
+        $(function(){
+            $('#slider-box').touchSlider();
+        });
+    </script>
+}

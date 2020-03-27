@@ -1,0 +1,15 @@
+@(contractRecordList: List[ContractRecord]) @front_frame(TableInfoReader.getTableComment("ContractRecord"), "ContractRecordApp", "ContractRecordController") {
+    @for(contractRecord <- contractRecordList) {
+        <ul>
+            <li>@TableInfoReader.getFieldComment("ContractRecord", "id"): @contractRecord.id</li>
+            <li>@TableInfoReader.getFieldComment("ContractRecord", "name"): @contractRecord.name</li>
+            <li>@TableInfoReader.getFieldComment("ContractRecord", "status"): @EnumInfoReader.getEnumName("ContractRecord", "status", contractRecord.status)</li>
+            <li>@TableInfoReader.getFieldComment("ContractRecord", "contractTime"): @LyLib.Utils.DateUtil.Date2Str(contractRecord.contractTime)</li>
+            <li>@TableInfoReader.getFieldComment("ContractRecord", "createdAt"): @LyLib.Utils.DateUtil.Date2Str(contractRecord.createdAt)</li>
+            <li>@TableInfoReader.getFieldComment("ContractRecord", "lastUpdateTime"): @LyLib.Utils.DateUtil.Date2Str(contractRecord.lastUpdateTime)</li>
+            <li>@TableInfoReader.getFieldComment("ContractRecord", "comment"): @contractRecord.comment</li>
+            <li>@TableInfoReader.getFieldComment("ContractRecord", "refHostId"): @contractRecord.refHostId</li>
+            <li>@TableInfoReader.getFieldComment("ContractRecord", "refProductId"): @contractRecord.refProductId</li>
+        </ul>
+    }
+}

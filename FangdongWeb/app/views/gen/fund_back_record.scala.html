@@ -1,0 +1,15 @@
+@(fundBackRecordList: List[FundBackRecord]) @front_frame(TableInfoReader.getTableComment("FundBackRecord"), "FundBackRecordApp", "FundBackRecordController") {
+    @for(fundBackRecord <- fundBackRecordList) {
+        <ul>
+            <li>@TableInfoReader.getFieldComment("FundBackRecord", "id"): @fundBackRecord.id</li>
+            <li>@TableInfoReader.getFieldComment("FundBackRecord", "name"): @fundBackRecord.name</li>
+            <li>@TableInfoReader.getFieldComment("FundBackRecord", "amount"): @fundBackRecord.amount</li>
+            <li>@TableInfoReader.getFieldComment("FundBackRecord", "status"): @EnumInfoReader.getEnumName("FundBackRecord", "status", fundBackRecord.status)</li>
+            <li>@TableInfoReader.getFieldComment("FundBackRecord", "createdAt"): @LyLib.Utils.DateUtil.Date2Str(fundBackRecord.createdAt)</li>
+            <li>@TableInfoReader.getFieldComment("FundBackRecord", "lastUpdateTime"): @LyLib.Utils.DateUtil.Date2Str(fundBackRecord.lastUpdateTime)</li>
+            <li>@TableInfoReader.getFieldComment("FundBackRecord", "comment"): @fundBackRecord.comment</li>
+            <li>@TableInfoReader.getFieldComment("FundBackRecord", "refHostId"): @fundBackRecord.refHostId</li>
+            <li>@TableInfoReader.getFieldComment("FundBackRecord", "refProductId"): @fundBackRecord.refProductId</li>
+        </ul>
+    }
+}

@@ -1,0 +1,45 @@
+@(hostList: List[Host]) @front_frame(TableInfoReader.getTableComment("Host"), "HostApp", "HostController") {
+    @for(host <- hostList) {
+        <ul>
+            <li>@TableInfoReader.getFieldComment("Host", "id"): @host.id</li>
+            <li>@TableInfoReader.getFieldComment("Host", "name"): @host.name</li>
+            <li>@TableInfoReader.getFieldComment("Host", "loginName"): @host.loginName</li>
+            <li>@TableInfoReader.getFieldComment("Host", "wxId"): @host.wxId</li>
+            <li>@TableInfoReader.getFieldComment("Host", "sexEnum"): @EnumInfoReader.getEnumName("Host", "sexEnum", host.sexEnum)</li>
+            <li>@TableInfoReader.getFieldComment("Host", "phone"): @host.phone</li>
+            <li>@TableInfoReader.getFieldComment("Host", "cardNumber"): @host.cardNumber</li>
+            <li>@TableInfoReader.getFieldComment("Host", "email"): @host.email</li>
+            <li>@TableInfoReader.getFieldComment("Host", "address"): @host.address</li>
+            <li>@TableInfoReader.getFieldComment("Host", "birth"): @LyLib.Utils.DateUtil.Date2Str(host.birth)</li>
+            <li>@TableInfoReader.getFieldComment("Host", "password"): @host.password</li>
+            <li>@TableInfoReader.getFieldComment("Host", "createdAt"): @LyLib.Utils.DateUtil.Date2Str(host.createdAt)</li>
+            <li>@TableInfoReader.getFieldComment("Host", "lastUpdateTime"): @LyLib.Utils.DateUtil.Date2Str(host.lastUpdateTime)</li>
+            <li>@TableInfoReader.getFieldComment("Host", "headImages"): 
+                @if(host.headImages) {
+                    @for(imageFile <- host.headImages.split(",")) {
+                        <a href="/showimg/upload/@imageFile" target="_blank"><img src="/showimg/thumb/@imageFile" /></a>
+                    }
+                } else {
+                      <span>无</span>                    
+                }
+            </li>
+            <li>@TableInfoReader.getFieldComment("Host", "images"): 
+                @if(host.images) {
+                    @for(imageFile <- host.images.split(",")) {
+                        <a href="/showimg/upload/@imageFile" target="_blank"><img src="/showimg/thumb/@imageFile" /></a>
+                    }
+                } else {
+                      <span>无</span>                    
+                }
+            </li>
+            <li>@TableInfoReader.getFieldComment("Host", "lastLoginIp"): @host.lastLoginIp</li>
+            <li>@TableInfoReader.getFieldComment("Host", "lastLoginTime"): @LyLib.Utils.DateUtil.Date2Str(host.lastLoginTime)</li>
+            <li>@TableInfoReader.getFieldComment("Host", "lastLoginIpArea"): @host.lastLoginIpArea</li>
+            <li>@TableInfoReader.getFieldComment("Host", "status"): @EnumInfoReader.getEnumName("Host", "status", host.status)</li>
+            <li>@TableInfoReader.getFieldComment("Host", "credit"): @host.credit</li>
+            <li>@TableInfoReader.getFieldComment("Host", "userRoleEnum"): @EnumInfoReader.getEnumName("Host", "userRoleEnum", host.userRoleEnum)</li>
+            <li>@TableInfoReader.getFieldComment("Host", "comment"): @host.comment</li>
+            <li>@TableInfoReader.getFieldComment("Host", "refPartnerId"): @host.refPartnerId</li>
+        </ul>
+    }
+}

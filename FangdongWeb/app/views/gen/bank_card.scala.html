@@ -1,0 +1,23 @@
+@(bankCardList: List[BankCard]) @front_frame(TableInfoReader.getTableComment("BankCard"), "BankCardApp", "BankCardController") {
+    @for(bankCard <- bankCardList) {
+        <ul>
+            <li>@TableInfoReader.getFieldComment("BankCard", "id"): @bankCard.id</li>
+            <li>@TableInfoReader.getFieldComment("BankCard", "name"): @bankCard.name</li>
+            <li>@TableInfoReader.getFieldComment("BankCard", "bank"): @bankCard.bank</li>
+            <li>@TableInfoReader.getFieldComment("BankCard", "images"): 
+                @if(bankCard.images) {
+                    @for(imageFile <- bankCard.images.split(",")) {
+                        <a href="/showimg/upload/@imageFile" target="_blank"><img src="/showimg/thumb/@imageFile" /></a>
+                    }
+                } else {
+                      <span>无</span>                    
+                }
+            </li>
+            <li>@TableInfoReader.getFieldComment("BankCard", "status"): @EnumInfoReader.getEnumName("BankCard", "status", bankCard.status)</li>
+            <li>@TableInfoReader.getFieldComment("BankCard", "createdAt"): @LyLib.Utils.DateUtil.Date2Str(bankCard.createdAt)</li>
+            <li>@TableInfoReader.getFieldComment("BankCard", "lastUpdateTime"): @LyLib.Utils.DateUtil.Date2Str(bankCard.lastUpdateTime)</li>
+            <li>@TableInfoReader.getFieldComment("BankCard", "comment"): @bankCard.comment</li>
+            <li>@TableInfoReader.getFieldComment("BankCard", "refHostId"): @bankCard.refHostId</li>
+        </ul>
+    }
+}

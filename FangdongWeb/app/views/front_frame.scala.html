@@ -1,0 +1,36 @@
+@(title: String, app: String, controller: String)(content: Html)
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="zh" xmlns="http://www.w3.org/1999/xhtml" ng-app="@app">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
+        <title>@title</title>
+        <link rel="Stylesheet" href='@routes.Assets.at("css/style.css")' />
+        <link rel="Stylesheet" href='@routes.Assets.at("css/front_frame_style.css")' />
+    </head>
+
+    <body ng-controller="@controller">
+        <div id="m_contents">
+            @content
+            <div id="m_foot">
+                <div>
+                    <a href="/"><img src='@routes.Assets.at("images/ico1.png")'/><p>首页</p></a>
+                </div>
+                <div>
+                    <a href="/p/product/all"><img src='@routes.Assets.at("images/ico2.png")'/><p>金融产品</p></a>
+                </div>
+                <div>
+                    <a href="/p/mine"><img src='@routes.Assets.at("images/ico3.png")'/><p>房东中心</p></a>
+                </div>
+            </div>
+        </div>
+            <!--js-->
+        @*<script src="@routes.Assets.at("js/jquery.min.js")"></script>*@
+        <script src="@routes.Assets.at("js/jquery-2.0.3.min.js")"></script>
+        <script>jQuery.noConflict()</script>
+        <script src='@routes.Assets.at("js/bootstrap.min.js")'></script>
+        <script src="@routes.Assets.at("js/ourLib.js")"></script>
+        @*<script src="@routes.Assets.at("js/angular.min.js")"></script>*@
+        <script src='@routes.Assets.at("js/bs_alerts.js")'></script>
+    </body>
+</html>

@@ -1,0 +1,186 @@
+#m_contents{
+	background-color:#f4f4f3;
+}
+
+
+/*slider*/
+#slider-box{position:relative;width:100%;height:175px;overflow:hidden;}
+#slider {height:100%;overflow:hidden;*zoom:1;-webkit-backface-visibility: hidden;-webkit-transform-style: preserve-3d;}
+#slider li{width:100%;height:100%;float:left;display:none;}
+#slider li.active{display:block;-webkit-animation-name:lightSpeedIn;animation-name:lightSpeedIn;-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out;-webkit-animation-duration:1s;animation-duration:1s;-webkit-animation-fill-mode:both;animation-fill-mode:both;}
+#slider li img{width:100%; height:175px;}
+#arrow {position:absolute;bottom:10px;right:10px;}
+#arrow li{width:12px;height:12px;float:left;display:inline-block;margin: 0 3px;background-color: #d5dbd6;border-radius: 50%;-webkit-border-radius: 50%;}
+#arrow li.active{background-color:#c95122;}
+
+@-webkit-keyframes lightSpeedIn {
+	0% {
+		-webkit-transform: translateX(100%) skewX(-30deg);
+		transform: translateX(100%) skewX(-30deg);
+		opacity: 0;
+	}
+
+	60% {
+		-webkit-transform: translateX(-20%) skewX(30deg);
+		transform: translateX(-20%) skewX(30deg);
+		opacity: 1;
+	}
+
+	80% {
+		-webkit-transform: translateX(0%) skewX(-15deg);
+		transform: translateX(0%) skewX(-15deg);
+		opacity: 1;
+	}
+
+	100% {
+		-webkit-transform: translateX(0%) skewX(0deg);
+		transform: translateX(0%) skewX(0deg);
+		opacity: 1;
+	}
+}
+
+@keyframes lightSpeedIn {
+	0% {
+		-webkit-transform: translateX(100%) skewX(-30deg);
+		-ms-transform: translateX(100%) skewX(-30deg);
+		transform: translateX(100%) skewX(-30deg);
+		opacity: 0;
+	}
+
+	60% {
+		-webkit-transform: translateX(-20%) skewX(30deg);
+		-ms-transform: translateX(-20%) skewX(30deg);
+		transform: translateX(-20%) skewX(30deg);
+		opacity: 1;
+	}
+
+	80% {
+		-webkit-transform: translateX(0%) skewX(-15deg);
+		-ms-transform: translateX(0%) skewX(-15deg);
+		transform: translateX(0%) skewX(-15deg);
+		opacity: 1;
+	}
+
+	100% {
+		-webkit-transform: translateX(0%) skewX(0deg);
+		-ms-transform: translateX(0%) skewX(0deg);
+		transform: translateX(0%) skewX(0deg);
+		opacity: 1;
+	}
+}
+
+
+
+
+
+
+.m_recommend{
+	text-align:center;
+	font-size:1.6rem;
+	height:40px;
+	line-height:40px;
+	background-color:#3c6eac;
+	color:#fff;
+}
+.m_recommend img{
+	vertical-align:middle;
+}
+
+.m_recommend span{
+	position:relative;
+
+}
+
+
+
+.m_rec_div{
+	width:100%;
+	height:100%;
+	overflow:auto;
+	margin-bottom:80px;
+}
+.m_rec_list{
+	width:48%;
+	float:left;
+	margin:1%;
+	background-color:#FFFFFF;
+	-moz-box-shadow:2px 2px 5px #BDBDBD;
+	-webkit-box-shadow:2px 2px 5px #BDBDBD;
+	box-shadow:2px 2px 5px #BDBDBD;
+}
+
+.m_rec_pro{
+	border:1px #CCCCCC solid;
+	padding:5px;
+	height:100%;
+	overflow:auto;
+
+}
+
+.m_rec_pro_img{
+	width:100%;
+	overflow:hidden;
+}
+.m_rec_pro img{
+	width:100%;
+	height:100%;
+}
+@media only screen and (max-width:1280px) {
+    .m_rec_pro_img {
+        height: 200px;
+    }
+
+    @media only screen and (max-width: 1024px) {
+        .m_rec_pro_img {
+            height: 200px;
+        }
+
+        @media only screen and (max-width: 400px) {
+            .m_rec_pro_img {
+                height: 100px;
+            }
+        }
+
+        .m_rec_pro_t {
+            padding: 3px 0;
+            font-size: 1.4rem;
+            height: 30px;
+        }
+
+        .m_rec_pro_d {
+            text-align: center;
+            font-size: 1.4rem;
+            color: #f4f4f3;
+            background-color: #3c6eac;
+            padding: 1px 5px;
+            float: right;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+        }
+
+        #m_foot {
+            position: fixed;
+            width: 100%;
+            bottom: 0px;
+            text-align: center;
+            background-color: #FFF;
+            padding: 4px 0;
+            border-top: 2px #e1e1e1 solid;
+            font-size: 1.6rem;
+
+        }
+
+        #m_foot div {
+            width: 33.33%;
+            float: left;
+        }
+
+        #m_foot img {
+            width: 30px;
+            height: 30px;
+            margin: 5px;
+            -moz-border-radius: 10px;
+            border-radius: 10px;
+        }
+    }
+}

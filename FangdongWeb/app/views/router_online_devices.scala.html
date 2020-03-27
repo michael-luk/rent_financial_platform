@@ -1,0 +1,25 @@
+@(item: Router) @front_frame_no_footer("路由器设备列表", "RouterOnlineDevicesApp", "RouterOnlineDevicesController") {
+    <script src="@routes.Assets.at("js/angular.min.js")"></script>
+    <script src='@routes.Assets.at("js/front_controllers/router_online_devices_controller.js")'></script>
+    <div id="m_head">
+        <p>路由器设备</p>
+        <p><a href="#" onClick="javascript:history.go(-1);">< 返回</a></p>
+    </div>
+
+    <div class="m_top" ng-init="init(@item.id)">
+        <img src="/showimg/images/top6.png" />
+        <p class="m_top_title">租客在家状态</p>
+    </div>
+
+    <div class="m_mid">
+        <div class="m_list" ng-repeat="device in devices">
+            <div class="m_list_img"><img ng-src="{{getImageSrc(device.name, device.company)}}" /></div>
+            <div class="m_list_right">
+                <p><span ng-bind="device.name"></span></p>
+                <p><span ng-bind="getDeviceTimeDisplay(device)"></span></p>
+            </div>
+        </div>
+    </div>
+
+    <div style="clear: left"></div>
+}

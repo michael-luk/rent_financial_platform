@@ -1,0 +1,304 @@
+GET           /                                      controllers.Application.sjshProductPage()
+GET           /p/product/all                         controllers.Application.allProductPage()
+GET           /p/product/details/:id                 controllers.Application.productDetailsPage(id :Long)
+GET           /p/product/buy/:id                     controllers.Application.productBuyPage(id :Long)
+
+GET           /p/phone/bind                          controllers.Application.phoneBindPage()
+GET           /p/phone/info                          controllers.Application.phoneChangePage()
+GET           /p/my/info                             controllers.Application.myInfoPage()
+GET           /p/my/house                            controllers.Application.myHousePage()
+GET           /p/my/house/:uid                       controllers.Application.myHousePageOnUser(uid: Long)
+GET           /p/my/house/details/:id                controllers.Application.myHouseDetailsPage(id :Long)
+GET           /p/my/house/submit/:uid                controllers.Application.myHouseSubmitPage(uid :Long)
+GET           /p/my/guest                            controllers.Application.myGuestPage()
+GET           /p/my/credit                           controllers.Application.myCreditPage()
+GET           /p/my/rent                             controllers.Application.myRentPage()
+GET           /p/house/routers                       controllers.Application.houseRoutersPage(houseId: Long)
+GET           /p/router/:id                          controllers.Application.routerDetailsPage(id :Long)
+
+# business
+GET           /product/buy/submit                    controllers.ProductRecordController.productBuy(hid: Long, pid: Long, amount: Long)
+GET           /p/contract/success                    controllers.ProductRecordController.productBuySuccessWithContract(hid: Long, pid: Long, amount: Long)
+POST          /my/info/submit                        controllers.HostController.myInfoSubmit()
+POST          /my/house/submit                       controllers.HouseController.addMyHouse()
+
+# 1.5
+GET           /p/mine                                controllers.Application.minePage()
+GET           /p/my/personal/info                    controllers.Application.myPersonalInfoPage()
+GET           /p/my/product/record                   controllers.Application.myProductPage()
+GET           /p/my/product/record/history           controllers.Application.myProductHistoryPage()
+GET           /p/my/bankcard                         controllers.Application.myBankCardPage()
+GET           /p/my/bankcard/submit                  controllers.Application.myBankCardSubmitPage()
+GET           /p/my/housecontract                    controllers.Application.myHouseContractPage()
+GET           /p/my/housecontract/submit             controllers.Application.myHouseContractSubmitPage()
+
+GET           /p/verify/bank                         controllers.Application.verifyBankPage()
+GET           /p/verify/house                        controllers.Application.verifyHousePage()
+GET           /p/verify/partner                      controllers.Application.verifyPartnerPage()
+
+GET           /p/product/fix/sjsh                    controllers.Application.sjshProductPage()
+GET           /p/product/fix/sjsh/buy                controllers.Application.sjshProductBuy()
+GET           /p/product/fix/sjsh/borrow             controllers.Application.sjshProductBorrow()
+GET           /p/product/fix/sjsh/sign               controllers.Application.sjshProductSign(pid: Long, money :Long)
+POST          /product/sign                          controllers.HostController.productSign()
+GET           /p/partner                             controllers.Application.partnerPage()
+GET           /p/partner/login                       controllers.Application.partnerLoginPage()
+GET           /p/partner/main                        controllers.Application.partnerMainPage()
+GET           /p/partner/add/house                   controllers.Application.partnerAddHousePage()
+GET           /p/partner/house                       controllers.Application.partnerHousePage()
+GET           /p/my/wallet                           controllers.Application.myWalletPage()
+
+GET           /p/verifying                           controllers.Application.verifyingPage()
+GET           /p/verify/submit                       controllers.Application.verifySubmitPage()
+POST          /phone/bind                            controllers.HostController.phoneBind()
+POST          /verify/bank                           controllers.HostController.verifyBank()
+POST          /verify/house                          controllers.HostController.verifyHouse()
+GET           /p/verify/contract/:houseId            controllers.Application.verifyContractPage(houseId :Long)
+POST          /verify/contract                       controllers.HostController.verifyContract()
+POST          /my/housecontract/submit               controllers.HostController.myHouseContractSubmit()
+POST          /verify/partner                        controllers.HostController.verifyPartner()
+POST          /partner/login                         controllers.PartnerController.login()
+GET           /partner/session/clear                 controllers.PartnerController.partnerSessionClearPage()
+POST          /partner/house/add                     controllers.PartnerController.houseAdd()
+
+# 0620fix
+GET           /p/partner/barcode/:barcode            controllers.Application.partnerBarcodePage(barcode :String)
+
+# hiWiFi api
+GET           /router/api/online/devices             controllers.RouterController.getOnlineDevicesFromApi(routerId :Long)
+
+
+# sms captcha
+POST          /sms/captcha/get                       controllers.SmsInfoController.getVetfy()
+POST          /sms/captcha/check                     controllers.SmsInfoController.verifyCode()
+
+# weixin
+GET           /weixin/serververify                   controllers.WeiXinController.serverVerify(signature :String, timestamp :String, nonce :String, echostr :String)
+POST          /weixin/serververify                   controllers.WeiXinController.serverNotification()
+GET           /users/sync/info                       controllers.WeiXinController.syncUserInfo()
+GET           /wx/menu/add                           controllers.WeiXinController.addMenu()
+GET           /MP_verify_S8YeiakuEjLIIOKn.txt        controllers.Assets.at(path="/public", file="MP_verify_S8YeiakuEjLIIOKn.txt")
+GET           /dowxuser                              controllers.WeiXinController.doWxUser(code :String ?="", resellerCode :String ?="", path :String ?="")
+
+# basic
+GET           /session/clear                         controllers.Application.clearSession()
+
+##################### generated #########################
+
+# AdminJournal
+GET           /p/adminjournal                        controllers.gen.AdminJournalController.adminJournalPage(status :Integer?=(-100), notStatus :Integer?=(-100), fieldOn :String?="", fieldValue :String?="", isAnd :Boolean?=true, searchOn :String?="", kw :String?="", startTime :String?="", endTime :String?="", order :String ?="", sort :String ?="", page: Integer ?= 1, size:Integer ?=0)
+GET           /admin/adminjournal                    controllers.gen.AdminJournalController.adminJournalBackendPage()
+GET           /report/adminjournal                   controllers.gen.AdminJournalController.report(startTime :String?="", endTime :String?="")
+
+# FundBackRecord
+GET           /p/fundbackrecord                      controllers.gen.FundBackRecordController.fundBackRecordPage(status :Integer?=(-100), notStatus :Integer?=(-100), fieldOn :String?="", fieldValue :String?="", isAnd :Boolean?=true, searchOn :String?="", kw :String?="", startTime :String?="", endTime :String?="", order :String ?="", sort :String ?="", page: Integer ?= 1, size:Integer ?=0)
+GET           /admin/fundbackrecord                  controllers.gen.FundBackRecordController.fundBackRecordBackendPage()
+GET           /report/fundbackrecord                 controllers.gen.FundBackRecordController.report(startTime :String?="", endTime :String?="")
+
+PUT           /fundbackrecord/:id                    controllers.gen.FundBackRecordController.update(id: Long)
+POST          /fundbackrecord                        controllers.gen.FundBackRecordController.add()
+
+
+# BankCard
+GET           /p/bankcard                            controllers.gen.BankCardController.bankCardPage(status :Integer?=(-100), notStatus :Integer?=(-100), fieldOn :String?="", fieldValue :String?="", isAnd :Boolean?=true, searchOn :String?="", kw :String?="", startTime :String?="", endTime :String?="", order :String ?="", sort :String ?="", page: Integer ?= 1, size:Integer ?=0)
+GET           /admin/bankcard                        controllers.gen.BankCardController.bankCardBackendPage()
+GET           /report/bankcard                       controllers.gen.BankCardController.report(startTime :String?="", endTime :String?="")
+
+PUT           /bankcard/:id                          controllers.gen.BankCardController.update(id: Long)
+POST          /bankcard                              controllers.gen.BankCardController.add()
+
+
+# RentContract
+GET           /p/rentcontract                        controllers.gen.RentContractController.rentContractPage(status :Integer?=(-100), notStatus :Integer?=(-100), fieldOn :String?="", fieldValue :String?="", isAnd :Boolean?=true, searchOn :String?="", kw :String?="", startTime :String?="", endTime :String?="", order :String ?="", sort :String ?="", page: Integer ?= 1, size:Integer ?=0)
+GET           /admin/rentcontract                    controllers.gen.RentContractController.rentContractBackendPage()
+GET           /report/rentcontract                   controllers.gen.RentContractController.report(startTime :String?="", endTime :String?="")
+
+PUT           /rentcontract/:id                      controllers.gen.RentContractController.update(id: Long)
+POST          /rentcontract                          controllers.gen.RentContractController.add()
+
+
+# Admin
+GET           /admin/admin                           controllers.gen.AdminController.adminBackendPage()
+GET           /report/admin                          controllers.gen.AdminController.report(startTime :String?="", endTime :String?="")
+
+PUT           /admin/:id                             controllers.gen.AdminController.update(id: Long)
+POST          /admin                                 controllers.gen.AdminController.add()
+
+
+# Config
+GET           /p/config                              controllers.gen.ConfigController.configPage(status :Integer?=(-100), notStatus :Integer?=(-100), fieldOn :String?="", fieldValue :String?="", isAnd :Boolean?=true, searchOn :String?="", kw :String?="", startTime :String?="", endTime :String?="", order :String ?="", sort :String ?="", page: Integer ?= 1, size:Integer ?=0)
+GET           /admin/config                          controllers.gen.ConfigController.configBackendPage()
+GET           /report/config                         controllers.gen.ConfigController.report(startTime :String?="", endTime :String?="")
+
+PUT           /config/:id                            controllers.gen.ConfigController.update(id: Long)
+POST          /config                                controllers.gen.ConfigController.add()
+
+
+# ContractRecord
+GET           /p/contractrecord                      controllers.gen.ContractRecordController.contractRecordPage(status :Integer?=(-100), notStatus :Integer?=(-100), fieldOn :String?="", fieldValue :String?="", isAnd :Boolean?=true, searchOn :String?="", kw :String?="", startTime :String?="", endTime :String?="", order :String ?="", sort :String ?="", page: Integer ?= 1, size:Integer ?=0)
+GET           /admin/contractrecord                  controllers.gen.ContractRecordController.contractRecordBackendPage()
+GET           /report/contractrecord                 controllers.gen.ContractRecordController.report(startTime :String?="", endTime :String?="")
+
+PUT           /contractrecord/:id                    controllers.gen.ContractRecordController.update(id: Long)
+POST          /contractrecord                        controllers.gen.ContractRecordController.add()
+
+
+# CreditRecord
+GET           /p/creditrecord                        controllers.gen.CreditRecordController.creditRecordPage(status :Integer?=(-100), notStatus :Integer?=(-100), fieldOn :String?="", fieldValue :String?="", isAnd :Boolean?=true, searchOn :String?="", kw :String?="", startTime :String?="", endTime :String?="", order :String ?="", sort :String ?="", page: Integer ?= 1, size:Integer ?=0)
+GET           /admin/creditrecord                    controllers.gen.CreditRecordController.creditRecordBackendPage()
+GET           /report/creditrecord                   controllers.gen.CreditRecordController.report(startTime :String?="", endTime :String?="")
+
+PUT           /creditrecord/:id                      controllers.gen.CreditRecordController.update(id: Long)
+POST          /creditrecord                          controllers.gen.CreditRecordController.add()
+
+
+# Guest
+GET           /p/guest                               controllers.gen.GuestController.guestPage(status :Integer?=(-100), notStatus :Integer?=(-100), fieldOn :String?="", fieldValue :String?="", isAnd :Boolean?=true, searchOn :String?="", kw :String?="", startTime :String?="", endTime :String?="", order :String ?="", sort :String ?="", page: Integer ?= 1, size:Integer ?=0)
+GET           /admin/guest                           controllers.gen.GuestController.guestBackendPage()
+GET           /report/guest                          controllers.gen.GuestController.report(startTime :String?="", endTime :String?="")
+
+PUT           /guest/:id                             controllers.gen.GuestController.update(id: Long)
+POST          /guest                                 controllers.gen.GuestController.add()
+
+GET           /guest/:id/hosts                       controllers.gen.GuestController.getGuestHosts(id: Long, page: Integer ?= 1, size: Integer ?=0)
+
+DELETE        /guest/:id                             controllers.gen.GuestController.delete(id: Long)
+
+
+# Host
+GET           /p/host                                controllers.gen.HostController.hostPage(status :Integer?=(-100), notStatus :Integer?=(-100), fieldOn :String?="", fieldValue :String?="", isAnd :Boolean?=true, searchOn :String?="", kw :String?="", startTime :String?="", endTime :String?="", order :String ?="", sort :String ?="", page: Integer ?= 1, size:Integer ?=0)
+GET           /admin/host                            controllers.gen.HostController.hostBackendPage()
+GET           /report/host                           controllers.gen.HostController.report(startTime :String?="", endTime :String?="")
+
+PUT           /host/:id                              controllers.gen.HostController.update(id: Long)
+POST          /host                                  controllers.gen.HostController.add()
+
+GET           /host/:id/guests                       controllers.gen.HostController.getHostGuests(id: Long, page: Integer ?= 1, size: Integer ?=0)
+
+DELETE        /host/:id                              controllers.gen.HostController.delete(id: Long)
+
+
+# House
+GET           /p/house                               controllers.gen.HouseController.housePage(status :Integer?=(-100), notStatus :Integer?=(-100), fieldOn :String?="", fieldValue :String?="", isAnd :Boolean?=true, searchOn :String?="", kw :String?="", startTime :String?="", endTime :String?="", order :String ?="", sort :String ?="", page: Integer ?= 1, size:Integer ?=0)
+GET           /admin/house                           controllers.gen.HouseController.houseBackendPage()
+GET           /report/house                          controllers.gen.HouseController.report(startTime :String?="", endTime :String?="")
+
+PUT           /house/:id                             controllers.gen.HouseController.update(id: Long)
+POST          /house                                 controllers.gen.HouseController.add()
+
+
+# Info
+GET           /p/info                                controllers.gen.InfoController.infoPage(status :Integer?=(-100), notStatus :Integer?=(-100), fieldOn :String?="", fieldValue :String?="", isAnd :Boolean?=true, searchOn :String?="", kw :String?="", startTime :String?="", endTime :String?="", order :String ?="", sort :String ?="", page: Integer ?= 1, size:Integer ?=0)
+GET           /admin/info                            controllers.gen.InfoController.infoBackendPage()
+GET           /report/info                           controllers.gen.InfoController.report(startTime :String?="", endTime :String?="")
+
+PUT           /info/:id                              controllers.gen.InfoController.update(id: Long)
+POST          /info                                  controllers.gen.InfoController.add()
+
+
+# Product
+GET           /p/product                             controllers.gen.ProductController.productPage(status :Integer?=(-100), notStatus :Integer?=(-100), fieldOn :String?="", fieldValue :String?="", isAnd :Boolean?=true, searchOn :String?="", kw :String?="", startTime :String?="", endTime :String?="", order :String ?="", sort :String ?="", page: Integer ?= 1, size:Integer ?=0)
+GET           /admin/product                         controllers.gen.ProductController.productBackendPage()
+GET           /report/product                        controllers.gen.ProductController.report(startTime :String?="", endTime :String?="")
+
+PUT           /product/:id                           controllers.gen.ProductController.update(id: Long)
+POST          /product                               controllers.gen.ProductController.add()
+
+
+# ProductRecord
+GET           /p/productrecord                       controllers.gen.ProductRecordController.productRecordPage(status :Integer?=(-100), notStatus :Integer?=(-100), fieldOn :String?="", fieldValue :String?="", isAnd :Boolean?=true, searchOn :String?="", kw :String?="", startTime :String?="", endTime :String?="", order :String ?="", sort :String ?="", page: Integer ?= 1, size:Integer ?=0)
+GET           /admin/productrecord                   controllers.gen.ProductRecordController.productRecordBackendPage()
+GET           /report/productrecord                  controllers.gen.ProductRecordController.report(startTime :String?="", endTime :String?="")
+
+PUT           /productrecord/:id                     controllers.gen.ProductRecordController.update(id: Long)
+POST          /productrecord                         controllers.gen.ProductRecordController.add()
+
+
+# RentRecord
+GET           /p/rentrecord                          controllers.gen.RentRecordController.rentRecordPage(status :Integer?=(-100), notStatus :Integer?=(-100), fieldOn :String?="", fieldValue :String?="", isAnd :Boolean?=true, searchOn :String?="", kw :String?="", startTime :String?="", endTime :String?="", order :String ?="", sort :String ?="", page: Integer ?= 1, size:Integer ?=0)
+GET           /admin/rentrecord                      controllers.gen.RentRecordController.rentRecordBackendPage()
+GET           /report/rentrecord                     controllers.gen.RentRecordController.report(startTime :String?="", endTime :String?="")
+
+PUT           /rentrecord/:id                        controllers.gen.RentRecordController.update(id: Long)
+POST          /rentrecord                            controllers.gen.RentRecordController.add()
+
+
+# Router
+GET           /p/router                              controllers.gen.RouterController.routerPage(status :Integer?=(-100), notStatus :Integer?=(-100), fieldOn :String?="", fieldValue :String?="", isAnd :Boolean?=true, searchOn :String?="", kw :String?="", startTime :String?="", endTime :String?="", order :String ?="", sort :String ?="", page: Integer ?= 1, size:Integer ?=0)
+GET           /admin/router                          controllers.gen.RouterController.routerBackendPage()
+GET           /report/router                         controllers.gen.RouterController.report(startTime :String?="", endTime :String?="")
+
+PUT           /router/:id                            controllers.gen.RouterController.update(id: Long)
+POST          /router                                controllers.gen.RouterController.add()
+
+# Partner
+GET           /p/partner                             controllers.gen.PartnerController.partnerPage(status :Integer?=(-100), notStatus :Integer?=(-100), fieldOn :String?="", fieldValue :String?="", isAnd :Boolean?=true, searchOn :String?="", kw :String?="", startTime :String?="", endTime :String?="", order :String ?="", sort :String ?="", page: Integer ?= 1, size:Integer ?=0)
+GET           /admin/partner                         controllers.gen.PartnerController.partnerBackendPage()
+GET           /report/partner                        controllers.gen.PartnerController.report(startTime :String?="", endTime :String?="")
+
+PUT           /partner/:id                           controllers.gen.PartnerController.update(id: Long)
+POST          /partner                               controllers.gen.PartnerController.add()
+
+
+# User
+GET           /p/user                                controllers.gen.UserController.userPage(status :Integer?=(-100), notStatus :Integer?=(-100), fieldOn :String?="", fieldValue :String?="", isAnd :Boolean?=true, searchOn :String?="", kw :String?="", startTime :String?="", endTime :String?="", order :String ?="", sort :String ?="", page: Integer ?= 1, size:Integer ?=0)
+GET           /admin/user                            controllers.gen.UserController.userBackendPage()
+GET           /report/user                           controllers.gen.UserController.report(startTime :String?="", endTime :String?="")
+
+PUT           /user/:id                              controllers.gen.UserController.update(id: Long)
+POST          /user                                  controllers.gen.UserController.add()
+
+
+# SmsInfo
+GET           /p/smsinfo                             controllers.SmsInfoController.smsInfoPage(status :Integer?=(-100), notStatus :Integer?=(-100), fieldOn :String?="", fieldValue :String?="", isAnd :Boolean?=true, searchOn :String?="", kw :String?="", startTime :String?="", endTime :String?="", order :String ?="", sort :String ?="", page: Integer ?= 1, size:Integer ?=0)
+GET           /admin/smsinfo                         controllers.SmsInfoController.smsInfoBackendPage()
+GET           /report/smsinfo                        controllers.SmsInfoController.report(startTime :String?="", endTime :String?="")
+
+PUT           /smsinfo/:id                           controllers.SmsInfoController.update(id: Long)
+POST          /smsinfo                               controllers.SmsInfoController.add()
+
+
+# Backend management
+GET           /admin                                 controllers.Application.backendPage()
+
+# Base API
+GET           /base/:modelName/all                   controllers.BaseController.getAll(modelName: String, status :Integer?=(-100), notStatus :Integer?=(-100), fieldOn :String?="", fieldValue :String?="", isAnd :Boolean?=true, searchOn :String?="", kw :String?="", startTime :String?="", endTime :String?="", order :String ?="", sort :String ?="", page: Integer ?= 1, size:Integer ?=0)
+GET           /base/:modelName/:id                   controllers.BaseController.getOne(modelName: String, id: Long)
+DELETE        /base/:modelName/:id                   controllers.BaseController.delete(modelName: String, id: Long)
+# POST          /base/html/:modelName/:id            controllers.BaseController.doHtmlDeleteOne(modelName: String, id: Long)
+
+# Login auth
+GET           /login                                 controllers.Application.login()
+#GET           /logout                                      controllers.Application.logout()
+
+# Backend auth
+GET           /admin/login                           controllers.Application.backendLogin()
+GET           /admin/auth                            controllers.Application.backendAuthenticate()
+GET           /admin/logout                          controllers.Application.backendLogout()
+
+# check
+GET           /check                                 controllers.Application.checkAlive()
+GET           /check/cfg                             controllers.Application.cfgSelfCheck()
+
+# Static resource
+GET           /assets/*file                          controllers.Assets.at(path="/public", file)
+
+# image & thumb
+POST          /upload/image                          controllers.ImageController.uploadImage()
+GET           /showImage/:name                       controllers.ImageController.showImage(name: String)
+GET           /showBarcode/:name                     controllers.ImageController.showBarcode(name: String)
+GET           /showimg/:folder/:name                 controllers.ImageController.showImg(folder :String, name: String)
+GET           /genthumb                              controllers.ImageController.generateAllThumbNailImg(tagsize :Float ?=0)
+
+# Captcha on server
+GET           /captcha                               controllers.Application.captcha(tag: String?="common")
+
+# DB Backup
+GET           /db/backup/:dbtype                     controllers.DbController.dbBackup(dbtype :String)
+
+# Web socket
+GET           /chat/connect                          controllers.Application.webSocket()
+GET           /chat/msg/:msg                         controllers.Application.chat(msg: String)
+
+#i18n
+GET           /i18n                                  controllers.Application.changeLanguage(lang: String?="zh-CN")

@@ -1,0 +1,195 @@
+@(item: Product) @front_frame("产品详情", "ProductDetailsApp", "ProductDetailsController") {
+
+    <style>
+
+    #m_head{
+    background-color:#3c6eac;
+    }
+
+
+    #m_head p{
+    color:#FFFFFF;
+    }
+
+
+    #m_contents{
+
+    }
+
+    #m_mid{
+    margin-bottom:120px;
+    text-align:center;
+    line-height:100%;
+    }
+
+    .m_phone{
+
+    }
+
+    .m_code{
+    text-align:left;
+    }
+    .phone_tip{
+    margin-top:20px;
+    color:#999;
+    font-size:1.4rem;
+    padding:0 5px;
+    text-align:center;
+    }
+
+    .m_code_btn{
+    padding:0 5%;
+    background-color:#C60;
+    color:#F6F6F6;
+    height:50px;
+    }
+
+    .m_input{
+    background-color:#FFF;
+    height:50px;
+
+    margin-left:0px;
+    margin-right:0px;
+    }
+    .m_inpout_code{
+    margin:2% !important;
+    width:35%;
+
+    background:url(/showimg/images/code1.png) no-repeat ;
+    padding-left:15%;
+    background-color:#FFF;
+    }
+    .m_inpout_phone{
+    margin:2% !important;
+    width:79.5%;
+
+    background:url(/showimg/images/phone2.png) no-repeat ;
+    padding-left:15%;
+    background-color:#FFF;
+    }
+
+
+    .m_pro_info{
+    text-align:left;
+    padding:5px;
+    line-height:140%;
+    }
+
+    .m_pro_info img{
+    width:100%;
+    }
+    .m_pro_info p:nth-child(1){
+    width:95%;
+    padding:0 5px;
+    text-align:left;
+    font-size:1.6rem;
+    font-weight:bold;
+    height:40px;
+    line-height:40px;
+    position:relative;
+    }
+
+    .m_pro_info_m img{
+    width:5px;
+    height:25px;
+    margin-right:5px;
+    position:relative;
+    top:5px;
+    }
+
+
+    .m_t_100{
+    position:fixed;
+    bottom:75px;
+    width:100%;
+    filter:alpha(opacity=90);
+    -moz-opacity:0.9;
+    opacity:0.9;
+    }
+    .m_sub_btn{
+    width:80%;
+    background-color:#3c6eac;
+
+    }
+
+    .m_pro_img{
+    width:100%;
+    }
+    .m_pro_img img{
+    width:100%;
+    }
+    .m_pro_t{
+    text-align:left;
+    background-color:#f2f2f3;
+    }
+    .m_pro_t p:nth-child(1) {
+    height:30px;
+    padding:5px 5px 0;
+    font-size:1.6rem;
+    line-height:120%;
+    }
+    .m_pro_t p:nth-child(2) {
+    padding:25px 5px 5px;
+    font-size:1.4rem;
+    color:#3d6fac;
+    }
+
+
+
+    #m_foot{
+    position:fixed;
+    width:100%;
+    bottom:0px;
+    text-align:center;
+    background-color:#FFF;
+    padding:4px 0;
+    border-top:2px #e1e1e1 solid;
+    font-size:1.6rem;
+
+    }
+    #m_foot div{
+    width:33.33%;
+    float:left;
+    }
+    #m_foot img{
+    width:30px;
+    height:30px;
+    margin:5px;
+    -moz-border-radius:10px;
+    border-radius: 10px;
+    }
+    </style>
+
+    <div id="m_head">
+        <p>产品详情</p>
+        <p><a href="#" onClick="javascript:history.go(-1);">< 返回</a></p>
+    </div>
+
+    <div id="m_mid">
+
+        <div class="m_pro_img">
+            <img src="/showimg/upload/@ImageController.getImageString(item.images)" />
+        </div>
+
+        <div class="m_pro_t">
+            <p>@item.name</p>
+            <p>产品年限: @item.length 月</p>
+        </div>
+
+
+        <div class="m_pro_info">
+            <p class="m_pro_info_m"><img src="/showimg/images/bg3.png" />产品描述</p>
+            @if(item.smallImages) {
+                @for(imageFile <- item.smallImages.split(",")) {
+                    <p><img src="/showimg/thumb/@imageFile" /></p>
+                }
+            } else {
+                <p>无</p>
+            }
+        </div>
+
+        <div class="m_t_100">
+            <input type="button" class="m_sub_btn w_70 h_40 m_btn" onclick='location="/p/product/buy/@item.id"' value="购买" />
+        </div>
+    </div>
+}

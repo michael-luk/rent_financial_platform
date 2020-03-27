@@ -1,0 +1,213 @@
+<div class="row">
+	<div class="col-xs-12">
+		<form class="form-horizontal" role="form" name="myform" ng-submit="formSave(myform.$valid)" novalidate>
+
+
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right">
+					搜索:
+				</label>
+				<div class="col-sm-9">
+					<input type="text" ng-model="currentObj.queryKeyword4Host" class="form-control" placeholder='按{{searchFieldNameHostComment}}搜' style="display: inline-block; width: 140px;text-align: center;" />
+					<div class="btn btn-primary" ng-click="searchContent4Host()">搜索</div>
+				</div>
+			</div>
+            
+            <div class="form-group">
+        		<label class="col-sm-3 control-label no-padding-right" > {{objFieldInfo.House.host}}: </label>
+        		<div class="col-sm-9">
+        			<div ui-grid="gridParentHosts" ui-grid-resize-columns ui-grid-selection ui-grid-auto-fit-columns></div>
+        			<tm-pagination conf="paginationConf4ParentHost"></tm-pagination>
+        		    <br>
+        		</div>
+        	</div>
+
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right">
+					搜索:
+				</label>
+				<div class="col-sm-9">
+					<input type="text" ng-model="currentObj.queryKeyword4Partner" class="form-control" placeholder='按{{searchFieldNamePartnerComment}}搜' style="display: inline-block; width: 140px;text-align: center;" />
+					<div class="btn btn-primary" ng-click="searchContent4Partner()">搜索</div>
+				</div>
+			</div>
+            
+            <div class="form-group">
+        		<label class="col-sm-3 control-label no-padding-right" > {{objFieldInfo.House.partner}}: </label>
+        		<div class="col-sm-9">
+        			<div ui-grid="gridParentPartners" ui-grid-resize-columns ui-grid-selection ui-grid-auto-fit-columns></div>
+        			<tm-pagination conf="paginationConf4ParentPartner"></tm-pagination>
+        		    <br>
+        		</div>
+        	</div>
+
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.House.name}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="name" ng-model="currentObj.name" class="col-xs-10 col-sm-5 button_border" required />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.House.classify}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="classify" ng-model="currentObj.classify" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.House.province}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="province" ng-model="currentObj.province" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.House.city}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="city" ng-model="currentObj.city" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.House.zone}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="zone" ng-model="currentObj.zone" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.House.address}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="address" ng-model="currentObj.address" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.House.age}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="number" name="age" ng-model="currentObj.age" class="col-xs-10 col-sm-5 button_border" />
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.House.size}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="size" ng-model="currentObj.size" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.House.structure}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="structure" ng-model="currentObj.structure" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.House.rent}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="number" name="rent" ng-model="currentObj.rent" class="col-xs-10 col-sm-5 button_border" />
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.House.credit}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="number" name="credit" ng-model="currentObj.credit" class="col-xs-10 col-sm-5 button_border" />
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.House.visible}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="checkbox" name="visible" ng-model="currentObj.visible" class="col-xs-10 col-sm-5 button_border" />
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.House.status}}:
+                </label>
+		        <div class="col-sm-9">
+		            <select name="status" ng-model="currentObj.status" ng-options="item.id as item.name disable when item.id == -100 for item in status" class="col-xs-10 col-sm-5 button_border"></select>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.House.images}}:
+                </label>
+		        <div class="col-sm-9">
+		            <div><input type="file" name="images" accept="image/gif,image/jpeg,image/jpg,image/png" ng-file-select="uploadImage($files, 'images', currentObj, false)"/><div ng-repeat="imageName in currentObj.images.split(',')"><div ng-show="imageName"><a class="fancybox" target="_blank" data-fancybox-group="gallery" fancybox ng-href="/showImage/{{imageName}}"><img ng-src="/showimg/thumb/{{imageName}}" style="width:50px;height:50px;float:left"></a><input type="button" ng-click="deleteImage(currentObj, 'images', imageName)" value="删除" style="float:left" /></div></div></div>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.House.description}}:
+                </label>
+		        <div class="col-sm-9">
+                    <div simditor ng-model="currentObj.description" style="width:550px"></div><br>
+		        </div>
+	        </div>
+	        <div class="form-group">
+		        <label class="col-sm-3 control-label no-padding-right">
+                    {{objFieldInfo.House.comment}}:
+                </label>
+		        <div class="col-sm-9">
+                    <input type="text" name="comment" ng-model="currentObj.comment" class="col-xs-10 col-sm-5 button_border" />
+		            <span class="help-inline col-xs-12 col-sm-7"> <span class="middle">* 不超过200字</span></span>
+		        </div>
+	        </div>
+			<div class="form-group" ng-show="myform.$invalid">
+    			<label class="col-sm-2 control-label"></label>
+			    <div class="col-sm-10">
+			      <div class="alert alert-warning" style="margin-bottom: 0px">
+			        <ul>                    
+                        <li ng-show='myform.name.$error.required'>{{objFieldInfo.House.name}} 不能为空！</li>
+                        <li ng-show='myform.name.$error.maxlength'>{{objFieldInfo.House.name}} 超出长度！</li>
+                        <li ng-show='myform.classify.$error.maxlength'>{{objFieldInfo.House.classify}} 超出长度！</li>
+                        <li ng-show='myform.province.$error.maxlength'>{{objFieldInfo.House.province}} 超出长度！</li>
+                        <li ng-show='myform.city.$error.maxlength'>{{objFieldInfo.House.city}} 超出长度！</li>
+                        <li ng-show='myform.zone.$error.maxlength'>{{objFieldInfo.House.zone}} 超出长度！</li>
+                        <li ng-show='myform.address.$error.maxlength'>{{objFieldInfo.House.address}} 超出长度！</li>
+                        <li ng-show='myform.age.$error.maxlength'>{{objFieldInfo.House.age}} 超出长度！</li>
+                        <li ng-show='myform.size.$error.maxlength'>{{objFieldInfo.House.size}} 超出长度！</li>
+                        <li ng-show='myform.structure.$error.maxlength'>{{objFieldInfo.House.structure}} 超出长度！</li>
+                        <li ng-show='myform.rent.$error.maxlength'>{{objFieldInfo.House.rent}} 超出长度！</li>
+                        <li ng-show='myform.credit.$error.maxlength'>{{objFieldInfo.House.credit}} 超出长度！</li>
+                        <li ng-show='myform.lastUpdateTime.$error.maxlength'>{{objFieldInfo.House.lastUpdateTime}} 超出长度！</li>
+                        <li ng-show='myform.description.$error.maxlength'>{{objFieldInfo.House.description}} 超出长度！</li>
+                        <li ng-show='myform.comment.$error.maxlength'>{{objFieldInfo.House.comment}} 超出长度！</li>
+			        </ul>
+			      </div>
+			    </div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-10 no-padding-right">
+					<input type="button" class="btn btn-danger" value="取消" ng-click="dialogClose()" style="float:right;margin: 0 -11%;"/>
+					<input type="submit" class="btn btn-primary" value="确定" ng-disabled="myform.$invalid" style="float:right;"/>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

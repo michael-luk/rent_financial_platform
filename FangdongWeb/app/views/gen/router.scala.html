@@ -1,0 +1,16 @@
+@(routerList: List[Router]) @front_frame(TableInfoReader.getTableComment("Router"), "RouterApp", "RouterController") {
+    @for(router <- routerList) {
+        <ul>
+            <li>@TableInfoReader.getFieldComment("Router", "id"): @router.id</li>
+            <li>@TableInfoReader.getFieldComment("Router", "name"): @router.name</li>
+            <li>@TableInfoReader.getFieldComment("Router", "appId"): @router.appId</li>
+            <li>@TableInfoReader.getFieldComment("Router", "secret"): @router.secret</li>
+            <li>@TableInfoReader.getFieldComment("Router", "bindPhone"): @router.bindPhone</li>
+            <li>@TableInfoReader.getFieldComment("Router", "status"): @EnumInfoReader.getEnumName("Router", "status", router.status)</li>
+            <li>@TableInfoReader.getFieldComment("Router", "createdAt"): @LyLib.Utils.DateUtil.Date2Str(router.createdAt)</li>
+            <li>@TableInfoReader.getFieldComment("Router", "lastUpdateTime"): @LyLib.Utils.DateUtil.Date2Str(router.lastUpdateTime)</li>
+            <li>@TableInfoReader.getFieldComment("Router", "comment"): @router.comment</li>
+            <li>@TableInfoReader.getFieldComment("Router", "refHouseId"): @router.refHouseId</li>
+        </ul>
+    }
+}

@@ -1,0 +1,248 @@
+@(item :Host)@front_frame_no_footer("租约钱包", "BorrowInfoApp", "BorrowInfoController") {
+
+    <link rel="Stylesheet" href='@routes.Assets.at("css/lightslider.css")' />
+    <style>
+    body{
+
+    }
+    .hjed{
+    margin-top:50px;
+    color:#666464;
+    font-size:1.6rem;
+    }
+    .hjed_price{
+    margin-top:1px;
+    color:#666464;
+    font-size:3.2rem;
+    }
+    .alled{
+    margin-top:10px;
+    color:#9b9b9b;
+    font-size:1.4rem;
+    }
+
+    .lend_img{
+    width:30%;
+    overflow:auto;
+    text-align:center;
+    margin:0 auto;
+    position:absolute;
+    bottom:13%;
+    left:35%;
+
+    }
+    .lend_img img{
+    width:100%;
+    }
+
+    .reads{
+    font-size:1.6rem;
+    color:#9b9b9b;
+    position:absolute;
+    width:100%;
+    bottom:30px;
+    }
+    .reads span{
+    width:50%;
+    float:left;
+    }
+    .zj-row >div:first-child { width:4rem; display:table-cell; float:left;}
+    .zj-row >div:last-child { width:auto; display:table-cell; float:left;}
+
+    .zj-table {width:100%;}
+    .zj-table tr td{height:4rem; line-height:4rem;}
+    .zj-table tr td:first-child{ width:3rem;}
+    .zj-table tr td:nth-child(2){ text-align:left;}
+    .zj-input{ padding:5px; width:95%; display:block;  }
+    .zj-com{ height:3rem; line-height:3rem; float:right; color:#fff; background:#00a4a9; border-radius:0.3rem; width:4rem;}
+    .zj-com:active{ background:#26a6aa; }
+    </style>
+
+    <style>
+
+    .i_bg {
+    }
+
+    .i_bg img {
+    width: 100%;
+    height: 100%;
+    min-width: 100%;
+    min-height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    }
+    .footer_s {
+    width: 100%;
+    text-align: center;
+    margin: 0 auto;
+    position: absolute;
+    bottom: 10%;
+    line-height: 100%;
+    }
+
+    .m_auh {
+    background-color: #00a2e9;
+    color: #fff;
+    padding: 8px 50px 6px;
+    font-size: 1.8rem;
+    font-weight: bold;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    letter-spacing: 2px;
+    }
+    </style>
+    <div class="content">
+        <div class="mid">
+                <!--内容开始-->
+            <div class="item">
+                <div class="clearfix">
+                    <ul id="image-gallery" class="gallery list-unstyled cS-hidden">
+                        <li data-thumb="/showimg/img/thumb/cS-1.jpg">
+                            <img src="/showimg/images/ad1.jpg" class="item_img"/>
+                        </li>
+                        <li data-thumb="/showimg/img/thumb/cS-2.jpg">
+                            <img src="/showimg/images/ad2.jpg" class="item_img"  />
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="hjed">钱包</div>
+            <div class="hjed_price">￥@item.credit</div>
+            <div class="alled">手续费按日0.05%</div>
+            <div class="lend_img">
+                @if(item.status == 6){
+                    @if(item.credit <= 0){
+                        <a href="#" onclick="alert('您的额度不足，无法借款')">
+                    }else{
+                        <a href="/p/product/fix/sjsh/borrow">
+                    }
+                }else{
+                    <a href="/p/product/fix/sjsh/buy">
+                }
+                    <img src="/showimg/images/tixian.png" />
+                </a>
+            </div>
+
+            <div class="reads">
+                @*<span class="pop_1">租约计算器</span>*@
+                @if(item.status == 6){
+                <a href="/p/my/wallet"><span class="pop_1">钱包明细</span></a>
+                }
+            </div>
+                <!--内容结束-->
+        </div>
+    </div>
+    <div id="pop_1" style="display:none">
+        <table class="zj-table">
+            <tr>
+                <td>租金</td>
+                <td colspan="2"><input id="zujin" class="zj-input" type="number" /></td>
+            </tr>
+            <tr>
+                <td>期数</td>
+                <td colspan="2"><input id="qishu" class="zj-input" type="number" /></td>
+            </tr>
+            <tr>
+                <td>利息</td>
+                <td><span id="rate">0.8</span></td>
+                <td style="width:4rem;"><div class="zj-com" onclick='sum()'>计  算</div></td>
+            </tr>
+            <tr>
+                <td colspan="3" >
+                    <div style="text-align:right;">预计金额:￥<span id="amt">0</span></div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="pop_2" style="display:none">
+        <p style="text-align:left; color:#edcd6c">计息方式</p>
+        <p style="text-align:left; color:#7e7e7e">按实际贷款天数计息，日利率0.05%，已还本金不计息</p>
+
+        <p style="text-align:left; color:#edcd6c; margin-top:10px">还款方式</p>
+        <p style="text-align:left; color:#7e7e7e">等额本金，每月从借款银行卡扣款</p>
+
+        <p style="text-align:left; color:#edcd6c; margin-top:10px">提前还款</p>
+        <p style="text-align:left; color:#7e7e7e">提前还款无需缴纳违约金</p>
+    </div>
+
+    <script src="@routes.Assets.at("js/jquery.min.js")"></script>
+    <script src="@routes.Assets.at("js/layer_mobile/layer.js")"></script>
+    <script src="@routes.Assets.at("js/lightslider.js")"></script>
+    <script type="text/javascript">
+    function sum()
+    {
+    var _zujin = $(".layui-m-layersection").find("#zujin").val();
+    if(_zujin=="")
+    {
+    alert("请输入租金");
+    return;
+    }
+    var _qishu = $(".layui-m-layersection").find("#qishu").val();
+    if(_qishu=="")
+    {
+    alert("请输入期数");
+    return;
+    }
+    var _rate = $(".layui-m-layersection").find("#rate").text();
+    var _amt = (_zujin * _qishu) * _rate;
+    _amt = _amt.toFixed(2);
+    $(".layui-m-layersection").find("#amt").text(_amt);
+    }
+    $(document).ready(function () {
+    $(".zj-com").click(function () {
+
+    ///(($("#zujin").val() * $("#qishu").val() ) * 0.008).parseFloat().toFiexd(2)
+    });
+
+//    $(".pop_1").click(function(){
+//    layer.open({
+//    content: $("#pop_1").html(),
+//    title: [
+//    '借款须知',
+//    'background-color: #fff;  color:#3b3b3b;border-bottom:1px #e2e2e2 solid']
+//    ,btn: '关闭'
+//    });
+//    });
+
+    $(".pop_2").click(function(){
+    layer.open({
+    content: $("#pop_2").html(),
+    title: [
+    '计息规则',
+    'background-color: #fff;  color:#3b3b3b;border-bottom:1px #e2e2e2 solid']
+    ,btn: '关闭'
+    });
+    });
+
+    var h = $(window).height();
+
+    var w = $(window).width();
+
+    $(".item_img").height(h * 0.4);
+    $(".i_bg").height(h * 0.6);
+
+    $(".item_img").width(w);
+
+
+    $("#content-slider").lightSlider({
+    loop: true,
+    keyPress: true
+    });
+    $('#image-gallery').lightSlider({
+    gallery: true,
+    item: 1,
+    thumbItem: 9,
+    slideMargin: 0,
+    speed: 500,
+    auto: true,
+    loop: true,
+    pager: false,
+    controls: false,
+    onSliderLoad: function () {
+    $('#image-gallery').removeClass('cS-hidden');
+    }
+    });
+
+    });
+    </script>
+}

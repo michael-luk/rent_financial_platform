@@ -1,0 +1,172 @@
+@(item :Partner)@front_frame_no_footer("运营商主页", "", "") {
+
+    <style>
+
+    .footer_add{
+        width:100%;
+        max-width:640px;
+        text-align:center;
+        margin-top:20px;
+        position:fixed;
+        bottom:0;
+
+
+    }
+    .m_add{
+        background-color:#00b5aa;
+        margin:5%;
+        height:40px;
+        line-height:40px;
+        color:#fff;
+        font-size:1.8rem;
+        font-weight:bold;
+        -moz-border-radius:5px;
+        border-radius: 5px;
+    }
+
+
+
+    .content{
+        overflow-x:hidden;
+        overflow-y:hidden;
+        background-color:#f2f2f2;
+    }
+
+
+    .m_title{
+        margin-top:20px;
+        height:40px;
+        line-height:40px;
+        color:#00b5aa;
+        font-size:1.8rem;
+    }
+    .radius1{
+        background-color:#f0f0f0;
+        -moz-border-radius:50%;
+        border-radius: 50%;
+        margin-left:-15%;
+        margin-top:10px;
+
+    }
+
+    .radius2{
+        background-color:#ececec;
+        -moz-border-radius:50%;
+        border-radius: 50%;
+        margin-left:-10%;
+        margin:0 auto;
+        position:relative;
+    }
+
+
+    .radius3{
+        background-color:#e6e6e6;
+        -moz-border-radius:50%;
+        border-radius: 50%;
+        margin:0 auto;
+        position:relative;
+    }
+
+    .radius4{
+        background-color:#00b5aa;
+        -moz-border-radius:50%;
+        border-radius: 50%;
+        margin:0 auto;
+        position:relative;
+        color:#fff;
+        z-index:999;
+        font-size:2.0rem;
+    }
+    .radius5{
+        background-color:#f1f1f1;
+        border:3px #c9c9c9 solid;
+        -moz-border-radius:50%;
+        border-radius: 50%;
+        margin:0 auto;
+        position:relative;
+        color:#c9c9c9;
+        z-index:999;
+        font-size:8.0rem;
+    }
+
+    .radius6{
+        background-color:#00b5aa;
+        -moz-border-radius:50%;
+        border-radius: 50%;
+        margin:0 auto;
+        position:relative;
+        color:#fff;
+        z-index:999;
+        font-size:1.6rem;
+    }
+    </style>
+    <div class="content">
+        <div class="mid">
+                <!--内容开始-->
+            <div class="m_title">@item.name</div>
+
+            <div class="radius1">
+                <div class="radius2">
+                    <div class="radius3">
+                        <div class="radius6"><a href="/p/partner/barcode/@item.comment">我的二维码</a></div>
+                        <div class="radius4"><a href="/p/partner/house">房&nbsp;&nbsp;&nbsp;&nbsp;源</a></div>
+                        <div class="radius5"><a href="/p/partner/add/house">+</a></div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="footer_add"><a href="/partner/session/clear"><div class="m_add">退&nbsp;&nbsp;出</div></a></div>
+                <!--内容结束-->
+        </div>
+    </div>
+    <script src="@routes.Assets.at("js/jquery.min.js")"></script>
+    <script type="text/javascript">
+            $(document).ready(function () {
+                var w_h=$(window).height();
+                var w_w=$(window).width();
+
+                var w1 = w_w+w_w*0.3;
+                var w=$(".radius1").width();
+
+
+                $(".radius1").width(w1+"px");
+                $(".radius1").height(w1+"px");
+
+                var r2_top = (w1-w_w)/2;
+
+                $(".radius2").width(w_w+"px");
+                $(".radius2").height(w_w+"px");
+                $(".radius2").css("top",r2_top+"px");
+
+
+                var r2_w = $(".radius2").width();
+                var r3_w = r2_w*0.7;
+
+                var r3_top = (r2_w-r3_w)/2;
+
+                $(".radius3").width(r3_w+"px");
+                $(".radius3").height(r3_w+"px");
+                $(".radius3").css("top",r3_top+"px");
+
+
+                var r4_w = r3_w/2+10;
+                $(".radius4").width(r4_w+"px");
+                $(".radius4").height(r4_w+"px");
+                $(".radius4").css("line-height",r4_w+"px");
+                $(".radius4").css("top","-80px");
+
+                var r4_w = r3_w/2-10;
+                $(".radius5").width(r4_w+"px");
+                $(".radius5").height(r4_w+"px");
+                $(".radius5").css("line-height",r4_w+"px");
+                $(".radius5").css("top","-70px");
+
+
+                var r4_w = r3_w/2-20;
+                $(".radius6").width(r4_w+"px");
+                $(".radius6").height(r4_w+"px");
+                $(".radius6").css("line-height",r4_w+"px");
+                $(".radius6").css("top","-100px");
+            });
+    </script>
+}

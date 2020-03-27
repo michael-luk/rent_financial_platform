@@ -1,0 +1,171 @@
+@(item: Host) @front_frame_no_footer("房东资料认证状态", "MyInfoApp", "MyInfoController") {
+    <style>
+    #m_mid {
+        margin-top: 10px;
+        text-align: center;
+    }
+
+    .m_base_title {
+        text-align: left;
+        height: 30px;
+        line-height: 30px;
+        border-bottom: 1px #999 solid;
+        margin: 0 10px;
+        text-indent: 15px;
+        font-weight: bold;
+        font-size: 1.4rem;
+    }
+
+    .m_base_title:before {
+        background-color: #47d9bd;
+        width: 5px;
+        height: 25px;
+        content: '';
+        position: absolute;
+        left: 10px;
+        top: 100px;
+    }
+
+    .m_base_pic {
+        text-align: left;
+        height: 30px;
+        line-height: 30px;
+        border-bottom: 1px #f8bb7a solid;
+        margin: 0 10px;
+        text-indent: 15px;
+        font-weight: bold;
+        font-size: 1.4rem;
+    }
+
+    .m_base_pic:before {
+        background-color: #f8bb7a;
+        width: 5px;
+        height: 25px;
+        content: '';
+        position: absolute;
+        left: 10px;
+        top: 380px;
+    }
+
+    .m_form {
+        height: 30px;
+        line-height: 30px;
+        text-align: left;
+
+    }
+
+    .m_form p:nth-child(1) {
+        float: left;
+        width: 28%;
+        text-align: right;
+        font-size: 1.6rem;
+    }
+
+    #m_mid div {
+
+    }
+
+    .m_form_sex p:nth-child(2) {
+        text-align: right;
+        margin-right: 10%;
+    }
+
+    .m_radio {
+        width: 35px;
+        height: 20px;
+        top: 5px;
+        position: relative;
+    }
+
+    .m_from_pic {
+        text-align: left;
+        margin-left: 10%;
+        font-size: 1.4rem;
+    }
+
+    .m_from_pic img {
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+    }
+
+    .m_line {
+        margin: 30px 0 10px;
+        clear: left;
+        height: 10px;
+        background-color: #d9d9d9;
+    }
+
+    .m_input {
+        text-align: right;
+        color: #666;
+        padding-right: 8px;
+    }
+
+    .m_wait {
+        background-color: #999;
+        margin: 0 10% 10px;
+        padding: 10px;
+        color: #fba243;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+        font-size: 1.6rem;
+    }
+    </style>
+
+    <div id="m_head">
+        <p>房东资料认证</p>
+        <p><a href="/p/mine">< 返回</a></p>
+    </div>
+
+    <div id="m_mid">
+        <div class="m_wait">温馨提示：资料@EnumInfoReader.getEnumName("Host", "status", item.status)！</div>
+
+        <div class="m_base_title">基本资料</div>
+        <div class="m_form m_t_10">
+            <p>姓名：</p><p><input type="text" readonly class="m_input w_60 h_30" value="@item.name" /></p>
+        </div>
+        <div class="m_form m_t_10">
+            <p>姓别：</p>
+            <p><input type="text" class="m_input w_60 h_30" readonly value="@EnumInfoReader.getEnumName("Host", "sexEnum", item.sexEnum)" /></p>
+        </div>
+        <div class="m_form m_t_10">
+            <p>出生：</p>
+            <p><input type="text" class="m_input w_60 h_30" readonly value="@LyLib.Utils.DateUtil.Date2Str(item.birth, "yyyy-MM-dd")" /></p>
+        </div>
+        <div class="m_form m_t_10">
+            <p>联系电话：</p>
+            <p><input type="text" class="m_input w_60 h_30" readonly value="13412345678" /></p>
+        </div>
+        <div class="m_form m_t_10">
+            <p>地址：</p>
+            <p><textarea rows="2" class="m_input w_60" readonly cols="20">@item.address</textarea></p>
+        </div>
+
+        <div class="m_line"></div>
+
+        <div class="m_base_pic">图片资料</div>
+
+        <div class="m_from_pic m_t_10">
+            <p>身份证正面：</p>
+            <p class="m_t_10">
+                <img src='/showimg/thumb/@if(item.images.split(",").length > 0){@item.images.split(",")(0)}' />
+            </p>
+        </div>
+
+        <div class="m_from_pic m_t_10">
+            <p>身份证反面：</p>
+            <p class="m_t_10">
+                <img src='/showimg/thumb/@if(item.images.split(",").length > 1){@item.images.split(",")(1)}' />
+            </p>
+        </div>
+
+        <div class="m_from_pic m_t_10">
+            <p>银行卡：</p>
+            <p class="m_t_10">
+                <img src='/showimg/thumb/@if(item.images.split(",").length > 2){@item.images.split(",")(2)}' />
+            </p>
+        </div>
+
+        <BR />
+    </div>
+}

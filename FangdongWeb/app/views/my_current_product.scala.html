@@ -1,0 +1,105 @@
+@(item: ProductRecord, hasHistory: Boolean) @front_frame_no_footer("我的当前借款", "MyCurrentProductApp", "MyCurrentProductController") {
+
+    <style>
+    .loan{
+    margin:3%;
+
+    background-color:#fff;
+    overflow:auto;
+    -moz-border-radius:5px;
+    border-radius: 5px;
+    }
+    .loan .loan_div:nth-child(1){
+    height:auto;
+    overflow:auto;
+    padding:4%;
+    }
+    .loan .loan_div:nth-child(2){
+    border-top:1px #b2b2b2 solid;
+    height:auto;
+    overflow:auto;
+    padding:4%;
+    }
+    .loan .loan_div:nth-child(3){
+    border-top:1px #b2b2b2 solid;
+    height:auto;
+    overflow:auto;
+    padding:4%;
+    }
+    .loan_div{
+    clear:left;
+    }
+    .loan_div span:nth-child(1){
+    float:left;
+    color:#a0a0a0;
+    font-size:1.4rem;
+    }
+    .loan_div span:nth-child(2){
+    float:right;
+    color:#7a7a7a;
+    font-size:1.4rem;
+    }
+
+
+    .reads{
+    font-size:1.6rem;
+    color:#9b9b9b;
+    position:absolute;
+    width:100%;
+    bottom:10px;
+    max-width:640px;
+    }
+    .reads span{
+    width:50%;
+    float:right;
+    text-align:right;
+    padding-right:3%;
+    }
+    </style>
+
+    <div class="content">
+        <div class="mid">
+                <!--内容开始-->
+            <div class="loan">
+                <div class="loan_div">
+                    <span>借款日期</span>
+                    <span>@LyLib.Utils.DateUtil.Date2Str(item.inDate, "yyyy-MM-dd")</span>
+                </div>
+                <div class="loan_div">
+                    <span>借款金额</span>
+                    <span>￥@item.amount</span>
+                </div>
+            </div>
+
+
+            <div class="loan">
+                <div class="loan_div">
+                    <span>借款利率</span>
+                    <span>@(item.product.interest * 100)%</span>
+                </div>
+                <div class="loan_div">
+                    <span>已借天数</span>
+                    <span>@(LyLib.Utils.DateUtil.findDates(item.inDate, (new java.util.Date())).size() -1)天</span>
+                </div>
+                <div class="loan_div">
+                    <span>应还利息</span>
+                    <span>￥@biz.ProductRecordBiz.getInterest(item).setScale(2, java.math.BigDecimal.ROUND_HALF_UP)</span>
+                </div>
+            </div>
+
+            <div class="loan">
+                <div class="loan_div">
+                    <span style="color:#555 !important">合计还款</span>
+                    <span style="color:#555 !important">￥@biz.ProductRecordBiz.getActualAmount(item).setScale(2, java.math.BigDecimal.ROUND_HALF_UP)</span>
+                </div>
+            </div>
+
+            @if(hasHistory){
+                <div class="reads"><a href="/p/my/product/record/history"><span>所有记录</span></a></div>
+            }
+
+            <div class="footer_btn"><div class="examine">@EnumInfoReader.getEnumName("ProductRecord", "status", item.status)</div></div>
+                <!--内容结束-->
+        </div>
+    </div>
+}

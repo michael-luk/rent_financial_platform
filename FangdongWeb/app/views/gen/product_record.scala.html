@@ -1,0 +1,18 @@
+@(productRecordList: List[ProductRecord]) @front_frame(TableInfoReader.getTableComment("ProductRecord"), "ProductRecordApp", "ProductRecordController") {
+    @for(productRecord <- productRecordList) {
+        <ul>
+            <li>@TableInfoReader.getFieldComment("ProductRecord", "id"): @productRecord.id</li>
+            <li>@TableInfoReader.getFieldComment("ProductRecord", "name"): @productRecord.name</li>
+            <li>@TableInfoReader.getFieldComment("ProductRecord", "inDate"): @LyLib.Utils.DateUtil.Date2Str(productRecord.inDate)</li>
+            <li>@TableInfoReader.getFieldComment("ProductRecord", "outDate"): @LyLib.Utils.DateUtil.Date2Str(productRecord.outDate)</li>
+            <li>@TableInfoReader.getFieldComment("ProductRecord", "fundBackDate"): @LyLib.Utils.DateUtil.Date2Str(productRecord.fundBackDate)</li>
+            <li>@TableInfoReader.getFieldComment("ProductRecord", "amount"): @productRecord.amount</li>
+            <li>@TableInfoReader.getFieldComment("ProductRecord", "status"): @EnumInfoReader.getEnumName("ProductRecord", "status", productRecord.status)</li>
+            <li>@TableInfoReader.getFieldComment("ProductRecord", "createdAt"): @LyLib.Utils.DateUtil.Date2Str(productRecord.createdAt)</li>
+            <li>@TableInfoReader.getFieldComment("ProductRecord", "lastUpdateTime"): @LyLib.Utils.DateUtil.Date2Str(productRecord.lastUpdateTime)</li>
+            <li>@TableInfoReader.getFieldComment("ProductRecord", "comment"): @productRecord.comment</li>
+            <li>@TableInfoReader.getFieldComment("ProductRecord", "refHostId"): @productRecord.refHostId</li>
+            <li>@TableInfoReader.getFieldComment("ProductRecord", "refProductId"): @productRecord.refProductId</li>
+        </ul>
+    }
+}

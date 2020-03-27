@@ -1,0 +1,121 @@
+@(item: Host) @front_frame_no_footer(TableInfoReader.getTableComment("BankCard"), "BankCardApp", "BankCardController") {
+    <style>
+    body{
+
+    }
+    .mid{
+    padding-top:10px;
+    }
+    .lend_li{
+    margin:10px 30px;
+    padding:10px;
+    -moz-border-radius:5px;
+    border-radius: 5px;
+    text-align:left;
+    overflow:auto;
+    position:relative;
+    }
+    .r_img{
+    width:60px;
+    position:absolute;
+    right:0px;
+    top:0px;
+    }
+    .r_img img{
+    width:100%;
+    }
+    .li_img{
+    width:35px;
+    float:left;
+    margin-right:5px;
+    }
+    .li_img img{
+    width:100%;
+    }
+    .li_r{
+    color:#dfe0e1;
+
+    }
+    .li_r p:nth-child(1){
+    font-size:1.6rem;
+
+    }
+    .li_r p:nth-child(2){
+    font-size:1.2rem;
+    }
+
+    .li_b_r p{
+    float:left;
+    height:50px;
+    line-height:50px;
+    }
+    .li_b_r p:nth-child(1){
+    color:#fff;
+    font-size:2.0rem;
+    }
+    .li_b_r p:nth-child(2){
+    color:#fff;
+    font-size:2.6rem;
+    margin-left:10px;
+
+    }
+    .b_1a65a3{
+    background-color:#1a65a3;
+    }
+    .b_c65055{
+    background-color:#c65055;
+    }
+
+    .footer_add{
+    width:100%;
+    max-width:640px;
+    text-align:center;
+    position:fixed;
+    bottom:10px;
+    }
+    .m_add{
+    background-color:#00b5aa;
+    margin:10% 10% 0 10%;
+    height:40px;
+    line-height:40px;
+    color:#fff;
+    font-size:1.8rem;
+    font-weight:bold;
+    -moz-border-radius:5px;
+    border-radius: 5px;
+    }
+    </style>
+
+    <div class="content">
+        <div class="mid">
+                <!--内容开始-->
+            @for(bankCard <- item.bankCards) {
+                <div class="lend_li b_1a65a3">
+                    <div class="r_img"><img src="/showimg/images/bankCardStatus@(bankCard.status).png" /></div>
+                    <div class="li_top">
+                        <div class="li_img"><img src="/showimg/images/@(bankCard.bank)logo.png" /></div>
+                        <div class="li_r">
+                            <p>@bankCard.bank</p>
+                            @*<p>信用卡 @EnumInfoReader.getEnumName("BankCard", "status", bankCard.status)</p>*@
+                        </div>
+                    </div>
+                    <div class="li_bottom">
+                        <div class="li_img"></div>
+                        <div class="li_b_r">
+                            <p>**** **** ****</p>
+                            <p>@bankCard.name.substring(bankCard.name.length - 4)</p>
+                        </div>
+                    </div>
+                </div>
+            }
+
+            <div style="clear:both; height:60px"></div>
+            <div class="footer_add">
+                <a href="/p/my/bankcard/submit">
+                    <div class="m_add">新&nbsp;&nbsp;增</div>
+                </a>
+            </div>
+                <!--内容结束-->
+        </div>
+    </div>
+}

@@ -1,0 +1,37 @@
+@(infoList: List[Info]) @front_frame(TableInfoReader.getTableComment("Info"), "InfoApp", "InfoController") {
+    @for(info <- infoList) {
+        <ul>
+            <li>@TableInfoReader.getFieldComment("Info", "id"): @info.id</li>
+            <li>@TableInfoReader.getFieldComment("Info", "name"): @info.name</li>
+            <li>@TableInfoReader.getFieldComment("Info", "classify"): @info.classify</li>
+            <li>@TableInfoReader.getFieldComment("Info", "englishName"): @info.englishName</li>
+            <li>@TableInfoReader.getFieldComment("Info", "phone"): @info.phone</li>
+            <li>@TableInfoReader.getFieldComment("Info", "url"): @info.url</li>
+            <li>@TableInfoReader.getFieldComment("Info", "visible"): @info.visible</li>
+            <li>@TableInfoReader.getFieldComment("Info", "status"): @EnumInfoReader.getEnumName("Info", "status", info.status)</li>
+            <li>@TableInfoReader.getFieldComment("Info", "images"): 
+                @if(info.images) {
+                    @for(imageFile <- info.images.split(",")) {
+                        <a href="/showimg/upload/@imageFile" target="_blank"><img src="/showimg/thumb/@imageFile" /></a>
+                    }
+                } else {
+                      <span>无</span>                    
+                }
+            </li>
+            <li>@TableInfoReader.getFieldComment("Info", "smallImages"): 
+                @if(info.smallImages) {
+                    @for(imageFile <- info.smallImages.split(",")) {
+                        <a href="/showimg/upload/@imageFile" target="_blank"><img src="/showimg/thumb/@imageFile" /></a>
+                    }
+                } else {
+                      <span>无</span>                    
+                }
+            </li>
+            <li>@TableInfoReader.getFieldComment("Info", "lastUpdateTime"): @LyLib.Utils.DateUtil.Date2Str(info.lastUpdateTime)</li>
+            <li>@TableInfoReader.getFieldComment("Info", "createdAt"): @LyLib.Utils.DateUtil.Date2Str(info.createdAt)</li>
+            <li>@TableInfoReader.getFieldComment("Info", "description1"): @info.description1</li>
+            <li>@TableInfoReader.getFieldComment("Info", "description2"): @info.description2</li>
+            <li>@TableInfoReader.getFieldComment("Info", "comment"): @info.comment</li>
+        </ul>
+    }
+}

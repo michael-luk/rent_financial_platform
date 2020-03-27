@@ -1,0 +1,153 @@
+@(item: Partner) @front_frame_no_footer("运营商房源", "PartnerHouseApp", "PartnerHouseController") {
+    <style>
+    body{
+    }
+    .mid{
+        padding-top:10px;
+    }
+    .lend_li{
+        margin:10px 10px;
+        padding:10px;
+        -moz-border-radius:5px;
+        border-radius: 5px;
+        text-align:left;
+        overflow:auto;
+        position:relative;
+        background-color:#fff;
+    }
+    .r_img{
+        width:60px;
+        position:absolute;
+        right:0px;
+        top:0px;
+    }
+    .r_img img{
+        width:100%;
+    }
+
+    .li_l{
+        color:#dfe0e1;
+
+    }
+    .li_l p span:nth-child(1){
+        font-size:1.4rem;
+        width:25%;
+        float:left;
+        color:#bababa;
+
+    }
+    .li_l p span:nth-child(2){
+        font-size:1.4rem;
+        color:#848484;
+    }
+
+    .m_form{
+        line-height:100%;
+        text-align:left;
+        font-size:1.4rem;
+        color:#9e9e9e;
+        margin:8% 10px 10px 10px;
+
+    }
+    .m_form div{
+        height:45px;
+        line-height:45px;
+    }
+    .m_form_info{
+        width:68%;
+        float:left;
+        background-color:#fff;
+        border:1px #b2b2b2 solid;
+        -moz-border-radius:5px;
+        border-radius: 5px;
+    }
+    .m_form_info_r{
+        width:28%;
+        float:right;
+        margin-left:2%;
+    }
+
+    .s_btn{
+        width:100%;
+        background-color:#00b5aa;
+        border:0px;
+        height:45px;
+        color:#fff;
+        font-size:2.0rem;
+        -moz-border-radius:5px;
+        border-radius: 5px;
+    }
+    .m_form_info span:nth-child(1){
+        float:left;
+        margin-left:2%;
+        width:25%;
+        color:#666464;
+    }
+    .m_form_info span:nth-child(2){
+        float:left;
+        width:70%;
+    }
+    .m_input{
+        float:right;
+        height:38px;
+        width:100%;
+        border:0;
+        text-align:right;
+        margin:3px;
+        padding-right:2px;
+    }
+
+    .footer_return{
+        width:100%;
+        max-width:640px;
+        margin:0 auto;
+        text-align:center;
+        position:fixed;
+        bottom:20px;
+    }
+    .footer_return img{
+        width:30%;
+    }
+    </style>
+    <div class="content" ng-init="onInit(@item.id)">
+        <div class="mid">
+                <!--内容开始-->
+            <div class="m_form">
+                <div class="m_form_info">
+                    <span>房&nbsp;东</span>
+                    <span>
+                        <input class="m_input input_bg" ng-model="kw" type="text" />
+                    </span>
+                </div>
+
+                <div class="m_form_info_r">
+                    <input class="s_btn" type="button" ng-click="search()" value="查&nbsp;&nbsp;询"/>
+                </div>
+            </div>
+
+            <div style="clear:left;"></div>
+
+            <div class="lend_li" ng-repeat="item in list">
+                    <!--上标S-->
+                <div class="r_img"><img src="/showimg/images/houseStatus{{item.status}}.png" /></div>
+                    <!--上标E-->
+                <div class="li_top">
+                    <div class="li_l">
+                        <p><span>房东</span><span>{{item.host.loginName}}</span></p>
+                        <p><span>手机号码</span><span>{{item.host.phone}}</span></p>
+                        <p><span>地址</span><span>{{item.address}}</span></p>
+                        <p><span>小区</span><span>{{item.name}}</span></p>
+                        <p><span>房型</span><span>{{item.structure}}</span></p>
+                        <p><span>租金</span><span>{{item.rent}}</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="clear:both; height:50px"></div>
+            <div class="footer_return"><a href="/p/partner/main"><img src="/showimg/images/home.png" /></a></div>
+                <!--内容结束-->
+        </div>
+    </div>
+    <script src="@routes.Assets.at("js/angular.min.js")"></script>
+    <script src="@routes.Assets.at("js/front_controllers/partner_house_controller.js")"></script>
+}

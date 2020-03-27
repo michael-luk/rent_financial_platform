@@ -1,0 +1,134 @@
+@(item: Host) @front_frame_no_footer("我的租金", "MyRentApp", "MyRentController") {
+
+    <style>
+    #m_contents{
+    background-image:url(/showimg/images/bg.jpg);
+    }
+    #m_mid{
+    margin-top:10px;
+    margin-bottom:100px;
+    text-align:center;
+
+    }
+    .m_list{
+    -moz-border-radius:5px;
+    border-radius: 5px;
+    border:1px #c0c0c0 solid;
+    height:120px;
+    margin:10px 4%;
+    font-size:1.4rem;
+    background-repeat:no-repeat;
+    }
+
+    .m_list:nth-child(odd){
+    background-color:#f37126;
+    background-image:url(/showimg/images/price.png);
+    }
+    .m_list:nth-child(even){
+    background-color:#facc6d;
+    background-image:url(/showimg/images/bg4.png);
+    }
+    .m_list div:nth-child(1){
+    font-size:1.6rem;
+    }
+
+    .m_list div:nth-child(2){
+    width:70%;
+    float:left;
+    text-align:left;
+    }
+    .m_list div:nth-child(3){
+    float:right;
+    padding-right:2%;
+    }
+    .m_list p{
+    margin-top:8px;
+    text-indent:10px;
+    line-height:160%;
+
+    }
+    .m_list_title{
+    color:#fff;
+    padding-bottom:7px;
+    text-align:left;
+    text-indent:10px;
+    }
+
+    .m_list:nth-child(odd) .m_list_title{
+    border-bottom:1px #ffaa7b solid;
+    }
+    .m_list:nth-child(even) .m_list_title{
+    border-bottom:1px #fff solid;
+    }
+
+    .m_price{
+    color:#fff;
+    font-size:2.0rem;
+    font-weight:bold;
+    text-shadow:1px 1px 2px #666;
+    position:relative;
+    top:10px;
+    left:-5px;
+    }
+    .m_price_t{
+    font-size:1.6rem;
+    font-weight:bold;
+    margin:0 3px;
+    position:relative;
+    top:-1px;
+    }
+    .m_name{
+    color:#4987c2;
+    font-size:1.6rem;
+    font-weight:bold;
+    }
+    .m_date{
+    color:#fff;
+    }
+    .m_phone{
+    color:#1ea1db;
+    width:125px;
+    padding:2px;
+    margin-left:10px;
+    -moz-border-radius:5px;
+    border-radius: 5px;
+    height:26px;
+    line-height:26px;
+    }
+
+    .m_list:nth-child(odd) .m_phone{
+    border:1px #ffaa7b solid;
+    }
+    .m_list:nth-child(even) .m_phone{
+    border:1px #fff solid;
+    }
+
+    .m_phone:before{
+    content: url(/showimg/images/phone.png);
+    position:relative;
+    top:2px;
+    left:-2px;
+    }
+    </style>
+
+    <div id="m_head">
+        <p>房租缴费记录</p>
+        <p><a href="#" onClick="javascript:history.go(-1);">< 返回</a></p>
+    </div>
+
+    <div id="m_mid">
+        @for(child <- item.rentRecords) {
+            <div class="m_list">
+                <div class="m_t_10 m_list_title">@(child.guest.houseName)小区@(child.guest.building)栋@(child.guest.unit)单元@(child.guest.room)房</div>
+                <div>
+                    <p class="m_name">@child.guest.name</p>
+                    <p class="m_phone"><a href="tel://@child.guest.phone">@child.guest.phone</a></p>
+                </div>
+                <div>
+                    <p class="m_date">@LyLib.Utils.DateUtil.Date2Str(child.payDate, "yyyy-MM-dd")</p>
+                    <p class="m_price"><span class="m_price_t">¥</span>@child.rent</p>
+                </div>
+            </div>
+        }
+    </div>
+}

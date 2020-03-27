@@ -1,0 +1,132 @@
+@(item: Host, children: List[CreditRecord]) @front_frame_no_footer("我的租客", "MyGuestApp", "MyGuestController") {
+
+    <style>
+
+    #m_contents{
+    background-image:url(/showimg/images/bg.jpg);
+
+    }
+    #m_mid{
+    margin-bottom:100px;
+    text-align:center;
+    filter:alpha(opacity=80);
+    -moz-opacity:0.8;
+    opacity:0.8;
+    }
+
+
+    .m_list{
+    padding:5px 0;
+    text-indent:10px;
+    font-size:1.6rem;
+    line-height:30px;
+    background:#f7f7f7;
+    }
+    .m_list +.m_list{
+    border-top:5px #f2efef solid;
+    }
+    .m_list p:nth-child(1){
+    width:50%;
+    float:left;
+    text-align:left;
+
+    }
+    .m_list p:nth-child(2){
+    width:50%;
+    float:right;
+    text-align:right;
+    position:relative;
+    right:10px;
+    }
+    .m_list p:nth-child(3){
+    text-align:left;
+    }
+    .m_mid_title{
+    color:#717171;
+    }
+
+
+    .m_mid_xy{
+    color:#fcab54;
+    font-size:1.6rem;
+    }
+
+    .m_line{
+    height:1px;
+    line-height:1px;
+    background-color:#c9c9c9;
+    }
+
+    .m_date{
+    clear:both;
+    color:#D1D1D1;
+    position:relative;
+    top:8px;
+    }
+    .m_wait{
+    background-color:#ffffff;
+    border:1px #b9b9b9 solid;
+    margin:0 10% 10px;
+    padding:10px;
+    color:#717171;
+    -moz-border-radius:25px;
+    border-radius: 25px;
+    font-size:1.6rem;
+    }
+    .m_e{
+    background-color:#FFF;
+    }
+    .m_ed{
+    text-align:left;
+    color:#999;
+    font-size:1.6rem;
+    padding-left:10px;
+    height:40px;
+    line-height:40px;
+    }
+    .m_ed img{
+    width:16px;
+    margin-right:2px;
+    }
+    .m_ed_price{
+    color:#1e98c9;
+    font-size:3.4rem;
+    font-weight:bold;
+    height:65px;
+    line-height:65px;
+    }
+    .m_ed_price span{
+    font-size:2.4rem;
+    margin-right:3px;
+    }
+    </style>
+
+    <div id="m_head">
+        <p>我的信用额度</p>
+        <p><a href="#" onClick="javascript:history.go(-1);">< 返回</a></p>
+    </div>
+
+    <div id="m_mid">
+
+        <div class="m_e">
+
+            <p class="m_ed"><img src="/showimg/images/ed.png" />当前信用额度(元)</p>
+            <p class="m_ed_price"><span>¥</span>@item.credit.00</p>
+
+        </div>
+
+        <div class="m_line"></div>
+
+        @for(child <- children) {
+            <div class="m_list">
+                <p class="m_mid_title">@child.name</p>
+                @if(child.creditRaise >= 0){
+                    <p class="m_mid_xy">信用额 +@child.creditRaise</p>
+                }else{
+                    <p class="m_mid_xy">信用额 @child.creditRaise</p>
+                }
+                <p class="m_date">@LyLib.Utils.DateUtil.Date2Str(child.createdAt) </p>
+            </div>
+        }
+    </div>
+}

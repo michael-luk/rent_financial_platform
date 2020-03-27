@@ -1,0 +1,177 @@
+@(item: Host) @front_frame_no_footer("还款/担保人", "VerifyPartnerApp", "VerifyPartnerController") {
+
+    <style>
+    body{
+    }
+    .m_top{
+    width:100%;
+    }
+    .m_top img{
+    width:100%;
+    }
+
+    .sls{
+    height:40px;
+    width:80%;
+    margin:20px auto;
+    background-color:#fff;
+    border:3px #00b5aa solid;
+    -moz-border-radius:25px;
+    border-radius: 25px;
+    padding:0 5%;
+    }
+    .sls span{
+    width:30%;
+    display:block;
+    float:left;
+    text-align:left;
+    height:43px;
+    line-height:43px;
+    color:#999;
+    }
+
+    select {
+    direction: rtl;
+    color:#bfbfbf !important;
+
+    }
+    select option {
+    direction: rtl;
+
+    }
+
+    .fs{
+    position:relative;
+    top:-3px;
+    height:50px;
+    border:0;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background:url(/showimg/images/62.png) no-repeat right center;
+    background-size:15px 14px;
+    width:70%;
+    　　 text-indent:0.01px;
+    　 　text-overflow:"";
+    padding-right:20px;
+
+    }
+    .next_btn{
+    height:40px;
+    line-height:40px;
+    font-size:1.8rem;
+    color:#fff;
+    width:80%;
+    margin:40px auto;
+    background-color:#00b5aa;
+    -moz-border-radius:25px;
+    border-radius: 25px;
+    padding:0 5%;
+    }
+
+    .m_bottom{
+    width:60%;
+    margin:0 auto;
+    position:absolute;
+    left:20%;
+    bottom:20px;
+    }
+    .m_bottom img{
+    width:100%;
+    }
+    </style>
+    <div class="content">
+        <div class="mid">
+                <!--内容开始-->
+            <div class="m_top"><img src='@routes.Assets.at("images/61.jpg")' /></div>
+            <div style="margin-top:40px;">
+                <div class="sls">
+                    <span>类型</span>
+                    <select ng-model="selectCatalog" class="fs">
+                        <option>选择运营商</option>
+                        <option disabled>直接租户</option>
+                        <option disabled>其他</option>
+                    </select>
+                </div>
+                <div class="sls">
+                    <span>地区</span>
+                    <select class="fs">
+                        <option>@item.partner.area</option>
+                    </select>
+                </div>
+                <div class="sls">
+                    <span>运营商</span>
+                    <select class="fs">
+                        <option>@item.partner.name</option>
+                    </select>
+                </div>
+                <div class="next_btn" ng-click='doBind(@item.id)'>
+                    下一步
+                </div>
+            </div>
+            <div class="m_bottom"><img src='@routes.Assets.at("images/63.png")' /></div>
+                <!--内容结束-->
+        </div>
+    </div>
+
+    @*<div class="content">*@
+        @*<div class="mid">*@
+                @*<!--内容开始-->*@
+            @*<div class="m_top">*@
+                @*<div class="m_top_l">*@
+                    @*<div><img src="/showimg/images/m16.png" /></div>*@
+                    @*<div>基础信息</div>*@
+                @*</div>*@
+                @*<div class="m_top_m"><img src="/showimg/images/m15.png" /></div>*@
+                @*<div class="m_top_r">*@
+                    @*<div><img src="/showimg/images/m17.png" /></div>*@
+                    @*<div>还款/担保人</div>*@
+                @*</div>*@
+            @*</div>*@
+
+            @*<div class="m_form">*@
+                @*<div class="m_form_info_1">*@
+                    @*<span>类型</span>*@
+                    @*<span>*@
+                        @*<select ng-model="selectCatalog" class="fs">*@
+                            @*<option>选择运营商</option>*@
+                            @*<option disabled>直接租户</option>*@
+                            @*<option disabled>其他</option>*@
+                        @*</select>*@
+                    @*</span>*@
+                @*</div>*@
+            @*</div>*@
+
+            @*<div class="m_form">*@
+                @*<div class="m_form_info_1">*@
+                    @*<span>地区</span>*@
+                    @*<span>*@
+                        @*<select class="fs" ng-model="selectArea">*@
+                            @*<option>京津冀</option>*@
+                            @*<option>长三角</option>*@
+                            @*<option>珠三角</option>*@
+                            @*<option>其他</option>*@
+                        @*</select>*@
+                    @*</span>*@
+                @*</div>*@
+            @*</div>*@
+
+            @*<div class="m_form">*@
+                @*<div class="m_form_info_1">*@
+                    @*<span>运营商</span>*@
+                    @*<span>*@
+                        @*<select class="fs" ng-model="selectPartner" ng-options="item.id as item.name for item in partners">*@
+                        @*</select>*@
+                    @*</span>*@
+                @*</div>*@
+            @*</div>*@
+
+            @*<div style="clear:both"></div>*@
+            @*<div class="footer_btn"><div class="m_reg" ng-click='doBind(@item.id)'>完&nbsp;&nbsp;成</div></div>*@
+                @*<!--内容结束-->*@
+        @*</div>*@
+    @*</div>*@
+    <script src="@routes.Assets.at("js/jquery.min.js")"></script>
+    <script src="@routes.Assets.at("js/angular.min.js")"></script>
+    <script src='@routes.Assets.at("js/front_controllers/verify_partner_controller.js")'></script>
+}

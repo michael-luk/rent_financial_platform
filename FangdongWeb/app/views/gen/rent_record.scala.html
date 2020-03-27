@@ -1,0 +1,16 @@
+@(rentRecordList: List[RentRecord]) @front_frame(TableInfoReader.getTableComment("RentRecord"), "RentRecordApp", "RentRecordController") {
+    @for(rentRecord <- rentRecordList) {
+        <ul>
+            <li>@TableInfoReader.getFieldComment("RentRecord", "id"): @rentRecord.id</li>
+            <li>@TableInfoReader.getFieldComment("RentRecord", "name"): @rentRecord.name</li>
+            <li>@TableInfoReader.getFieldComment("RentRecord", "rent"): @rentRecord.rent</li>
+            <li>@TableInfoReader.getFieldComment("RentRecord", "createdAt"): @LyLib.Utils.DateUtil.Date2Str(rentRecord.createdAt)</li>
+            <li>@TableInfoReader.getFieldComment("RentRecord", "lastUpdateTime"): @LyLib.Utils.DateUtil.Date2Str(rentRecord.lastUpdateTime)</li>
+            <li>@TableInfoReader.getFieldComment("RentRecord", "status"): @EnumInfoReader.getEnumName("RentRecord", "status", rentRecord.status)</li>
+            <li>@TableInfoReader.getFieldComment("RentRecord", "payDate"): @LyLib.Utils.DateUtil.Date2Str(rentRecord.payDate)</li>
+            <li>@TableInfoReader.getFieldComment("RentRecord", "comment"): @rentRecord.comment</li>
+            <li>@TableInfoReader.getFieldComment("RentRecord", "refHostId"): @rentRecord.refHostId</li>
+            <li>@TableInfoReader.getFieldComment("RentRecord", "refGuestId"): @rentRecord.refGuestId</li>
+        </ul>
+    }
+}

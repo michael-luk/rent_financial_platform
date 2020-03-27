@@ -1,0 +1,196 @@
+@(item: House) @front_frame_no_footer("授信租约", "VerifyContractApp", "VerifyContractController") {
+    <style>
+    .m_top{
+    overflow:auto;
+    width:320px;
+    margin:20px auto;
+    text-align:center;
+    color:#666;
+    }
+    .m_top_t{
+    float:left;
+    width:75px;
+    }
+    .m_top_t p{
+    line-height:150%;
+    }
+    .m_top_t div{
+    background-color:#b2b2b2;
+    -moz-border-radius:50px;
+    border-radius: 50px;
+    }
+    .m_top_img{
+    width:60px;
+    height:60px;
+    line-height:60px;
+    margin:0 auto;
+    }
+    .m_top_t img{
+    width:40px;
+    padding:10px;
+    }
+    .m_action{
+    background-color:#00b5aa !important;
+    }
+
+    .m_top_tt{
+    float:left;
+    width:2%;
+    }
+    .m_top_tt img{
+    width:100%;
+    margin-top:25px;
+    }
+
+    .m_form{
+    text-align:left;
+    font-size:1.4rem;
+    color:#666;
+    }
+    .m_form div{
+    height:40px;
+    line-height:40px;
+    background-color:#fff;
+    border:1px #b2b2b2 solid;
+    margin:3% 5%;
+    -moz-border-radius:5px;
+    border-radius: 5px;
+    }
+
+    .m_read{
+    color:#666;
+    text-align:right;
+    margin-right:5%;
+    }
+    .m_read span{
+    color:#00b5aa;
+    }
+    .m_form span{
+    margin:0 10px;
+    }
+    .m_input{
+    height:38px;
+    width:46%;
+    border:0;
+    }
+    .m_code{
+    color:#70c4ba;
+    }
+    .m_idcard{
+    text-align:left;
+    margin-left:5%;
+    font-size:1.4rem;
+    }
+    .m_idcard p{
+    margin:10px 0;
+    }
+    .m_idcard div{
+    width:20%;
+    float:left;
+    margin-right:20px;
+    border:1px #c2c2c2 solid;
+    }
+    .m_idcard img{
+    width:100% !important;
+    height:100% !important;
+    }
+
+    .m_address{
+    overflow:auto;
+    margin:10% 5% 5%;
+    text-align:left;
+    }
+    .m_address div:nth-child(1){
+    float:left;
+    }
+    .m_address div:nth-child(1) img{
+    width:15px;
+    position:relative;
+    top:5px;
+    }
+    .m_address div:nth-child(2){
+    float:left;
+    margin-left:10px;
+    }
+    .address_info{
+    color:#333;
+    font-size:1.4rem;
+    }
+    .address_area{
+    color:#999;
+    font-size:1.2rem;
+    }
+    </style>
+    <div class="content">
+        <div class="mid">
+                <!--内容开始-->
+            <div class="m_top">
+                <div class="m_top_t" >
+                    <div class="m_top_img m_action"><img src="/showimg/images/t1.png" /></div>
+                    <p>基础信息</p>
+                </div>
+
+                <div class="m_top_tt"><img src="/showimg/images/tt.png" /></div>
+
+                <div class="m_top_t">
+                    <div class="m_top_img m_action"><img src="/showimg/images/t2.png" /></div>
+                    <p>银行卡</p>
+                </div>
+                <div  class="m_top_tt"><img src="/showimg/images/tt.png" /></div>
+
+                <div class="m_top_t">
+                    <div class="m_top_img m_action"><img src="/showimg/images/t3.png" /></div>
+                    <p>房产信息</p>
+                </div>
+                <div  class="m_top_tt"><img src="/showimg/images/tt.png" /></div>
+
+                <div class="m_top_t">
+                    <div class="m_top_img m_action"><img src="/showimg/images/t4.png" /></div>
+                    <p>租赁信息</p>
+                </div>
+            </div>
+
+            <div class="m_address">
+                <div>
+                    <img src="/showimg/images/map.png" />
+                </div>
+                <div>
+                    <p class="address_info">@(item.name)</p>
+                    <p class="address_area">位于@(item.province)@(item.city)</p>
+                </div>
+            </div>
+
+            <div class="m_form">
+                <div><span>租&nbsp;&nbsp;金</span><input class="m_input" type="number" ng-model="rentMoney" /></div>
+            </div>
+
+            @*<div class="m_read">交租提醒，<span><a href="#">什么是交租提醒</a></span></div>*@
+
+            <div class="m_idcard">
+                <p>租赁合同</p>
+                <div>
+                    <input type="file" name="files[]" id="file0" accept="image/gif,image/jpeg,image/jpg,image/png" ng-file-select="uploadImage($files, 0)" style="display: none" />
+                    <img id="img0" src="/showimg/images/m4.png" onclick="F_Open_dialog('file0')" />
+                </div>
+                <div>
+                    <input type="file" name="files[]" id="file1" accept="image/gif,image/jpeg,image/jpg,image/png" ng-file-select="uploadImage($files, 1)" style="display: none" />
+                    <img id="img1" src="/showimg/images/m4.png" onclick="F_Open_dialog('file1')" />
+                </div>
+            </div>
+
+            <div style="clear:both; height:50px;"></div>
+            <div class="footer_btn"><div class="m_reg" ng-click='doBind(@item.id)'>完&nbsp;&nbsp;成</div></div>
+                <!--内容结束-->
+        </div>
+    </div>
+    <script src="@routes.Assets.at("js/jquery.min.js")"></script>
+    <script src="@routes.Assets.at("js/angular.min.js")"></script>
+    <script src="@routes.Assets.at("js/angular-file-upload-shim.min.js")"></script>
+    <script src="@routes.Assets.at("js/angular-file-upload.min.js")"></script>
+    <script type="application/javascript">
+    function F_Open_dialog($pic) {
+    document.getElementById($pic).click();
+    }
+    </script>
+    <script src='@routes.Assets.at("js/front_controllers/verify_contract_controller.js")'></script>
+}

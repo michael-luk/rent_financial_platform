@@ -1,0 +1,128 @@
+@(item: Host) @front_frame_no_footer("我的房产", "MyHouseApp", "MyHouseController") {
+    <style>
+    #m_contents{
+        background-image:url(/showimg/images/bg.jpg);
+    }
+    #m_mid{
+        margin-top:10px;
+        margin-bottom:100px;
+        text-align:center;
+
+    }
+    .m_list{
+        -moz-border-radius:5px;
+        border-radius: 5px;
+        border:1px #c0c0c0 solid;
+        height:80px;
+        margin:10px 2%;
+        font-size:1.4rem;
+        background-color:#fff;
+        line-height:100%;
+    }
+    .m_list div:nth-child(1){
+        width:60%;
+        float:left;
+        text-align:left;
+    }
+    .m_list div:nth-child(1) p{
+        margin-top:12px;
+        text-indent:10px;
+
+    }
+    .m_list div:nth-child(2){
+        margin-top:25px;
+    }
+    .m_list div:nth-child(3){
+        margin-top:12px;
+    }
+    .m_is_pass{
+        -moz-border-radius:30px;
+        border-radius: 30px;
+        width:55px;
+        height:55px;
+        line-height:55px;
+        color:#fff;
+        float:right;
+        margin-right:1%;
+        background-color:#37d1d1;
+        -moz-box-shadow:0px 0px 3px #ADADAD;
+        -webkit-box-shadow:0px 0px 3px #ADADAD;
+        box-shadow:0px 0px 3px #ADADAD;
+    }
+
+    .m_no_pass{
+        -moz-border-radius:30px;
+        border-radius: 30px;
+        width:55px;
+        height:55px;
+        line-height:55px;
+        color:#fff;
+        background-color:#f97664;
+        float:right;
+        margin-right:1%;
+        -moz-box-shadow:0px 0px 3px #ADADAD;
+        -webkit-box-shadow:0px 0px 3px #ADADAD;
+        box-shadow:0px 0px 3px #ADADAD;
+    }
+    .m_mid_bom{
+        position:fixed;
+        width:100%;
+        bottom:20px;
+    }
+    .m_name{
+        color:#c17869;
+    }
+    .m_add{
+        line-height:120%;
+    }
+    .wifi{
+        float:left;
+        width:20%;
+
+    }
+    .wifi img{
+        width:40px;height:35px;
+    }
+    .examine{
+        padding-left:10px;
+        width:15%;
+        float:left;
+    }
+    </style>
+
+    <div id="m_head">
+        <p>房产资料认证</p>
+        <p><a href="#" onClick="javascript:history.go(-1);">< 返回</a></p>
+    </div>
+
+    <div id="m_mid">
+
+        @for(house <- item.houses) {
+            <a href="/p/my/house/details/@house.id">
+                <div class="m_list">
+                    <div>
+                        <p class="m_name">小区：@house.name</p>
+                        <p class="m_add">地址：@house.address</p>
+                    </div>
+                    <div class="wifi">
+                        <p><a href="/p/house/routers?houseId=@house.id"><img src="/showimg/images/wifibg.png" /></a></p>
+                        @*<p><a href="/p/router/33"><img src="/showimg/images/wifibg.png" /></a></p>*@
+                    </div>
+                    <div class="examine">
+                        @if(house.status == 2) {
+                            <p class="m_is_pass">
+                        } else {
+                            <p class="m_no_pass">
+                            }
+                        @EnumInfoReader.getEnumName("House", "status", house.status)
+                    </p>
+                    </div>
+                </div>
+            </a>
+        }
+
+        <div class="m_mid_bom">
+            <input type="button" class="m_sub_btn w_70 h_40 m_btn" onclick='location = "/p/my/house/submit/@item.id"' value="新增房产" />
+        </div>
+    </div>
+}

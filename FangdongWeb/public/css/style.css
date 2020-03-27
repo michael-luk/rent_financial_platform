@@ -1,0 +1,55 @@
+@font-face{font-family:'yahei';src:url("msyh.ttf");}
+*{margin:0px;padding:0px;font-family:'yahei';}
+a{
+	color:inherit;
+	text-decoration:none;
+}
+html{
+    font-size:62.5%;
+	/*font-family:Helvetica;*/
+} 
+body{
+    font-size:1.2rem;
+	background-color:#f2f2f2;
+
+}
+.content{
+	mix-width:320px;
+	max-width:640px;
+	text-align:center;
+	margin:0 auto;
+}
+.mid{
+	width:100%;
+
+}
+
+
+.footer_btn{
+	width:100%;
+	text-align:center;
+	margin-top:20px;
+	margin-bottom:20px;
+}
+.m_reg, .m_f_btn{
+	background-color:#00b5aa;
+	margin:5%;
+	height:40px;
+	line-height:40px;
+	color:#fff;
+	font-size:1.8rem;
+	font-weight:bold;
+    -moz-border-radius:5px;
+    border-radius: 5px;
+}
+.examine{
+	margin:0 auto;
+	width:100px;
+	height:100px;
+	line-height:100px;
+	background-color:#00b5aa;
+	color:#fff;
+	font-size:1.8rem;
+    -moz-border-radius:50px;
+    border-radius: 50px;
+}

@@ -1,0 +1,85 @@
+@(item: Host, prod: Product) @front_frame_no_footer("随借随还借款", "VerifyBankApp", "VerifyBankController") {
+    <style>
+    body{
+    }
+    .lend{
+    margin:50px 50px 20px 40px;
+    text-align:left;
+    font-size:1.8rem;
+    color:#666464;
+    }
+    .price{
+    width:70%;
+    border:0px;
+    background-color:#f2f2f2;
+    border-bottom:1px #666464 solid;
+    height:50px;
+    font-size:3.0rem;
+    }
+    .lend_price{
+    font-size:3.0rem;
+    margin-left:35px;
+    text-align:left;
+    }
+    .lend_info{
+    margin-top:50px;
+    }
+    .lend_info i{
+    display:block;
+    float:left;
+    width:10px;
+    height:10px;
+    background-color:#878787;
+    position:relative;
+    top:10px;
+    -moz-border-radius:10px;
+    border-radius:10px;
+    margin-right:5px;
+    }
+    .lend_info p{
+    height:30px;
+    line-height:30px;
+    text-align:left;
+    margin-left:40px;
+    color:#878787;
+    }
+    .footer_btn{
+    width:100%;
+    position:absolute;
+    bottom:0px;
+    }
+    </style>
+    <div class="content">
+        <div class="mid">
+                <!--内容开始-->
+            <div class="lend">借钱金额</div>
+            <div class="lend_price"><span>￥</span><input type="number" class="price" id="money" /></div>
+
+            <div class="lend_info">
+                <p><i></i>按利息计，日利率0.05%</p>
+                <p><i></i>单笔借款最低金额￥500</p>
+                <p><i></i>可借额度￥@item.credit</p>
+            </div>
+
+            <div style="clear:both; height:60px"></div>
+            <div class="footer_btn"><a href="#" onclick='checkAndGo()'><div class="m_reg">下一步</div></a></div>
+            @*<div class="footer_btn"><a href="/p/product/fix/sjsh/sign?money="><div class="m_reg">下一步</div></a></div>*@
+                <!--内容结束-->
+        </div>
+    </div>
+    <script src="@routes.Assets.at("js/jquery.min.js")"></script>
+    <script>
+        function checkAndGo(){
+            var money = $("#money").val()
+            if (money < 500){
+                alert('借款不能低于500')
+                return
+            }
+            if (money > @item.credit){
+                alert('借款不能高于您的额度')
+                return
+            }
+            window.location.href='/p/product/fix/sjsh/sign?money=' + money + '&pid=' + @prod.id
+        }
+    </script>
+}
